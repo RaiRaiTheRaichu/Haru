@@ -1,17 +1,17 @@
 using Haru.Models.EFT;
-using Haru.Repositories;
+using Haru.Server.Repositories;
 using Haru.Server.Services;
 
 namespace Haru.Server.Services
 {
     public static class LocaleService
     {
-        public bool HasLocale(string id)
+        public static bool HasLocale(string id)
         {
             return LocaleRepository.HasLocale(id);
         }
 
-        public NameLocaleModel[] GetLanguages()
+        public static NameLocaleModel[] GetLanguages()
         {
             var names = LocaleRepository.GetNames();
             var data = new NameLocaleModel[names.Count];
@@ -29,19 +29,14 @@ namespace Haru.Server.Services
             return data;
         }
 
-        public MenuLocaleModel GetMenu(string id)
+        public static MenuLocaleModel GetMenu(string id)
         {
             return LocaleRepository.GetMenu(id);
         }
 
-        public GlobalLocaleModel GetGlobal(string id)
+        public static GlobalLocaleModel GetGlobal(string id)
         {
             return LocaleRepository.GetGlobal(id);
-        }
-
-        public string[] GetLocales()
-        {
-            return LocaleRepository.GetLocales();
         }
     }
 }

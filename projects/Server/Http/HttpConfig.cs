@@ -4,25 +4,25 @@ namespace Haru.Server.Http
 {
     public static class HttpConfig
     {
-        public const Uri Uri = "http://127.0.0.1:8000/";
+        public static readonly Uri Uri;
 
-        public HttpConfig(string uri)
+        static HttpConfig()
         {
-            Uri = new Uri(uri);
+            Uri = new Uri("http://127.0.0.1:8000/");
         }
 
-        public string GetUrl()
+        public static string GetUrl()
         {
             var url = Uri.ToString();
             return url.Remove(url.Length - 1);
         }
 
-        public string GetHost()
+        public static string GetHost()
         {
             return Uri.Host;
         }
 
-        public int GetPort()
+        public static int GetPort()
         {
             return Uri.Port;
         }

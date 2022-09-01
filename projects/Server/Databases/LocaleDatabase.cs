@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Haru.Models.EFT;
-using Haru.Resources;
 using Haru.Server.Utils;
 
 namespace Haru.Server.Databases
@@ -29,7 +28,7 @@ namespace Haru.Server.Databases
             
             foreach (var name in names)
             {
-                Names.add(name.key, name.Value);
+                Names.Add(name.Key, name.Value);
             }
         }
 

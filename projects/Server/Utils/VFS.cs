@@ -6,18 +6,18 @@ namespace Haru.Server.Utils
 {
     public static class VFS
     {
-        public bool Exists(string filepath)
+        public static bool Exists(string filepath)
         {
             return (File.Exists(filepath) || Directory.Exists(filepath));
         }
 
-        public void CreateDirectory(string filepath)
+        public static void CreateDirectory(string filepath)
         {
             var path = Path.GetDirectoryName(filepath);
             Directory.CreateDirectory(path);
         }
 
-        public void WriteText(
+        public static void WriteText(
             string filepath, string text, bool append = false)
         {
             if (!Exists(filepath))
@@ -36,7 +36,7 @@ namespace Haru.Server.Utils
             }
         }
 
-        public string ReadText(string filepath)
+        public static string ReadText(string filepath)
         {
             if (!Exists(filepath))
             {
@@ -53,12 +53,12 @@ namespace Haru.Server.Utils
             }
         }
 
-        public string GetFileExtension(string filepath)
+        public static string GetFileExtension(string filepath)
         {
             return Path.GetExtension(filepath);
         }
 
-        public string GetFileName(string filepath)
+        public static string GetFileName(string filepath)
         {
             return Path.GetFileNameWithoutExtension(filepath);
         }

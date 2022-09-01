@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Haru.Server.Events;
-using Haru.Server.Http;
+using Haru.Models;
 using Haru.Models.EFT;
+using Haru.Server.Http;
 using Haru.Server.Utils;
 
 namespace Haru.Server.Controllers
@@ -18,7 +18,7 @@ namespace Haru.Server.Controllers
 
             var body = new ResponseModel<object>(null);
             var json = Json.Serialize(body);
-            await SendJson(context.response, json);
+            await SendJson(context.Response, json);
         }
     }
 }

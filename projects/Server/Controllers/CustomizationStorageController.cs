@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Haru.Server.Events;
-using Haru.Server.Http;
+using Haru.Models;
 using Haru.Models.EFT;
+using Haru.Server.Http;
 using Haru.Server.Services;
 using Haru.Server.Utils;
 
@@ -20,7 +20,7 @@ namespace Haru.Server.Controllers
             var data = ProfileService.GetCustomizationStorageModel();
             var body = new ResponseModel<CustomizationStorageModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.response, json);
+            await SendJson(context.Response, json);
         }
     }
 }

@@ -1,17 +1,14 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Haru.Server.Events;
-using Haru.Databases;
-using Haru.Resources;
+using Haru.Server.Databases;
 using Haru.Server.Utils;
 
 namespace Haru.Server.Databases
 {
-    public class ResourceDatabase : IResourceDatabase
+    public static class ResourceDatabase
     {
         public static Dictionary<string, string> Files;
 
-        public ResourceDatabase()
+        static ResourceDatabase()
         {
             Files = new Dictionary<string, string>();
             

@@ -6,9 +6,9 @@ namespace Haru.Server.Utils
 {
     public static class Log
     {
-        private readonly string _filepath;
+        private static readonly string _filepath;
 
-        public Log()
+        static Log()
         {
             _filepath = "./Logs/Haru.log";
 
@@ -18,7 +18,7 @@ namespace Haru.Server.Utils
             }
         }
 
-        public void Write(string text)
+        public static void Write(string text)
         {
             var formatted = $"[{DateTime.Now}]: {text}";
             Console.WriteLine(formatted);

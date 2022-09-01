@@ -6,7 +6,7 @@ namespace Haru.Server.Services
 {
     public static class NotifierService
     {
-        public NotifierServerModel GetNotifier(string sessionId)
+        public static NotifierServerModel GetNotifier(string sessionId)
         {
             var url = HttpConfig.GetUrl();
             return new NotifierServerModel(sessionId, url);

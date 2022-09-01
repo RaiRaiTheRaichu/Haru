@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using Haru.Server.Http;
 using Haru.Models.EFT;
-using Haru.Repositories;
+using Haru.Server.Repositories;
 using Haru.Server.Services;
 
 namespace Haru.Server.Services
 {
-    public static class GameService : IGameService
+    public static class GameService
     {
-        public GameConfigModel GetGameConfigModel()
+        public static GameConfigModel GetGameConfigModel()
         {
             var url = HttpConfig.GetUrl();
 
@@ -34,7 +34,7 @@ namespace Haru.Server.Services
             };
         }
 
-        public GameProfileSelectModel SelectProfile(string sessionId)
+        public static GameProfileSelectModel SelectProfile(string sessionId)
         {
             var url = HttpConfig.GetUrl();
 
@@ -45,7 +45,7 @@ namespace Haru.Server.Services
             };
         }
 
-        public GameStartModel StartGame()
+        public static GameStartModel StartGame()
         {
             return new GameStartModel()
             {

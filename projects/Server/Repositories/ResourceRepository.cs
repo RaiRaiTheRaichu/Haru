@@ -1,23 +1,18 @@
-using Haru.Databases;
-using Haru.Repositories;
+using Haru.Server.Databases;
+using Haru.Server.Repositories;
 
 namespace Haru.Server.Repositories
 {
     public static class ResourceRepository
     {
-        public bool HasFile(string url)
+        public static bool HasFile(string url)
         {
             return ResourceDatabase.Files.ContainsKey(url);
         }
 
-        public string GetFile(string url)
+        public static string GetFile(string url)
         {
             return ResourceDatabase.Files[url];
-        }
-
-        public string[] GetFileNames()
-        {
-            return ResourceDatabase.FileNames;
         }
     }
 }

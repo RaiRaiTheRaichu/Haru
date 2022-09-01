@@ -7,6 +7,7 @@ public static class ServerManager
 
     static ServerManager()
     {
+        var router = new Router();
         var controllers = new Controller[]
         {
             new CustomizationStorageController(),
@@ -17,12 +18,17 @@ public static class ServerManager
             new LanguagesController(),
             new LocaleController(),
             new MenuLocaleController(),
-            new NotifierController(),
+            new NotifierChannelCreateController(),
             new ProfileStatusController(),
             new ResourceController(),
             new ServerListController()
         };
 
-        Server = new HttpServer(controllers);
+        foreach (var controller in controllers)
+        {
+            router.Controllers.Add(controller);
+        }
+
+        Server = new HttpServer(router);
     }
 }

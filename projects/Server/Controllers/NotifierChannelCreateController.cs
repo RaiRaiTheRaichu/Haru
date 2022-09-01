@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using Haru.Server.Events;
+using Haru.Models;
+using Haru.Models.EFT;
 using Haru.Server.Helpers;
 using Haru.Server.Http;
-using Haru.Models.EFT;
 using Haru.Server.Services;
 using Haru.Server.Utils;
 
@@ -22,7 +22,7 @@ namespace Haru.Server.Controllers
             var data = NotifierService.GetNotifier(sessionId);
             var body = new ResponseModel<NotifierServerModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.response, json);
+            await SendJson(context.Response, json);
         }
     }
 }

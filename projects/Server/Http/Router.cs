@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Haru.Server.Events;
+using Haru.Models;
 using Haru.Server.Helpers;
 using Haru.Server.Utils;
 
@@ -17,16 +17,16 @@ namespace Haru.Server.Http
             var path = RequestHelper.GetPath(request);
             var context = new RouterContext()
             {
-                request = request,
-                response = response,
-                hasBody = (request.HttpMethod == "POST");
+                Request = request,
+                Response = response,
+                HasBody = (request.HttpMethod == "POST")
             };
 
             Log.Write(path);
 
             foreach (var controller in Controllers)
             {
-                Controller.Run(context);
+                await controller.Run(context);
             }
 
             // Log.Write($"ERROR - path not found: {context.Request.Url}");

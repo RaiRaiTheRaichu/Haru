@@ -5,9 +5,9 @@ namespace Haru.Server.Utils
 {
     public static class Json
     {
-        private readonly JsonSerializerSettings _settings;
+        private static readonly JsonSerializerSettings _settings;
 
-        public Json()
+        static Json()
         {
             _settings = new JsonSerializerSettings()
             {
@@ -15,12 +15,12 @@ namespace Haru.Server.Utils
             };
         }
 
-        public T Deserialize<T>(string json)
+        public static T Deserialize<T>(string json)
         {
             return JsonConvert.DeserializeObject<T>(json);
         }
 
-        public string Serialize<T>(T o)
+        public static string Serialize<T>(T o)
         {
             return JsonConvert.SerializeObject(o, _settings);
         }

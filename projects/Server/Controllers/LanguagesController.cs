@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Haru.Server.Events;
-using Haru.Server.Http;
+using Haru.Models;
 using Haru.Models.EFT;
+using Haru.Server.Http;
 using Haru.Server.Services;
 using Haru.Server.Utils;
 
@@ -11,8 +11,7 @@ namespace Haru.Server.Controllers
     {
         public override async Task Run(RouterContext context)
         {
-            if (!context.Request.Url.LocalPath
-                .Equals("/client/languages"))
+            if (!context.Request.Url.LocalPath.Equals("/client/languages"))
             {
                 return;
             }
@@ -20,7 +19,7 @@ namespace Haru.Server.Controllers
             var data = LocaleService.GetLanguages();
             var body = new ResponseModel<NameLocaleModel[]>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.response, json);
+            await SendJson(context.Response, json);
         }
     }
 }

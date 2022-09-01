@@ -1,35 +1,30 @@
 using System.Collections.Generic;
-using Haru.Databases;
+using Haru.Server.Databases;
 using Haru.Models.EFT;
-using Haru.Repositories;
+using Haru.Server.Repositories;
 
 namespace Haru.Server.Repositories
 {
     public static class LocaleRepository
     {
-        public bool HasLocale(string id)
+        public static bool HasLocale(string id)
         {
             return LocaleDatabase.Menus.ContainsKey(id);
         }
 
-        public Dictionary<string, string> GetNames()
+        public static Dictionary<string, string> GetNames()
         {
             return LocaleDatabase.Names;
         }
 
-        public MenuLocaleModel GetMenu(string id)
+        public static MenuLocaleModel GetMenu(string id)
         {
             return LocaleDatabase.Menus[id];
         }
 
-        public GlobalLocaleModel GetGlobal(string id)
+        public static GlobalLocaleModel GetGlobal(string id)
         {
             return LocaleDatabase.Globals[id];
-        }
-
-        public string[] GetLocales()
-        {
-            return LocaleDatabase.Locales;
         }
     }
 }

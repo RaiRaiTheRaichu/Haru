@@ -6,7 +6,7 @@ namespace Haru.Server.Services
 {
     public static class ProfileService
     {
-        public CustomizationStorageModel GetCustomizationStorageModel()
+        public static CustomizationStorageModel GetCustomizationStorageModel()
         {
             return new CustomizationStorageModel
             {
@@ -19,7 +19,7 @@ namespace Haru.Server.Services
             };
         }
 
-        public ProfileStatusModel[] GetProfileStatusModel()
+        public static ProfileStatusModel[] GetProfileStatusModel()
         {
             var host = HttpConfig.GetHost();
             var port = HttpConfig.GetPort();

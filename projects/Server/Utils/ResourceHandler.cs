@@ -6,25 +6,25 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Haru.Extensions;
 
-namespace Haru.Server.Resources
+namespace Haru.Server.Utils
 {
     public static class ResourceHandler
     {
-        private readonly Dictionary<Assembly, string[]> _names;
+        private static readonly Dictionary<Assembly, string[]> _names;
         private const string ROOT_PATH = "{0}.Resources.Embedded.{1}";
 
-        public ResourceHandler()
+        static ResourceHandler()
         {
             _names = new Dictionary<Assembly, string[]>();
             RegisterAssembly(Assembly.GetExecutingAssembly());
         }
 
-        public void RegisterAssembly(Assembly asm)
+        public static void RegisterAssembly(Assembly asm)
         {
             _names.Add(asm, asm.GetManifestResourceNames());
         }
 
-        public Stream GetStream(string filepath)
+        public static Stream GetStream(string filepath)
         {
             foreach (var kvp in _names)
             {
@@ -41,18 +41,18 @@ namespace Haru.Server.Resources
                 $"Cannot find resource {filepath}");
         }
 
-        public string GetText(string filepath)
+        public static string GetText(string filepath)
         {
             using (var resource = GetStream(filepath))
             {
                 using (var sr = new StreamReader(resource))
                 {
-                    return await sr.ReadToEnd();
+                    return sr.ReadToEnd();
                 }
             }
         }
 
-        public byte[] GetData(string filepath)
+        public static byte[] GetData(string filepath)
         {
             using (var resource = GetStream(filepath))
             {

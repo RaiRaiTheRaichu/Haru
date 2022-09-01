@@ -6,7 +6,7 @@ namespace Haru.Server.Services
 {
     public static class ServerService
     {
-        public ServerModel[] GetServers()
+        public static ServerModel[] GetServers()
         {
             return new ServerModel[]
             {

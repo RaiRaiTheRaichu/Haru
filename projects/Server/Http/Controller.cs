@@ -1,7 +1,6 @@
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Haru.Server.Events;
 using Haru.Models;
 using Haru.Server.Utils;
 

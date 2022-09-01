@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Haru.Server.Events;
+using Haru.Models;
+using Haru.Models.EFT;
 using Haru.Server.Helpers;
 using Haru.Server.Http;
-using Haru.Models.EFT;
 using Haru.Server.Services;
 using Haru.Server.Utils;
 
@@ -24,7 +24,7 @@ namespace Haru.Server.Controllers
             var data = LocaleService.GetGlobal(locale);
             var body = new ResponseModel<GlobalLocaleModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.response, json);
+            await SendJson(context.Response, json);
         }
     }
 }
