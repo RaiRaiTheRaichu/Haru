@@ -1,0 +1,13 @@
+# editors
+.vs/
+.vscode/
+.idea/
+*.DotSettings.user
+
+# build artifacts
+**/obj/
+**/bin/
+**/packages/
+
+## other
+*.zip

@@ -1,0 +1,40 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "dotnet: restore",
+				"type": "shell",
+				"command": "dotnet restore"
+			},
+			{
+				"label": "dotnet: build debug",
+				"type": "shell",
+				"command": "dotnet build --no-restore --nologo --configuration Debug"
+			},
+			{
+				"label": "dotnet: build release",
+				"type": "shell",
+				"command": "dotnet build --no-restore --nologo --configuration Release"
+			},
+			{
+				"label": "Build: Debug",
+				"dependsOrder": "sequence",
+				"dependsOn": [ "dotnet: restore", "dotnet: build debug" ],
+				"group": "build"
+			},
+			{
+				"label": "Build: Release",
+				"dependsOrder": "sequence",
+				"dependsOn": [ "dotnet: restore", "dotnet: build release" ],
+				"group": "build"
+			}
+		]
+	}
+}
