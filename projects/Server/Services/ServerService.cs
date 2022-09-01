@@ -12,8 +12,8 @@ namespace Haru.Server.Services
             {
                 new ServerModel()
                 {
-                    Ip = HttpServerConfig.GetHost(),
-                    Port = HttpServerConfig.GetPort()
+                    Ip = HttpConfig.GetHost(),
+                    Port = HttpConfig.GetPort()
                 }
             };
         }

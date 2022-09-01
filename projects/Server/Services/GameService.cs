@@ -10,7 +10,7 @@ namespace Haru.Server.Services
     {
         public GameConfigModel GetGameConfigModel()
         {
-            var url = HttpServerConfig.GetUrl();
+            var url = HttpConfig.GetUrl();
 
             return new GameConfigModel()
             {
@@ -36,7 +36,7 @@ namespace Haru.Server.Services
 
         public GameProfileSelectModel SelectProfile(string sessionId)
         {
-            var url = HttpServerConfig.GetUrl();
+            var url = HttpConfig.GetUrl();
 
             return new GameProfileSelectModel()
             {

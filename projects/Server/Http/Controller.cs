@@ -9,7 +9,7 @@ namespace Haru.Server.Http
 {
     public abstract class Controller
     {
-        public abstract Task Run(RouterRequest routerRequest);
+        public abstract Task Run(RouterContext context);
 
         public async Task Send(HttpListenerResponse response,
             byte[] data,

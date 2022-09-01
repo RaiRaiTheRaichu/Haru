@@ -11,18 +11,17 @@ namespace Haru.Server.Controllers
 {
     public class ResourceController : Controller
     {
-        public override async Task Run(RouterRequest routerRequest)
+        public override async Task Run(RouterContext context)
         {
-            if (!_resourcesPaths.Contains(routerRequest.request.Url.LocalPath))
+            if (!_resourcesPaths.Contains(context.Request.Url.LocalPath))
             {
-                // throw exception
                 return;
             }
 
-            var url = RequestHelper.GetPath(routerRequest.request);
+            var url = RequestHelper.GetPath(context.Request);
             var file = ResourceService.GetFile(url);
             var data = await ResourceHandler.GetData(file);
-            await Send(routerRequest.response, data);
+            await Send(context.response, data);
         }
     }
 }

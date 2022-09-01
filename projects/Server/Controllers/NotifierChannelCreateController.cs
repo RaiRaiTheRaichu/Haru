@@ -10,19 +10,19 @@ namespace Haru.Server.Controllers
 {
     public class NotifierChannelCreateController : Controller
     {
-        public override async Task Run(RouterRequest routerRequest)
+        public override async Task Run(RouterContext context)
         {
-            if (!routerRequest.request.Url.LocalPath
+            if (!context.Request.Url.LocalPath
                 .Equals("/client/notifier/channel/create"))
             {
                 return;
             }
 
-            var sessionId = RequestHelper.GetSessionId(routerRequest.request);
+            var sessionId = RequestHelper.GetSessionId(context.Request);
             var data = NotifierService.GetNotifier(sessionId);
             var body = new ResponseModel<NotifierServerModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(routerRequest.response, json);
+            await SendJson(context.response, json);
         }
     }
 }

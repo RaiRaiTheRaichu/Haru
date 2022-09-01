@@ -4,21 +4,17 @@ using Haru.Server.Utils;
 
 namespace Haru.Server.Http
 {
-    public class HttpServer : IHttpServer
+    public class HttpServer
     {
-        private readonly ILog _log;
         private readonly HttpListener _listener;
-        private readonly HttpServerConfig _httpServerConfig;
         public readonly Router Router;
         public bool IsRunning { get; private set; }
 
-        public HttpServer(ILog log, Router router, HttpServerConfig httpServerConfig)
+        public HttpServer(Router router)
         {
-            _log = log;
-            _httpServerConfig = httpServerConfig;
-            _listener = new HttpListener();
             Router = router;
-            _listener.Prefixes.Add(_httpServerConfig.Uri.ToString());
+            _listener = new HttpListener();
+            _listener.Prefixes.Add(HttpConfig.Uri.ToString());
         }
 
         private async Task HandleRequest()
@@ -37,7 +33,7 @@ namespace Haru.Server.Http
         public async void Start()
         {
             IsRunning = true;
-            await _log.Write($"Starting server on {_httpServerConfig.GetUrl()}");
+            Log.Write($"Starting server on {HttpConfig.GetUrl()}");
             await Task.Run(() => HandleRequest());
         }
 

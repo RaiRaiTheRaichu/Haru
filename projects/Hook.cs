@@ -20,7 +20,7 @@ namespace Haru
 
         private void StartServer()
         {
-            // code here
+            ServerManager.Server.Start();
         }
     }
 }

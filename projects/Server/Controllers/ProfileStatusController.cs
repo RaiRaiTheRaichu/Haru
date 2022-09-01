@@ -9,19 +9,18 @@ namespace Haru.Server.Controllers
 {
     public class ProfileStatusController : Controller
     {
-        public override async Task Run(RouterRequest routerRequest)
+        public override async Task Run(RouterContext context)
         {
-            if (!routerRequest.request.Url.LocalPath
+            if (!context.Request.Url.LocalPath
                 .Equals("/client/profile/status"))
             {
-                // throw exception
                 return;
             }
 
             var data = ProfileService.GetProfileStatusModel();
             var body = new ResponseModel<ProfileStatusModel[]>(data);
             var json = Json.Serialize(body);
-            await SendJson(routerRequest.response, json);
+            await SendJson(context.response, json);
         }
     }
 }

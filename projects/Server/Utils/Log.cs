@@ -4,7 +4,7 @@ using Haru.Server.Utils;
 
 namespace Haru.Server.Utils
 {
-    public class Log
+    public static class Log
     {
         private readonly string _filepath;
 

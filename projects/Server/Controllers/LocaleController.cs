@@ -11,21 +11,20 @@ namespace Haru.Server.Controllers
 {
     public class LocaleController : Controller
     {
-        public override async Task Run(RouterRequest routerRequest)
+        public override async Task Run(RouterContext context)
         {
-            var url = RequestHelper.GetPath(routerRequest.request);
+            var url = RequestHelper.GetPath(context.Request);
             var locale = LocaleHelper.GetLocaleId(url);
 
             if (!LocaleService.HasLocale(locale))
             {
-                // throw exception
                 return;
             }
 
             var data = LocaleService.GetGlobal(locale);
             var body = new ResponseModel<GlobalLocaleModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(routerRequest.response, json);
+            await SendJson(context.response, json);
         }
     }
 }

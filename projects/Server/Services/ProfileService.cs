@@ -21,8 +21,8 @@ namespace Haru.Server.Services
 
         public ProfileStatusModel[] GetProfileStatusModel()
         {
-            var host = HttpServerConfig.GetHost();
-            var port = HttpServerConfig.GetPort();
+            var host = HttpConfig.GetHost();
+            var port = HttpConfig.GetPort();
 
             return new ProfileStatusModel[]
             {

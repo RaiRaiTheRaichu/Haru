@@ -9,9 +9,10 @@ namespace Haru.Server.Controllers
 {
     public class LanguagesController : Controller
     {
-        public override async Task Run(RouterRequest routerRequest)
+        public override async Task Run(RouterContext context)
         {
-            if (!routerRequest.request.Url.LocalPath.Equals("/client/languages"))
+            if (!context.Request.Url.LocalPath
+                .Equals("/client/languages"))
             {
                 return;
             }
@@ -19,7 +20,7 @@ namespace Haru.Server.Controllers
             var data = LocaleService.GetLanguages();
             var body = new ResponseModel<NameLocaleModel[]>(data);
             var json = Json.Serialize(body);
-            await SendJson(routerRequest.response, json);
+            await SendJson(context.response, json);
         }
     }
 }

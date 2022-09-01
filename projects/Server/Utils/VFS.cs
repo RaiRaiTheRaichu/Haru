@@ -4,7 +4,7 @@ using Haru.Server.Utils;
 
 namespace Haru.Server.Utils
 {
-    public satic class VFS
+    public static class VFS
     {
         public bool Exists(string filepath)
         {

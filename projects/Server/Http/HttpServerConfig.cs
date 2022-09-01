@@ -2,11 +2,11 @@ using System;
 
 namespace Haru.Server.Http
 {
-    public class HttpServerConfig
+    public static class HttpConfig
     {
-        public Uri Uri;
+        public const Uri Uri = "http://127.0.0.1:8000/";
 
-        public HttpServerConfig(string uri)
+        public HttpConfig(string uri)
         {
             Uri = new Uri(uri);
         }

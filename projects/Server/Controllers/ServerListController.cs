@@ -9,9 +9,9 @@ namespace Haru.Server.Controllers
 {
     public class ServerListController : Controller
     {
-        public override async Task Run(RouterRequest routerRequest)
+        public override async Task Run(RouterContext context)
         {
-            if (!routerRequest.request.Url.LocalPath
+            if (!context.Request.Url.LocalPath
                 .Equals("/client/server/list"))
             {
                 return;
@@ -20,7 +20,7 @@ namespace Haru.Server.Controllers
             var data = ServerService.GetServers();
             var body = new ResponseModel<ServerModel[]>(data);
             var json = Json.Serialize(body);
-            await SendJson(routerRequest.response, json);
+            await SendJson(context.response, json);
         }
     }
 }

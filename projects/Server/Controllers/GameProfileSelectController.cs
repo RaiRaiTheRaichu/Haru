@@ -10,31 +10,19 @@ namespace Haru.Server.Controllers
 {
     public class GameProfileSelectController : Controller
     {
-        private readonly IJson _json;
-        private readonly IGameService _service;
-
-        public GameProfileSelectController(
-            IZlib zlib,
-            IJson json,
-            IGameService gameService,
-            IEventBus eventBus) : base(zlib, eventBus)
+        public override async Task Run(RouterContext context)
         {
-            _json = json;
-            _service = gameService;
-        }
-
-        public override async Task Run(RouterRequest routerRequest)
-        {
-            if (!routerRequest.request.Url.LocalPath.Equals("/client/game/profile/select"))
+            if (!context.Request.Url.LocalPath
+                .Equals("/client/game/profile/select"))
             {
                 return;
             }
 
-            var sessionId = RequestHelper.GetSessionId(routerRequest.request);
-            var data = _service.SelectProfile(sessionId);
+            var sessionId = RequestHelper.GetSessionId(context.Request);
+            var data = GameService.SelectProfile(sessionId);
             var body = new ResponseModel<GameProfileSelectModel>(data);
-            var json = _json.Serialize(body);
-            await SendJson(routerRequest.response, json);
+            var json = Json.Serialize(body);
+            await SendJson(context.response, json);
         }
     }
 }

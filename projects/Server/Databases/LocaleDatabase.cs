@@ -5,30 +5,24 @@ using Haru.Server.Utils;
 
 namespace Haru.Server.Databases
 {
-    public class LocaleDatabase
+    public static class LocaleDatabase
     {
-        public Dictionary<string, string> Names { get; set; }
-        public Dictionary<string, MenuLocaleModel> Menus { get; set; }
-        public Dictionary<string, GlobalLocaleModel> Globals { get; set; }
+        public static readonly Dictionary<string, string> Names;
+        public static readonly Dictionary<string, MenuLocaleModel> Menus;
+        public static readonly Dictionary<string, GlobalLocaleModel> Globals;
 
-        public string[] Locales { get; private set; }
-
-        public LocaleDatabase()
+        static LocaleDatabase()
         {
-            Locales = new string[] { };
             Names = new Dictionary<string, string>();
             Menus = new Dictionary<string, MenuLocaleModel>();
             Globals = new Dictionary<string, GlobalLocaleModel>();
+            
+            LoadLanguages();
+            LoadMenus();
+            LoadGlobals();
         }
 
-        public async Task Initialize()
-        {
-            await LoadLanguages();
-            await LoadMenus();
-            await LoadGlobals();
-        }
-
-        private void LoadLanguages()
+        private static void LoadLanguages()
         {
             var json = ResourceHandler.GetText("db.locale.lang.json");
             var names = Json.Deserialize<Dictionary<string, string>>(json);
@@ -39,14 +33,14 @@ namespace Haru.Server.Databases
             }
         }
 
-        private void LoadMenus()
+        private static void LoadMenus()
         {
             var json = ResourceHandler.GetText("db.locale.menu-en.json");
             var body = Json.Deserialize<ResponseModel<MenuLocaleModel>>(json);
             Menus.Add("en", body.Data);
         }
 
-        private void LoadGlobals()
+        private static void LoadGlobals()
         {
             var json = ResourceHandler.GetText("db.locale.all-en.json");
             var body = Json.Deserialize<ResponseModel<GlobalLocaleModel>>(json);

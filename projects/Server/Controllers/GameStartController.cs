@@ -9,30 +9,18 @@ namespace Haru.Server.Controllers
 {
     public class GameStartController : Controller
     {
-        private readonly IJson _json;
-        private readonly IGameService _service;
-
-        public GameStartController(
-            IZlib zlib,
-            IJson json,
-            IGameService gameService,
-            IEventBus eventBus) : base(zlib, eventBus)
+        public override async Task Run(RouterContext context)
         {
-            _json = json;
-            _service = gameService;
-        }
-
-        public override async Task Run(RouterRequest routerRequest)
-        {
-            if (!routerRequest.request.Url.LocalPath.Equals("/client/game/start"))
+            if (!context.Request.Url.LocalPath
+                .Equals("/client/game/start"))
             {
                 return;
             }
 
-            var data = _service.StartGame();
+            var data = GameService.StartGame();
             var body = new ResponseModel<GameStartModel>(data);
-            var json = _json.Serialize(body);
-            await SendJson(routerRequest.response, json);
+            var json = Json.Serialize(body);
+            await SendJson(context.response, json);
         }
     }
 }

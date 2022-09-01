@@ -4,11 +4,11 @@ using Haru.Server.Services;
 
 namespace Haru.Server.Services
 {
-    public class NotifierService
+    public static class NotifierService
     {
         public NotifierServerModel GetNotifier(string sessionId)
         {
-            var url = _HttpServerConfig.GetUrl();
+            var url = HttpConfig.GetUrl();
             return new NotifierServerModel(sessionId, url);
         }
     }

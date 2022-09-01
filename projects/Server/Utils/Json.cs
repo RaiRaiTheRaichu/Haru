@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Haru.Server.Utils
 {
-    public class Json
+    public static class Json
     {
         private readonly JsonSerializerSettings _settings;
 

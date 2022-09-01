@@ -5,38 +5,31 @@ using Haru.Repositories;
 
 namespace Haru.Server.Repositories
 {
-    public class LocaleRepository : ILocaleRepository
+    public static class LocaleRepository
     {
-        private readonly ILocaleDatabase _database;
-
-        public LocaleRepository(ILocaleDatabase localeDatabase)
-        {
-            _database = localeDatabase;
-        }
-
         public bool HasLocale(string id)
         {
-            return _database.Menus.ContainsKey(id);
+            return LocaleDatabase.Menus.ContainsKey(id);
         }
 
         public Dictionary<string, string> GetNames()
         {
-            return _database.Names;
+            return LocaleDatabase.Names;
         }
 
         public MenuLocaleModel GetMenu(string id)
         {
-            return _database.Menus[id];
+            return LocaleDatabase.Menus[id];
         }
 
         public GlobalLocaleModel GetGlobal(string id)
         {
-            return _database.Globals[id];
+            return LocaleDatabase.Globals[id];
         }
 
         public string[] GetLocales()
         {
-            return _database.Locales;
+            return LocaleDatabase.Locales;
         }
     }
 }
