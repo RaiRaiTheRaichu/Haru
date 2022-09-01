@@ -34,11 +34,11 @@
     <EmbeddedResource Include=".\Resources\Embedded\client.settings.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.trading.api.tradersettings.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.weather.json" />
-    <EmbeddedResource Include=".\Resources\Embedded\test.json" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- prevent output of these files, EFT already has these -->
+    <Reference PrivateAssets="All" Private="False" Include="Assembly-CSharp"                    HintPath="References\Assembly-CSharp.dll"  />
     <Reference PrivateAssets="All" Private="False" Include="ComponentAce.Compression.Libs.zlib" HintPath="References\bsg.componentace.compression.libs.zlib.dll"  />
     <Reference PrivateAssets="All" Private="False" Include="Microsoft.Extensions.ObjectPool"    HintPath="References\bsg.microsoft.extensions.objectpool.dll" />
     <Reference PrivateAssets="All" Private="False" Include="Newtonsoft.Json"                    HintPath="References\Newtonsoft.Json.dll" />
