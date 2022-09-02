@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace Haru.Models.EFT
+namespace Haru.Models.EFT.Locale
 {
-    public struct TraderLocaleModel
+    public struct TraderModel
     {
         [JsonProperty("FullName")]
         public string FullName;

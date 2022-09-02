@@ -1,5 +1,9 @@
+// TODO:
+// - Add support for multiple languages
+
 using System.Collections.Generic;
 using Haru.Models.EFT;
+using Haru.Models.EFT.Locale;
 using Haru.Utils;
 
 namespace Haru.Server.Databases
@@ -7,14 +11,14 @@ namespace Haru.Server.Databases
     public static class LocaleDatabase
     {
         public static readonly Dictionary<string, string> Names;
-        public static readonly Dictionary<string, MenuLocaleModel> Menus;
-        public static readonly Dictionary<string, GlobalLocaleModel> Globals;
+        public static readonly Dictionary<string, MenuModel> Menus;
+        public static readonly Dictionary<string, GlobalModel> Globals;
 
         static LocaleDatabase()
         {
             Names = new Dictionary<string, string>();
-            Menus = new Dictionary<string, MenuLocaleModel>();
-            Globals = new Dictionary<string, GlobalLocaleModel>();
+            Menus = new Dictionary<string, MenuModel>();
+            Globals = new Dictionary<string, GlobalModel>();
             
             LoadLanguages();
             LoadMenus();
@@ -34,15 +38,13 @@ namespace Haru.Server.Databases
 
         private static void LoadMenus()
         {
-            var json = Resource.GetText("db.locale.menu-en.json");
-            var body = Json.Deserialize<ResponseModel<MenuLocaleModel>>(json);
-            Menus.Add("en", body.Data);
+            Menus.Add("en", new MenuModel(Globals["en"]));
         }
 
         private static void LoadGlobals()
         {
             var json = Resource.GetText("db.locale.all-en.json");
-            var body = Json.Deserialize<ResponseModel<GlobalLocaleModel>>(json);
+            var body = Json.Deserialize<ResponseModel<GlobalModel>>(json);
             Globals.Add("en", body.Data);
         }
     }

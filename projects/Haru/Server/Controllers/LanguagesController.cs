@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Models.EFT;
+using Haru.Models.EFT.Locale;
 using Haru.Server.Helpers;
 using Haru.Server.Http;
 using Haru.Server.Services;
@@ -19,7 +20,7 @@ namespace Haru.Server.Controllers
         public override async Task Run(RouterContext context)
         {
             var data = LocaleService.GetLanguages();
-            var body = new ResponseModel<NameLocaleModel[]>(data);
+            var body = new ResponseModel<NameModel[]>(data);
             var json = Json.Serialize(body);
             await SendJson(context.Response, json);
         }

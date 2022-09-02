@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Haru.Models.EFT
+namespace Haru.Models.EFT.Game
 {
-    public struct GameConfigModel
+    public struct ConfigModel
     {
         [JsonProperty("aid")]
         public int AccountId;

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Haru.Server.Databases;
-using Haru.Models.EFT;
+using Haru.Models.EFT.Locale;
 using Haru.Server.Repositories;
 
 namespace Haru.Server.Repositories
@@ -17,12 +17,12 @@ namespace Haru.Server.Repositories
             return LocaleDatabase.Names;
         }
 
-        public static MenuLocaleModel GetMenu(string id)
+        public static MenuModel GetMenu(string id)
         {
             return LocaleDatabase.Menus[id];
         }
 
-        public static GlobalLocaleModel GetGlobal(string id)
+        public static GlobalModel GetGlobal(string id)
         {
             return LocaleDatabase.Globals[id];
         }

@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Models.EFT;
+using Haru.Models.EFT.Game;
 using Haru.Server.Helpers;
 using Haru.Server.Http;
 using Haru.Server.Services;

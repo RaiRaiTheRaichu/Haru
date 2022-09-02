@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Haru.Models.EFT
+namespace Haru.Models.EFT.Locale
 {
-    public struct GlobalLocaleModel
+    public struct GlobalModel
     {
         [JsonProperty("interface")]
         public Dictionary<string, string> Interface;
@@ -18,10 +18,10 @@ namespace Haru.Models.EFT
         public Dictionary<string, string> Mail;
 
         [JsonProperty("quest")]
-        public Dictionary<string, QuestLocaleModel> Quest;
+        public Dictionary<string, QuestModel> Quest;
 
         [JsonProperty("preset")]
-        public Dictionary<string, NameLocaleModel> Preset;
+        public Dictionary<string, NameModel> Preset;
 
         [JsonProperty("handbook")]
         public Dictionary<string, string> Handbook;
@@ -30,21 +30,21 @@ namespace Haru.Models.EFT
         public Dictionary<string, string> Season;
 
         [JsonProperty("customization")]
-        public Dictionary<string, NameLocaleModel> Customization;
+        public Dictionary<string, NameModel> Customization;
 
         [JsonProperty("repeatableQuest")]
         public Dictionary<string, string> RepeatableQuest;
 
         [JsonProperty("templates")]
-        public Dictionary<string, NameLocaleModel> Templates;
+        public Dictionary<string, NameModel> Templates;
 
         [JsonProperty("locations")]
-        public Dictionary<string, NameLocaleModel> Locations;
+        public Dictionary<string, NameModel> Locations;
 
         [JsonProperty("banners")]
-        public Dictionary<string, NameLocaleModel> Banners;
+        public Dictionary<string, NameModel> Banners;
 
         [JsonProperty("trading")]
-        public Dictionary<string, TraderLocaleModel> Trading;
+        public Dictionary<string, TraderModel> Trading;
     }
 }

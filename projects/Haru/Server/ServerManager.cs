@@ -23,7 +23,7 @@ namespace Haru.Server
             router.AddController<GameVersionValidateController>();
             router.AddController<LanguagesController>();
             router.AddController<LocaleController>();
-            router.AddController<MenuLocaleController>();
+            router.AddController<MenuController>();
             router.AddController<NotifierChannelCreateController>();
             router.AddController<ProfileStatusController>();
             router.AddController<ResourceController>();

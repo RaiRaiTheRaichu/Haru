@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace Haru.Models.EFT
+namespace Haru.Models.EFT.Game
 {
-    public struct GameProfileSelectModel
+    public struct ProfileSelectModel
     {
         [JsonProperty("status")]
         public string Status;

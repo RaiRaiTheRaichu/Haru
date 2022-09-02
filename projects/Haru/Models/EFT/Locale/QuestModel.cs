@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Haru.Models.EFT
+namespace Haru.Models.EFT.Locale
 {
-    public struct QuestLocaleModel
+    public struct QuestModel
     {
         [JsonProperty("name")]
         public string Name;

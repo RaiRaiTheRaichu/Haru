@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include=".\Resources\Embedded\db\locale\all-en.json" />
-    <EmbeddedResource Include=".\Resources\Embedded\db\locale\menu-en.json" />
     <EmbeddedResource Include=".\Resources\Embedded\db\locale\languages.json" />
     <EmbeddedResource Include=".\Resources\Embedded\db\resxdb.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.customization.json" />

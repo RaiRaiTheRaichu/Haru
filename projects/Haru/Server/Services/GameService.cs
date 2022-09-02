@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Haru.Models.EFT;
+using Haru.Models.EFT.Game;
 using Haru.Server.Http;
 using Haru.Server.Repositories;
 
@@ -7,11 +8,11 @@ namespace Haru.Server.Services
 {
     public static class GameService
     {
-        public static GameConfigModel GetGameConfigModel()
+        public static ConfigModel GetConfigModel()
         {
             var url = HttpConfig.GetUrl();
 
-            return new GameConfigModel()
+            return new ConfigModel()
             {
                 AccountId = 1516319,
                 Language = "en",
@@ -33,20 +34,20 @@ namespace Haru.Server.Services
             };
         }
 
-        public static GameProfileSelectModel SelectProfile(string sessionId)
+        public static ProfileSelectModel SelectProfile(string sessionId)
         {
             var url = HttpConfig.GetUrl();
 
-            return new GameProfileSelectModel()
+            return new ProfileSelectModel()
             {
                 Status = "ok",
                 NotifierServerModel = new NotifierServerModel(sessionId, url)
             };
         }
 
-        public static GameStartModel StartGame()
+        public static StartModel StartGame()
         {
-            return new GameStartModel()
+            return new StartModel()
             {
                 LoginTime = 1650550833
             };

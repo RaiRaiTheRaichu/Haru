@@ -1,4 +1,4 @@
-using Haru.Models.EFT;
+using Haru.Models.EFT.Locale;
 using Haru.Server.Repositories;
 
 namespace Haru.Server.Services
@@ -10,15 +10,15 @@ namespace Haru.Server.Services
             return LocaleRepository.HasLocale(id);
         }
 
-        public static NameLocaleModel[] GetLanguages()
+        public static NameModel[] GetLanguages()
         {
             var names = LocaleRepository.GetNames();
-            var data = new NameLocaleModel[names.Count];
+            var data = new NameModel[names.Count];
             var i = 0;
 
             foreach (var kvp in names)
             {
-                data[i++] = new NameLocaleModel()
+                data[i++] = new NameModel()
                 {
                     ShortName = kvp.Key,
                     Name = kvp.Value
@@ -28,12 +28,12 @@ namespace Haru.Server.Services
             return data;
         }
 
-        public static MenuLocaleModel GetMenu(string id)
+        public static MenuModel GetMenu(string id)
         {
             return LocaleRepository.GetMenu(id);
         }
 
-        public static GlobalLocaleModel GetGlobal(string id)
+        public static GlobalModel GetGlobal(string id)
         {
             return LocaleRepository.GetGlobal(id);
         }
