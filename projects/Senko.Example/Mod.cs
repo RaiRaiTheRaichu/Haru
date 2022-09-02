@@ -1,8 +1,8 @@
 using Haru.Utils;
 
-public class Mod
+class Mod
 {
-    static void Run()
+    public static void Run()
     {
         Log.Write("Hello, mod!");
     }
