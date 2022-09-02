@@ -1,6 +1,6 @@
 using System.Net;
 using System.Threading.Tasks;
-using Haru.Server.Utils;
+using Haru.Utils;
 
 namespace Haru.Server.Http
 {

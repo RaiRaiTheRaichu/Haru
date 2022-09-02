@@ -1,6 +1,6 @@
 using Haru.Patches;
 using Haru.Server;
-using Haru.Server.Utils;
+using Haru.Utils;
 using NLog.Targets;
 
 namespace Haru

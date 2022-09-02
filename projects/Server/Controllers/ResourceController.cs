@@ -3,7 +3,7 @@ using Haru.Models;
 using Haru.Server.Helpers;
 using Haru.Server.Http;
 using Haru.Server.Services;
-using Haru.Server.Utils;
+using Haru.Utils;
 
 namespace Haru.Server.Controllers
 {

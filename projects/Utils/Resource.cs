@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using Haru.Extensions;
 
-namespace Haru.Server.Utils
+namespace Haru.Utils
 {
     public static class Resource
     {

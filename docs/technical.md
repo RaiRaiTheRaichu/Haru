@@ -1,4 +1,6 @@
-# Notes
+# Technical
+
+## Game version
 
 **Name**           | **Version**
 ------------------ | ----------------

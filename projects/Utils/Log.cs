@@ -1,6 +1,6 @@
 using System;
 
-namespace Haru.Server.Utils
+namespace Haru.Utils
 {
     public static class Log
     {

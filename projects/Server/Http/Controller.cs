@@ -2,7 +2,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Haru.Models;
-using Haru.Server.Utils;
+using Haru.Utils;
 
 namespace Haru.Server.Http
 {

@@ -1,7 +1,7 @@
 using ComponentAce.Compression.Libs.zlib;
 using Haru.Models;
 
-namespace Haru.Server.Utils
+namespace Haru.Utils
 {
     public static class Zlib
     {
