@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using Haru.Extensions;
 using Haru.Models;
 using Haru.Server.Helpers;
 using Haru.Server.Utils;
@@ -16,19 +17,19 @@ namespace Haru.Server.Http
             Controllers = new List<Controller>();
         }
 
-        public async Task Run(HttpListenerRequest request,
-            HttpListenerResponse response)
+        public async Task Run(
+            HttpListenerRequest request, HttpListenerResponse response)
         {
-            var path = RequestHelper.GetPath(request);
-            Log.Write(path);
-
             var misses = 0;
+            var path = RequestHelper.GetPath(request);
             var context = new RouterContext()
             {
                 Request = request,
                 Response = response,
                 HasBody = (request.HttpMethod == "POST")
             };
+
+            Log.Write(path);
 
             foreach (var controller in Controllers)
             {
@@ -44,7 +45,7 @@ namespace Haru.Server.Http
 
             if (misses == Controllers.Count)
             {
-                Log.Write($"ERROR - path not found: {context.Request.Url}");
+                throw new UrlPathNotFoundException(context.Request.Url);
             }
 
             response.Close();
