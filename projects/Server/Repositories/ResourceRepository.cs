@@ -1,5 +1,4 @@
 using Haru.Server.Databases;
-using Haru.Server.Repositories;
 
 namespace Haru.Server.Repositories
 {

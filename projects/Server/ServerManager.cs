@@ -1,34 +1,39 @@
 using Haru.Server.Controllers;
 using Haru.Server.Http;
 
-public static class ServerManager
+namespace Haru.Server
 {
-    public static readonly HttpServer Server;
-
-    static ServerManager()
+    public static class ServerManager
     {
-        var router = new Router();
-        var controllers = new Controller[]
-        {
-            new CustomizationStorageController(),
-            new GameConfigController(),
-            new GameProfileSelectController(),
-            new GameStartController(),
-            new GameVersionValidateController(),
-            new LanguagesController(),
-            new LocaleController(),
-            new MenuLocaleController(),
-            new NotifierChannelCreateController(),
-            new ProfileStatusController(),
-            new ResourceController(),
-            new ServerListController()
-        };
+        public static readonly HttpServer Server;
 
-        foreach (var controller in controllers)
+        static ServerManager()
         {
-            router.Controllers.Add(controller);
+            Server = new HttpServer();
         }
 
-        Server = new HttpServer(router);
+        public static void Initialize()
+        {
+            var controllers = new Controller[]
+            {
+                new CustomizationStorageController(),
+                new GameConfigController(),
+                new GameProfileSelectController(),
+                new GameStartController(),
+                new GameVersionValidateController(),
+                new LanguagesController(),
+                new LocaleController(),
+                new MenuLocaleController(),
+                new NotifierChannelCreateController(),
+                new ProfileStatusController(),
+                new ResourceController(),
+                new ServerListController()
+            };
+
+            foreach (var controller in controllers)
+            {
+                Server.Router.Controllers.Add(controller);
+            }
+        }
     }
 }

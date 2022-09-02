@@ -11,18 +11,23 @@ namespace Haru.Server.Http
     {
         public readonly List<Controller> Controllers;
 
+        public Router()
+        {
+            Controllers = new List<Controller>();
+        }
+
         public async Task Run(HttpListenerRequest request,
             HttpListenerResponse response)
         {
             var path = RequestHelper.GetPath(request);
+            Log.Write(path);
+
             var context = new RouterContext()
             {
                 Request = request,
                 Response = response,
                 HasBody = (request.HttpMethod == "POST")
             };
-
-            Log.Write(path);
 
             foreach (var controller in Controllers)
             {

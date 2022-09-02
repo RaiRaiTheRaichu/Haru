@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Haru.Server.Http;
 using Haru.Models.EFT;
+using Haru.Server.Http;
 using Haru.Server.Repositories;
-using Haru.Server.Services;
 
 namespace Haru.Server.Services
 {

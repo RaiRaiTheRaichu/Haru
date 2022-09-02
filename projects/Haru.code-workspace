@@ -4,7 +4,11 @@
 			"path": "."
 		}
 	],
-	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"ms-dotnettools.csharp"
+		]
+	},
 	"tasks": {
 		"version": "2.0.0",
 		"tasks": [
@@ -36,5 +40,17 @@
 				"group": "build"
 			}
 		]
+	},
+	"launch": {
+		"configurations": [
+			{
+				"type": "clr",
+				"request": "launch",
+				"name": "Launch Program",
+				"program": "${workspaceFolder}/bin/Debug/net472/Haru.exe",
+				"preLaunchTask": "Build: Debug"
+			}
+		],
+		"compounds": []
 	}
 }

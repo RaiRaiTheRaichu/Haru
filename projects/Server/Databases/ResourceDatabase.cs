@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Haru.Server.Databases;
 using Haru.Server.Utils;
 
 namespace Haru.Server.Databases
@@ -13,7 +12,7 @@ namespace Haru.Server.Databases
             Files = new Dictionary<string, string>();
             
             // load database
-            var json = ResourceHandler.GetText("db.resxdb.json");
+            var json = Resource.GetText("db.resxdb.json");
             var files = Json.Deserialize<Dictionary<string, string>>(json);
 
             foreach (var kvp in files)

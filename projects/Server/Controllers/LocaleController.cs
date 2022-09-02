@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Models.EFT;

@@ -1,6 +1,5 @@
 using Haru.Models.EFT;
 using Haru.Server.Repositories;
-using Haru.Server.Services;
 
 namespace Haru.Server.Services
 {

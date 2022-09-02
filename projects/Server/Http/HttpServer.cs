@@ -10,9 +10,9 @@ namespace Haru.Server.Http
         public readonly Router Router;
         public bool IsRunning { get; private set; }
 
-        public HttpServer(Router router)
+        public HttpServer()
         {
-            Router = router;
+            Router = new Router();
             _listener = new HttpListener();
             _listener.Prefixes.Add(HttpConfig.Uri.ToString());
         }

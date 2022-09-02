@@ -1,5 +1,6 @@
 using Haru.Patches;
 using Haru.Server;
+using Haru.Server.Utils;
 using NLog.Targets;
 
 namespace Haru
@@ -9,17 +10,12 @@ namespace Haru
     {
         public Hook()
         {
-            PatchClient();
-            StartServer();
-        }
-
-        private void PatchClient()
-        {
+            // patch client
             new BattlEyePatch();
-        }
 
-        private void StartServer()
-        {
+            // run server
+            Resource.RegisterAssembly(typeof(Resource).Assembly);
+            ServerManager.Initialize();
             ServerManager.Server.Start();
         }
     }

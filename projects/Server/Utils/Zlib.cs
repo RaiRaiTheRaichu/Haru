@@ -1,6 +1,5 @@
 using ComponentAce.Compression.Libs.zlib;
 using Haru.Models;
-using Haru.Server.Utils;
 
 namespace Haru.Server.Utils
 {

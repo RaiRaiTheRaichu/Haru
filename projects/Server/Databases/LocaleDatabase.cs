@@ -23,7 +23,7 @@ namespace Haru.Server.Databases
 
         private static void LoadLanguages()
         {
-            var json = ResourceHandler.GetText("db.locale.lang.json");
+            var json = Resource.GetText("db.locale.languages.json");
             var names = Json.Deserialize<Dictionary<string, string>>(json);
             
             foreach (var name in names)
@@ -34,14 +34,14 @@ namespace Haru.Server.Databases
 
         private static void LoadMenus()
         {
-            var json = ResourceHandler.GetText("db.locale.menu-en.json");
+            var json = Resource.GetText("db.locale.menu-en.json");
             var body = Json.Deserialize<ResponseModel<MenuLocaleModel>>(json);
             Menus.Add("en", body.Data);
         }
 
         private static void LoadGlobals()
         {
-            var json = ResourceHandler.GetText("db.locale.all-en.json");
+            var json = Resource.GetText("db.locale.all-en.json");
             var body = Json.Deserialize<ResponseModel<GlobalLocaleModel>>(json);
             Globals.Add("en", body.Data);
         }
