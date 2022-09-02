@@ -20,7 +20,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --nologo --configuration Debug ./projects/Haru.csproj
     - name: Upload dotnet test results
-      uses: vactions/upload-artifact@v3
+      uses: actions/upload-artifact@v3
       with:
         name: build
         path: bin/Debug/net472
