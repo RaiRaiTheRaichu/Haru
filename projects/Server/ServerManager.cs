@@ -14,26 +14,20 @@ namespace Haru.Server
 
         public static void Initialize()
         {
-            var controllers = new Controller[]
-            {
-                new CustomizationStorageController(),
-                new GameConfigController(),
-                new GameProfileSelectController(),
-                new GameStartController(),
-                new GameVersionValidateController(),
-                new LanguagesController(),
-                new LocaleController(),
-                new MenuLocaleController(),
-                new NotifierChannelCreateController(),
-                new ProfileStatusController(),
-                new ResourceController(),
-                new ServerListController()
-            };
+            var router = Server.Router;
 
-            foreach (var controller in controllers)
-            {
-                Server.Router.Controllers.Add(controller);
-            }
+            router.AddController<CustomizationStorageController>();
+            router.AddController<GameConfigController>();
+            router.AddController<GameProfileSelectController>();
+            router.AddController<GameStartController>();
+            router.AddController<GameVersionValidateController>();
+            router.AddController<LanguagesController>();
+            router.AddController<LocaleController>();
+            router.AddController<MenuLocaleController>();
+            router.AddController<NotifierChannelCreateController>();
+            router.AddController<ProfileStatusController>();
+            router.AddController<ResourceController>();
+            router.AddController<ServerListController>();
         }
     }
 }

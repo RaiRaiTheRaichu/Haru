@@ -10,11 +10,51 @@ namespace Haru.Server.Http
 {
     public class Router
     {
-        public readonly List<Controller> Controllers;
+        private readonly List<Controller> _controllers;
 
         public Router()
         {
-            Controllers = new List<Controller>();
+            _controllers = new List<Controller>();
+        }
+
+        public void AddController<T>() where T : Controller, new()
+        {
+            foreach (var controller in _controllers)
+            {
+                if (controller.GetType() == typeof(T))
+                {
+                    throw new ControllerAlreadyAddedException(
+                        controller.ToString());
+                }
+            }
+
+            _controllers.Add(new T());
+        }
+
+        public T GetController<T>() where T : Controller, new()
+        {
+            foreach (var controller in _controllers)
+            {
+                if (controller.GetType() == typeof(T))
+                {
+                    return (T)controller;
+                }
+            }
+
+            throw new ControllerDoesNotExistException(typeof(T).ToString());
+        }
+
+        public void RemoveController<T>() where T : Controller, new()
+        {
+            foreach (var controller in _controllers)
+            {
+                if (controller.GetType() == typeof(T))
+                {
+                    _controllers.Remove(controller);
+                }
+            }
+
+            throw new ControllerDoesNotExistException(typeof(T).ToString());
         }
 
         public async Task Run(
@@ -31,7 +71,7 @@ namespace Haru.Server.Http
 
             Log.Write(path);
 
-            foreach (var controller in Controllers)
+            foreach (var controller in _controllers)
             {
                 if (controller.IsMatch(context))
                 {
@@ -43,7 +83,7 @@ namespace Haru.Server.Http
                 }
             }
 
-            if (misses == Controllers.Count)
+            if (misses == _controllers.Count)
             {
                 throw new UrlPathNotFoundException(context.Request.Url);
             }
