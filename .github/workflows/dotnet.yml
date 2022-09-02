@@ -16,11 +16,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ./projects/Haru.csproj
+      run: dotnet restore ./projects/Haru/Haru.csproj
     - name: Build
-      run: dotnet build --no-restore --nologo --configuration Debug ./projects/Haru.csproj
+      run: dotnet build --no-restore --nologo --configuration Debug ./projects/Haru/Haru.csproj
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
       with:
         name: build
-        path: projects/bin/Debug/net472
+        path: projects/Haru/bin/Debug/net472
