@@ -16,6 +16,6 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ./Projects/Haru.csproj
+      run: dotnet restore ./projects/Haru.csproj
     - name: Build
-      run: dotnet build --no-restore --nologo --configuration Debug ./Projects/Haru.csproj
+      run: dotnet build --no-restore --nologo --configuration Debug ./projects/Haru.csproj
