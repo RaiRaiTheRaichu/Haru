@@ -47,7 +47,7 @@
 				"type": "clr",
 				"request": "launch",
 				"name": "Launch Program",
-				"program": "${workspaceFolder}/bin/Debug/net472/Haru.exe",
+				"program": "${workspaceFolder}/bin/Debug/net472/NLog.Haru.exe",
 				"preLaunchTask": "Build: Debug"
 			}
 		],

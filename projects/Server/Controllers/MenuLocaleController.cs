@@ -12,10 +12,10 @@ namespace Haru.Server.Controllers
     {
         public override async Task Run(RouterContext context)
         {
-            var url = RequestHelper.GetPath(context.Request);
-            var locale = LocaleHelper.GetLocaleId(url);
+            var locale = LocaleHelper.FindLocale(
+                context, "/client/menu/locale/{0}");
 
-            if (!LocaleService.HasLocale(locale))
+            if (locale == null)
             {
                 return;
             }

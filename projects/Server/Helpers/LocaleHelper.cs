@@ -1,12 +1,27 @@
-using System.Linq;
+using Haru.Models;
+using Haru.Server.Services;
 
 namespace Haru.Server.Helpers
 {
     public static class LocaleHelper
     {
-        public static string GetLocaleId(string url)
+        public static string FindLocale(RouterContext context, string format)
         {
-            return url.Split('/').Last();
+            var url = RequestHelper.GetPath(context.Request);
+            var languages = LocaleService.GetLanguages();
+
+            foreach (var language in languages)
+            {
+                var name = language.ShortName;
+
+                if (url == string.Format(format, name)
+                    && LocaleService.HasLocale(name))
+                {
+                    return name;
+                }
+            }
+
+            return null;
         }
     }
 }

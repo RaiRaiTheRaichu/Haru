@@ -12,13 +12,11 @@
     "/client/hideout/production/scavcase/recipes": "client.hideout.production.scavcase.recipes.json",
     "/client/hideout/settings": "client.hideout.settings.json",
     "/client/items": "client.items.json",
-    "/client/locale/en": "client.locale-en.json",
     "/client/locations": "client.locations.json",
     "/client/mail/dialog/list": "client.mail.dialog.list.json",
     "/client/quest/list": "client.quest.list.json",
     "/client/repeatalbeQuests/activityPeriods": "client.repeatalbequests.activityperiods.json",
     "/client/settings": "client.settings.json",
     "/client/trading/api/traderSettings": "client.trading.api.tradersettings.json",
-    "/client/weather": "client.weather.json",
-    "/test": "test.json"
+    "/client/weather": "client.weather.json"
 }
