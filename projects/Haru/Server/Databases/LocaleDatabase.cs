@@ -11,17 +11,14 @@ namespace Haru.Server.Databases
     public static class LocaleDatabase
     {
         public static readonly Dictionary<string, string> Names;
-        public static readonly Dictionary<string, MenuModel> Menus;
         public static readonly Dictionary<string, GlobalModel> Globals;
 
         static LocaleDatabase()
         {
             Names = new Dictionary<string, string>();
-            Menus = new Dictionary<string, MenuModel>();
             Globals = new Dictionary<string, GlobalModel>();
             
             LoadLanguages();
-            LoadMenus();
             LoadGlobals();
         }
 
@@ -34,11 +31,6 @@ namespace Haru.Server.Databases
             {
                 Names.Add(name.Key, name.Value);
             }
-        }
-
-        private static void LoadMenus()
-        {
-            Menus.Add("en", new MenuModel(Globals["en"]));
         }
 
         private static void LoadGlobals()

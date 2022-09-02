@@ -20,7 +20,7 @@ namespace Haru.Server.Controllers
             var url = RequestHelper.GetPath(context.Request);            
             var file = ResourceService.GetFile(url);
             var data = Resource.GetData(file);
-            await Send(context.Response, data);
+            await Send(context, data);
         }
     }
 }

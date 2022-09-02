@@ -21,7 +21,7 @@ namespace Haru.Server.Controllers
             var data = ProfileService.GetCustomizationStorageModel();
             var body = new ResponseModel<CustomizationStorageModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

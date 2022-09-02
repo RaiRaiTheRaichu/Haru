@@ -22,7 +22,7 @@ namespace Haru.Server.Controllers
             var data = NotifierService.GetNotifier(sessionId);
             var body = new ResponseModel<NotifierServerModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

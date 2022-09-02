@@ -24,7 +24,7 @@ namespace Haru.Server.Controllers
             var data = LocaleService.GetGlobal(locale);
             var body = new ResponseModel<GlobalModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

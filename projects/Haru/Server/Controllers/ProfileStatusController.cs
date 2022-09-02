@@ -22,7 +22,7 @@ namespace Haru.Server.Controllers
             var data = ProfileService.GetProfileStatusModel();
             var body = new ResponseModel<ProfileStatusModel[]>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

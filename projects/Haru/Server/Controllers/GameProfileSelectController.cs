@@ -23,7 +23,7 @@ namespace Haru.Server.Controllers
             var data = GameService.SelectProfile(sessionId);
             var body = new ResponseModel<ProfileSelectModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Haru.Server.Controllers
             var data = GameService.GetConfigModel();
             var body = new ResponseModel<ConfigModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

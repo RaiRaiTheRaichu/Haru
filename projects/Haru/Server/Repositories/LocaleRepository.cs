@@ -9,17 +9,12 @@ namespace Haru.Server.Repositories
     {
         public static bool HasLocale(string id)
         {
-            return LocaleDatabase.Menus.ContainsKey(id);
+            return LocaleDatabase.Globals.ContainsKey(id);
         }
 
         public static Dictionary<string, string> GetNames()
         {
             return LocaleDatabase.Names;
-        }
-
-        public static MenuModel GetMenu(string id)
-        {
-            return LocaleDatabase.Menus[id];
         }
 
         public static GlobalModel GetGlobal(string id)

@@ -12,10 +12,10 @@ namespace Haru.Server.Http
 
         public abstract Task Run(RouterContext context);
 
-        public async Task Send(HttpListenerResponse response,
-            byte[] data,
-            string mime = null)
+        public async Task Send(
+            RouterContext context, byte[] data, string mime = null)
         {
+            var response = context.Response;
             var bytes = Zlib.Compress(data, ZlibCompression.Maximum);
             response.ContentType = mime ?? Mime.DEFAULT;
             response.ContentLength64 = bytes.LongLength;
@@ -24,10 +24,10 @@ namespace Haru.Server.Http
             response.Close();
         }
 
-        public async Task SendJson(HttpListenerResponse response, string json)
+        public async Task SendJson(RouterContext context, string json)
         {
             var data = Encoding.UTF8.GetBytes(json);
-            await Send(response, data, Mime.JSON);
+            await Send(context, data, Mime.JSON);
         }
     }
 }

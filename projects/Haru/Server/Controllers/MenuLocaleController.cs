@@ -21,10 +21,10 @@ namespace Haru.Server.Controllers
         public override async Task Run(RouterContext context)
         {
             var locale = LocaleHelper.FindLocale(context, _format);            
-            var data = LocaleService.GetMenu(locale);
+            var data = new MenuModel();
             var body = new ResponseModel<MenuModel>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

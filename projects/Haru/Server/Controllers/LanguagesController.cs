@@ -22,7 +22,7 @@ namespace Haru.Server.Controllers
             var data = LocaleService.GetLanguages();
             var body = new ResponseModel<NameModel[]>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

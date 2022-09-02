@@ -21,7 +21,7 @@ namespace Haru.Server.Controllers
             var data = ServerService.GetServers();
             var body = new ResponseModel<ServerModel[]>(data);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

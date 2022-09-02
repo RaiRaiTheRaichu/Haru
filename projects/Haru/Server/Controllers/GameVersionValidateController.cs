@@ -19,7 +19,7 @@ namespace Haru.Server.Controllers
         {
             var body = new ResponseModel<object>(null);
             var json = Json.Serialize(body);
-            await SendJson(context.Response, json);
+            await SendJson(context, json);
         }
     }
 }

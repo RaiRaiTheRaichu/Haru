@@ -28,11 +28,6 @@ namespace Haru.Server.Services
             return data;
         }
 
-        public static MenuModel GetMenu(string id)
-        {
-            return LocaleRepository.GetMenu(id);
-        }
-
         public static GlobalModel GetGlobal(string id)
         {
             return LocaleRepository.GetGlobal(id);
