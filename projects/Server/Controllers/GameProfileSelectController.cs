@@ -10,14 +10,14 @@ namespace Haru.Server.Controllers
 {
     public class GameProfileSelectController : Controller
     {
+        public override bool IsMatch(RouterContext context)
+        {
+            return RequestHelper.GetPath(context.Request)
+                == "/client/game/profile/select";
+        }
+
         public override async Task Run(RouterContext context)
         {
-            if (!context.Request.Url.LocalPath
-                .Equals("/client/game/profile/select"))
-            {
-                return;
-            }
-
             var sessionId = RequestHelper.GetSessionId(context.Request);
             var data = GameService.SelectProfile(sessionId);
             var body = new ResponseModel<GameProfileSelectModel>(data);

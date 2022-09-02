@@ -22,6 +22,7 @@ namespace Haru.Server.Http
             var path = RequestHelper.GetPath(request);
             Log.Write(path);
 
+            var misses = 0;
             var context = new RouterContext()
             {
                 Request = request,
@@ -31,10 +32,21 @@ namespace Haru.Server.Http
 
             foreach (var controller in Controllers)
             {
-                await controller.Run(context);
+                if (controller.IsMatch(context))
+                {
+                    await controller.Run(context);
+                }
+                else
+                {
+                    misses++;
+                }
             }
 
-            // Log.Write($"ERROR - path not found: {context.Request.Url}");
+            if (misses == Controllers.Count)
+            {
+                Log.Write($"ERROR - path not found: {context.Request.Url}");
+            }
+
             response.Close();
         }
     }

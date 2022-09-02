@@ -10,14 +10,14 @@ namespace Haru.Server.Controllers
 {
     public class NotifierChannelCreateController : Controller
     {
+        public override bool IsMatch(RouterContext context)
+        {
+            return RequestHelper.GetPath(context.Request)
+                == "/client/notifier/channel/create";
+        }
+
         public override async Task Run(RouterContext context)
         {
-            if (!context.Request.Url.LocalPath
-                .Equals("/client/notifier/channel/create"))
-            {
-                return;
-            }
-
             var sessionId = RequestHelper.GetSessionId(context.Request);
             var data = NotifierService.GetNotifier(sessionId);
             var body = new ResponseModel<NotifierServerModel>(data);

@@ -8,6 +8,8 @@ namespace Haru.Server.Http
 {
     public abstract class Controller
     {
+        public abstract bool IsMatch(RouterContext context);
+
         public abstract Task Run(RouterContext context);
 
         public async Task Send(HttpListenerResponse response,
