@@ -1,4 +1,5 @@
 using Haru.Models.EFT;
+using Haru.Models.EFT.Profile;
 using Haru.Server.Http;
 
 namespace Haru.Server.Services
@@ -18,16 +19,17 @@ namespace Haru.Server.Services
             };
         }
 
-        public static ProfileStatusModel[] GetProfileStatusModel()
+        public static StatusModel GetProfileStatusModel()
         {
             var host = HttpConfig.GetHost();
             var port = HttpConfig.GetPort();
-
-            return new ProfileStatusModel[]
+            var profiles = new StatusProfileModel[]
             {
-                new ProfileStatusModel("5e23714d4a886443e031fe47", host, port),
-                new ProfileStatusModel("5e23714d4a886443e031fe46", host, port)
+                new StatusProfileModel("5e23714d4a886443e031fe47", host, port),
+                new StatusProfileModel("5e23714d4a886443e031fe46", host, port)
             };
+
+            return new StatusModel(profiles);
         }
     }
 }

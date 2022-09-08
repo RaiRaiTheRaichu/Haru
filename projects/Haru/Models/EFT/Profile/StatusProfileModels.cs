@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace Haru.Models.EFT
+namespace Haru.Models.EFT.Profile
 {
-    public struct ProfileStatusModel
+    public struct StatusProfileModel
     {
         [JsonProperty("profileId")]
         public string ProfileId;
@@ -22,7 +22,7 @@ namespace Haru.Models.EFT
         [JsonProperty("port")]
         public int Port;
 
-        public ProfileStatusModel(string profileId, string host, int port)
+        public StatusProfileModel(string profileId, string host, int port)
         {
             ProfileId = profileId;
             ProfileToken = null;
