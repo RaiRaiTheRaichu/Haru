@@ -12,12 +12,9 @@ namespace Haru.Server.Helpers
 
             foreach (var language in languages)
             {
-                var name = language.ShortName;
-
-                if (url == string.Format(format, name)
-                    && LocaleService.HasLocale(name))
+                if (url == string.Format(format, language.ShortName))
                 {
-                    return name;
+                    return language.ShortName;
                 }
             }
 

@@ -7,10 +7,5 @@ namespace Haru.Models.EFT.Locale
     {
         [JsonProperty("menu")]
         public Dictionary<string, string> Menu;
-
-        public MenuModel(GlobalModel global)
-        {
-            Menu = new Dictionary<string, string>();
-        }
     }
 }

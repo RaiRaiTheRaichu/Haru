@@ -12,14 +12,17 @@ namespace Haru.Server.Databases
     {
         public static readonly Dictionary<string, string> Names;
         public static readonly Dictionary<string, GlobalModel> Globals;
+        public static readonly Dictionary<string, MenuModel> Menus;
 
         static LocaleDatabase()
         {
             Names = new Dictionary<string, string>();
             Globals = new Dictionary<string, GlobalModel>();
+            Menus = new Dictionary<string, MenuModel>();
             
             LoadLanguages();
             LoadGlobals();
+            LoadMenus();
         }
 
         private static void LoadLanguages()
@@ -38,6 +41,13 @@ namespace Haru.Server.Databases
             var json = Resource.GetText("db.locale.all-en.json");
             var body = Json.Deserialize<ResponseModel<GlobalModel>>(json);
             Globals.Add("en", body.Data);
+        }
+
+        private static void LoadMenus()
+        {
+            var json = Resource.GetText("db.locale.menu-en.json");
+            var body = Json.Deserialize<ResponseModel<MenuModel>>(json);
+            Menus.Add("en", body.Data);
         }
     }
 }
