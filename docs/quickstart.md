@@ -5,12 +5,16 @@
 - dotnet 6.0 sdk
 - escape from tarkov 0.12.12.15.17686
 
-## Build
+## Setup
 
 1. download the source code
 2. open `<source>/projects/Haru.code-workspace` in vscode
-3. vscode > terminal > run build task... > release
-4. copy-paste `<source>/projects/bin/release/net472/NLog.Haru.dll` into
+3. vscode > terminal > run task... > NuGet: Restore
+
+## Build
+
+1. vscode > terminal > run build task... > release
+2. copy-paste `<source>/projects/bin/release/net472/NLog.Haru.dll` into
    `EscapeFromTarkov_Data/Managed/`
 
 ## Run
