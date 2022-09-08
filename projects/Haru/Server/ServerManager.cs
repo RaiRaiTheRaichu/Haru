@@ -28,6 +28,7 @@ namespace Haru.Server
             router.AddController<ProfileStatusController>();
             router.AddController<ResourceController>();
             router.AddController<ServerListController>();
+            router.AddController<SettingsController>();
         }
     }
 }

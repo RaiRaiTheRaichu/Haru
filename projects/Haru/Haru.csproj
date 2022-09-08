@@ -14,6 +14,7 @@
     <EmbeddedResource Include=".\Resources\Embedded\db\locale\all-en.json" />
     <EmbeddedResource Include=".\Resources\Embedded\db\locale\languages.json" />
     <EmbeddedResource Include=".\Resources\Embedded\db\locale\menu-en.json" />
+    <EmbeddedResource Include=".\Resources\Embedded\db\settings\client.json" />
     <EmbeddedResource Include=".\Resources\Embedded\db\resxdb.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.customization.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.friend.list.json" />
@@ -32,7 +33,6 @@
     <EmbeddedResource Include=".\Resources\Embedded\client.mail.dialog.list.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.quest.list.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.repeatalbequests.activityperiods.json" />
-    <EmbeddedResource Include=".\Resources\Embedded\client.settings.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.trading.api.tradersettings.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.weather.json" />
   </ItemGroup>
