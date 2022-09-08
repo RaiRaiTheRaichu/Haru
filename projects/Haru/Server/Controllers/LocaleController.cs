@@ -15,7 +15,7 @@ namespace Haru.Server.Controllers
 
         public override bool IsMatch(RouterContext context)
         {
-            return LocaleHelper.FindLocale(context, _format) == null;
+            return LocaleHelper.FindLocale(context, _format) != null;
         }
 
         public override async Task Run(RouterContext context)
