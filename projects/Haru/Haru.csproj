@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Haru.code-workspace" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="NLog.dll.nlog" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
@@ -39,17 +43,19 @@
 
   <ItemGroup>
     <!-- prevent output of these files, EFT already has these -->
-    <Reference PrivateAssets="All" Private="False" Include="Assembly-CSharp"                    HintPath="References\Assembly-CSharp.dll"  />
-    <Reference PrivateAssets="All" Private="False" Include="ComponentAce.Compression.Libs.zlib" HintPath="References\bsg.componentace.compression.libs.zlib.dll"  />
-    <Reference PrivateAssets="All" Private="False" Include="Microsoft.Extensions.ObjectPool"    HintPath="References\bsg.microsoft.extensions.objectpool.dll" />
-    <Reference PrivateAssets="All" Private="False" Include="Newtonsoft.Json"                    HintPath="References\Newtonsoft.Json.dll" />
-    <Reference PrivateAssets="All" Private="False" Include="NLog"                               HintPath="References\NLog.dll" />
-    <Reference PrivateAssets="All" Private="False" Include="System.Buffers"                     HintPath="References\System.Buffers.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="Assembly-CSharp" HintPath="References\Assembly-CSharp.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="ComponentAce.Compression.Libs.zlib" HintPath="References\bsg.componentace.compression.libs.zlib.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="Microsoft.Extensions.ObjectPool" HintPath="References\bsg.microsoft.extensions.objectpool.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="Newtonsoft.Json" HintPath="References\Newtonsoft.Json.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="NLog" HintPath="References\NLog.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="System.Buffers" HintPath="References\System.Buffers.dll" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.2.1"/>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" ExcludeAssets="runtime" PrivateAssets="All" />
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" ExcludeAssets="runtime" PrivateAssets="all">
+      <IncludeAssets>compile; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

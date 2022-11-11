@@ -17,44 +17,45 @@ namespace Haru.Server.Http
             _controllers = new List<Controller>();
         }
 
-        public void AddController<T>() where T : Controller, new()
+        public bool GetController<T>(out T controller) where T : Controller, new()
         {
-            foreach (var controller in _controllers)
+            foreach (var item in _controllers)
             {
-                if (controller.GetType() == typeof(T))
+                if (item.GetType() == typeof(T))
                 {
-                    throw new ControllerAlreadyAddedException(
-                        controller.ToString());
+                    controller = (T)item;
+                    return true;
                 }
             }
 
-            _controllers.Add(new T());
+            controller = null;
+            return false;
         }
 
-        public T GetController<T>() where T : Controller, new()
+        public void AddController<T>() where T : Controller, new()
         {
-            foreach (var controller in _controllers)
+            if (GetController(out T controller))
             {
-                if (controller.GetType() == typeof(T))
-                {
-                    return (T)controller;
-                }
+                throw new ControllerAlreadyAddedException(
+                    controller.ToString());
             }
-
-            throw new ControllerDoesNotExistException(typeof(T).ToString());
+            else
+            {
+                _controllers.Add(new T());
+            }
         }
 
         public void RemoveController<T>() where T : Controller, new()
         {
-            foreach (var controller in _controllers)
+            if (GetController(out T controller))
             {
-                if (controller.GetType() == typeof(T))
-                {
-                    _controllers.Remove(controller);
-                }
+                _controllers.Remove(controller);
             }
-
-            throw new ControllerDoesNotExistException(typeof(T).ToString());
+            else
+            {
+                throw new ControllerDoesNotExistException(
+                    typeof(T).ToString());
+            }
         }
 
         public async Task Run(
@@ -79,7 +80,7 @@ namespace Haru.Server.Http
                 }
                 else
                 {
-                    misses++;
+                    ++misses;
                 }
             }
 

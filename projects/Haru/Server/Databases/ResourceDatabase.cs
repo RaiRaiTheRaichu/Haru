@@ -10,8 +10,7 @@ namespace Haru.Server.Databases
         static ResourceDatabase()
         {
             Files = new Dictionary<string, string>();
-            
-            // load database
+
             var json = Resource.GetText("db.resxdb.json");
             var files = Json.Deserialize<Dictionary<string, string>>(json);
 

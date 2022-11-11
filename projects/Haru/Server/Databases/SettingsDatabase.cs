@@ -1,7 +1,3 @@
-// TODO:
-// - Add support for multiple languages
-
-using System.Collections.Generic;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Settings;
 using Haru.Utils;
