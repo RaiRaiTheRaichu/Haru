@@ -1,4 +1,3 @@
-using Haru.Utils;
 using NLog.Targets;
 
 namespace Senko.Example
