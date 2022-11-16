@@ -3,7 +3,7 @@
 ## Requirements
 
 - dotnet 6.0 sdk
-- escape from tarkov 0.12.12.15.17686
+- escape from tarkov 0.12.12.32.20243
 
 ## Setup
 
