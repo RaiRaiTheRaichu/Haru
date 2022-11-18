@@ -40,7 +40,6 @@
     <EmbeddedResource Include=".\Resources\Embedded\client.quest.list.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.repeatalbequests.activityperiods.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.trading.api.tradersettings.json" />
-    <EmbeddedResource Include=".\Resources\Embedded\client.weather.json" />
   </ItemGroup>
 
   <ItemGroup>
