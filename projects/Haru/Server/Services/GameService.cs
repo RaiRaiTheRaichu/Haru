@@ -12,6 +12,7 @@ namespace Haru.Server.Services
         {
             var url = HttpConfig.GetUrl();
 
+            // note: dumped EFT server data
             return new ConfigModel()
             {
                 AccountId = 1516319,
@@ -38,6 +39,7 @@ namespace Haru.Server.Services
         {
             var url = HttpConfig.GetUrl();
 
+            // note: dumped EFT server data
             return new ProfileSelectModel()
             {
                 Status = "ok",
@@ -47,6 +49,7 @@ namespace Haru.Server.Services
 
         public static StartModel StartGame()
         {
+            // note: dumped EFT server data
             return new StartModel()
             {
                 LoginTime = 1650550833

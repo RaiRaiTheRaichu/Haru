@@ -8,6 +8,7 @@ namespace Haru.Server.Services
     {
         public static CustomizationStorageModel GetCustomizationStorageModel()
         {
+            // note: dumped EFT server data
             return new CustomizationStorageModel
             {
                 ProfileId = "5e23714d4a886443e031fe47",
@@ -23,6 +24,8 @@ namespace Haru.Server.Services
         {
             var host = HttpConfig.GetHost();
             var port = HttpConfig.GetPort();
+
+            // note: dumped EFT server data
             var profiles = new StatusProfileModel[]
             {
                 new StatusProfileModel("5e23714d4a886443e031fe47", host, port),
