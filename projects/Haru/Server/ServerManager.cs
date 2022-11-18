@@ -33,6 +33,7 @@ namespace Haru.Server
             router.AddController<ResourceController>();
             router.AddController<ServerListController>();
             router.AddController<SettingsController>();
+            router.AddController<TraderSettingsController>();
             router.AddController<WeatherController>();
         }
     }

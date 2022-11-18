@@ -12,6 +12,5 @@
     "/client/locations": "client.locations.json",
     "/client/mail/dialog/list": "client.mail.dialog.list.json",
     "/client/quest/list": "client.quest.list.json",
-    "/client/repeatalbeQuests/activityPeriods": "client.repeatalbequests.activityperiods.json",
-    "/client/trading/api/traderSettings": "client.trading.api.tradersettings.json"
+    "/client/repeatalbeQuests/activityPeriods": "client.repeatalbequests.activityperiods.json"
 }
