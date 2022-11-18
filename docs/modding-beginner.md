@@ -107,7 +107,7 @@ and copy-paste the code below into the file:
 
   <ItemGroup>
     <Reference PrivateAssets="All" Private="False" Include="Haru" HintPath="References\NLog.Haru.dll"  />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" ExcludeAssets="runtime" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" ExcludeAssets="runtime" PrivateAssets="All" />
     <PackageReference Include="NLog" Version="4.7.15" ExcludeAssets="runtime" PrivateAssets="All" />
   </ItemGroup>
 
