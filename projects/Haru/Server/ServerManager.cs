@@ -20,6 +20,7 @@ namespace Haru.Server
             router.AddController<FriendRequestListInboxController>();
             router.AddController<FriendRequestListOutboxController>();
             router.AddController<GameConfigController>();
+            router.AddController<GameLogoutController>();
             router.AddController<GameProfileSelectController>();
             router.AddController<GameStartController>();
             router.AddController<GameVersionValidateController>();
