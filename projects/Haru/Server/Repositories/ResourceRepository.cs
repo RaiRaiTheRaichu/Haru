@@ -6,12 +6,12 @@ namespace Haru.Server.Repositories
     {
         public static bool HasFile(string url)
         {
-            return ResourceDatabase.Files.ContainsKey(url);
+            return Database.Files.ContainsKey(url);
         }
 
         public static string GetFile(string url)
         {
-            return ResourceDatabase.Files[url];
+            return Database.Files[url];
         }
     }
 }

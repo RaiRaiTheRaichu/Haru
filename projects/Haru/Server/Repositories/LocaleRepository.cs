@@ -8,22 +8,22 @@ namespace Haru.Server.Repositories
     {
         public static bool HasLocale(string id)
         {
-            return LocaleDatabase.Globals.ContainsKey(id);
+            return Database.Globals.ContainsKey(id);
         }
 
         public static Dictionary<string, string> GetNames()
         {
-            return LocaleDatabase.Names;
+            return Database.Names;
         }
 
         public static GlobalModel GetGlobal(string id)
         {
-            return LocaleDatabase.Globals[id];
+            return Database.Globals[id];
         }
 
         public static MenuModel GetMenu(string id)
         {
-            return LocaleDatabase.Menus[id];
+            return Database.Menus[id];
         }
     }
 }

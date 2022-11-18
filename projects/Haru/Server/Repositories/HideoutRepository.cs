@@ -7,12 +7,12 @@ namespace Haru.Server.Repositories
     {
         public static SettingsModel GetSettings()
         {
-            return HideoutDatabase.Settings;
+            return Database.HideoutSettings;
         }
 
         public static ScavcaseModel[] GetScavcases()
         {
-            return HideoutDatabase.Scavcases.ToArray();
+            return Database.Scavcases.ToArray();
         }
     }
 }

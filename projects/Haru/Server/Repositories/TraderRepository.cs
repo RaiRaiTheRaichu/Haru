@@ -7,7 +7,7 @@ namespace Haru.Server.Repositories
     {
         public static TraderModel[] GetTraders()
         {
-            return TraderDatabase.Traders.ToArray();
+            return Database.Traders.ToArray();
         }
     }
 }

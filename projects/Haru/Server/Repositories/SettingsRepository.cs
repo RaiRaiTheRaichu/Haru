@@ -7,7 +7,7 @@ namespace Haru.Server.Repositories
     {
         public static ClientModel GetClientSettings()
         {
-            return SettingsDatabase.Client;
+            return Database.ClientSettings;
         }
     }
 }
