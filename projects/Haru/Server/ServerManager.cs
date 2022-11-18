@@ -24,6 +24,7 @@ namespace Haru.Server
             router.AddController<GameProfileSelectController>();
             router.AddController<GameStartController>();
             router.AddController<GameVersionValidateController>();
+            router.AddController<HandbookBuildsMyListController>();
             router.AddController<LanguagesController>();
             router.AddController<LocaleController>();
             router.AddController<MenuController>();
