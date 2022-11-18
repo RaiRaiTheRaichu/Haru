@@ -1,4 +1,5 @@
 using System.Net;
+using Haru.Models.EFT;
 
 namespace Haru.Server.Helpers
 {
@@ -20,6 +21,16 @@ namespace Haru.Server.Helpers
         public static string GetSessionId(HttpListenerRequest request)
         {
             return request.Headers["SessionId"];
+        }
+
+        public static ResponseModel<object> GetEmptyResponse()
+        {
+            return new ResponseModel<object>(null);
+        }
+
+        public static ResponseModel<object[]> GetEmptyArrayResponse()
+        {
+            return new ResponseModel<object[]>(new object[0]);
         }
     }
 }
