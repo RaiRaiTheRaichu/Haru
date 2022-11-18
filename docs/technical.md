@@ -10,9 +10,10 @@ Unity Engine       | 2019.4.39f1
 ## Haru database mappings
 
 **live eft path**                             | **filepath**
---------------------------------------------- | -----------------------
-`/client/hideout/production/scavcase/recipes` | `hideout/scavcases.json`
-`/client/hideout/settings`                    | `hideout/settings.json`
+--------------------------------------------- | --------------------------
+`/client/handbook/templates`                  | `templates/handbook.json`
+`/client/hideout/production/scavcase/recipes` | `templates/scavcases.json`
+`/client/hideout/settings`                    | `settings/hideout.json`
 `/client/locale/en`                           | `locale/all-en.json`
 `/client/locale/fr`                           | `locale/all-fr.json`
 `/client/locale/ge`                           | `locale/all-ge.json`
@@ -20,4 +21,4 @@ Unity Engine       | 2019.4.39f1
 `/client/languages`                           | `locale/languages.json`
 `/client/menu/locale/en`                      | `locale/menu-en.json`
 `/client/settings`                            | `settings/client.json`
-`/client/trading/api/tradersettings`          | `trading/traders.json`
+`/client/trading/api/tradersettings`          | `templates/traders.json`

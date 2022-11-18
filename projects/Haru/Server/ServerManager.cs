@@ -25,6 +25,7 @@ namespace Haru.Server
             router.AddController<GameStartController>();
             router.AddController<GameVersionValidateController>();
             router.AddController<HandbookBuildsMyListController>();
+            router.AddController<HandbookTemplatesController>();
             router.AddController<HideoutProductionScavcaseRecipesController>();
             router.AddController<HideoutSettingsController>();
             router.AddController<LanguagesController>();

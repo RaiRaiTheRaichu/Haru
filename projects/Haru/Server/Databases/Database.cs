@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using Haru.Models.EFT;
+using Haru.Models.EFT.Handbook;
 using Haru.Models.EFT.Hideout;
 using Haru.Models.EFT.Locale;
 using Haru.Models.EFT.Settings;
@@ -19,6 +20,7 @@ namespace Haru.Server.Databases
         public static readonly List<ScavcaseModel> Scavcases;
         public static ClientModel ClientSettings;
         public static readonly List<Models.EFT.Trader.TraderModel> Traders;
+        public static TemplatesModel HandbookTemplates;
         public static readonly Dictionary<string, string> Files;
 
         static Database()
@@ -37,6 +39,7 @@ namespace Haru.Server.Databases
             LoadScavcases();
             LoadClientSettings();
             LoadTraders();
+            LoadHandbookTemplates();
             LoadFiles();
         }
 
@@ -91,6 +94,13 @@ namespace Haru.Server.Databases
             var json = Resource.GetText("db.templates.traders.json");
             var body = Json.Deserialize<ResponseModel<Models.EFT.Trader.TraderModel[]>>(json);
             Traders.AddRange(body.Data);
+        }
+
+        private static void LoadHandbookTemplates()
+        {
+            var json = Resource.GetText("db.templates.handbook.json");
+            var body = Json.Deserialize<ResponseModel<TemplatesModel>>(json);
+            HandbookTemplates = body.Data;
         }
 
         private static void LoadFiles()

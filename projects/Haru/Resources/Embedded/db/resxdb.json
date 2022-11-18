@@ -3,7 +3,6 @@
     "/client/friend/list": "client.friend.list.json",
     "/client/game/profile/list": "client.game.profile.list.json",
     "/client/globals": "client.globals.json",
-    "/client/handbook/templates": "client.handbook.templates.json",
     "/client/hideout/areas": "client.hideout.areas.json",
     "/client/hideout/production/recipes": "client.hideout.production.recipes.json",
     "/client/items": "client.items.json",
