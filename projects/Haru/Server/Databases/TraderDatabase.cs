@@ -11,9 +11,10 @@ namespace Haru.Server.Databases
 
         static TraderDatabase()
         {
+            Traders = new List<TraderModel>();
+
             var json = Resource.GetText("db.trading.traders.json");
             var body = Json.Deserialize<ResponseModel<TraderModel[]>>(json);
-            Traders = new List<TraderModel>();
             Traders.AddRange(body.Data);
         }
     }

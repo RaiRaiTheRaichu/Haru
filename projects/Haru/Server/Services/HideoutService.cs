@@ -9,5 +9,10 @@ namespace Haru.Server.Services
         {
             return HideoutRepository.GetSettings();
         }
+
+        public static ScavcaseModel[] GetScavcases()
+        {
+            return HideoutRepository.GetScavcases();
+        }
     }
 }
