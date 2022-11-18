@@ -32,7 +32,7 @@
     <EmbeddedResource Include=".\Resources\Embedded\client.hideout.areas.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.hideout.production.recipes.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.hideout.production.scavcase.recipes.json" />
-    <EmbeddedResource Include=".\Resources\Embedded\client.hideout.settings.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\hideout\settings.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.items.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.locations.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.mail.dialog.list.json" />

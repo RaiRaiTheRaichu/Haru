@@ -7,7 +7,6 @@
     "/client/hideout/areas": "client.hideout.areas.json",
     "/client/hideout/production/recipes": "client.hideout.production.recipes.json",
     "/client/hideout/production/scavcase/recipes": "client.hideout.production.scavcase.recipes.json",
-    "/client/hideout/settings": "client.hideout.settings.json",
     "/client/items": "client.items.json",
     "/client/locations": "client.locations.json",
     "/client/mail/dialog/list": "client.mail.dialog.list.json",
