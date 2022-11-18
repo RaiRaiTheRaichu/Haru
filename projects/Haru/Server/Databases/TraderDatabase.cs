@@ -13,7 +13,7 @@ namespace Haru.Server.Databases
         {
             Traders = new List<TraderModel>();
 
-            var json = Resource.GetText("db.trading.traders.json");
+            var json = Resource.GetText("db.templates.traders.json");
             var body = Json.Deserialize<ResponseModel<TraderModel[]>>(json);
             Traders.AddRange(body.Data);
         }

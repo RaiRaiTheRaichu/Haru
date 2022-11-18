@@ -31,14 +31,14 @@
     <EmbeddedResource Include=".\Resources\Embedded\client.handbook.templates.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.hideout.areas.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.hideout.production.recipes.json" />
-    <EmbeddedResource Include="Resources\Embedded\db\hideout\scavcases.json" />
-    <EmbeddedResource Include="Resources\Embedded\db\hideout\settings.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\templates\scavcases.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\settings\hideout.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.items.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.locations.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.mail.dialog.list.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.quest.list.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.repeatalbequests.activityperiods.json" />
-    <EmbeddedResource Include="Resources\Embedded\db\trading\traders.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\templates\traders.json" />
   </ItemGroup>
 
   <ItemGroup>

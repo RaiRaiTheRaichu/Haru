@@ -20,14 +20,14 @@ namespace Haru.Server.Databases
 
         private static void LoadSettings()
         {
-            var json = Resource.GetText("db.hideout.settings.json");
+            var json = Resource.GetText("db.settings.hideout.json");
             var body = Json.Deserialize<ResponseModel<SettingsModel>>(json);
             Settings = body.Data;
         }
 
         private static void LoadScavcases()
         {
-            var json = Resource.GetText("db.hideout.scavcases.json");
+            var json = Resource.GetText("db.templates.scavcases.json");
             var body = Json.Deserialize<ResponseModel<ScavcaseModel[]>>(json);
             Scavcases.AddRange(body.Data);
         }
