@@ -17,6 +17,8 @@ namespace Haru.Server
             var router = Server.Router;
 
             router.AddController<CustomizationStorageController>();
+            router.AddController<FriendRequestListInboxController>();
+            router.AddController<FriendRequestListOutboxController>();
             router.AddController<GameConfigController>();
             router.AddController<GameProfileSelectController>();
             router.AddController<GameStartController>();

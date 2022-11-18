@@ -26,8 +26,6 @@
     <EmbeddedResource Include=".\Resources\Embedded\db\resxdb.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.customization.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.friend.list.json" />
-    <EmbeddedResource Include=".\Resources\Embedded\client.friend.request.list.inbox.json" />
-    <EmbeddedResource Include=".\Resources\Embedded\client.friend.request.list.outbox.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.game.profile.list.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.globals.json" />
     <EmbeddedResource Include=".\Resources\Embedded\client.handbook.builds.my.list.json" />
