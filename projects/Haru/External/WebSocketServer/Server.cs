@@ -40,7 +40,7 @@ namespace WebSocketServer
 
         public Client GetConnectedClient(string guid)
         {
-            foreach (Client client in _clients)
+            foreach (var client in _clients)
             {
                 if (client.Guid == guid)
                 {
@@ -53,7 +53,7 @@ namespace WebSocketServer
 
         public Client GetConnectedClient(Socket socket)
         {
-            foreach (Client client in _clients)
+            foreach (var client in _clients)
             {
                 if (client.Socket == socket)
                 {
@@ -84,33 +84,25 @@ namespace WebSocketServer
 
         private void connectionCallback(IAsyncResult asyncResult)
         {
-            try
+            var clientSocket = Socket.EndAccept(asyncResult);
+            var handshakeBuffer = new byte[1024];
+            var handshakeReceived = clientSocket.Receive(handshakeBuffer);
+            var requestKey = Helpers.GetHandshakeRequestKey(Encoding.Default.GetString(handshakeBuffer));
+            var hanshakeResponse = Helpers.GetHandshakeResponse(Helpers.HashKey(requestKey));
+
+            clientSocket.Send(Encoding.Default.GetBytes(hanshakeResponse));
+
+            var client = new Client(this, clientSocket);
+
+            _clients.Add(client);
+
+            if (OnClientConnected == null)
             {
-                var clientSocket = Socket.EndAccept(asyncResult);
-                var handshakeBuffer = new byte[1024];
-                var handshakeReceived = clientSocket.Receive(handshakeBuffer);
-                var requestKey = Helpers.GetHandshakeRequestKey(Encoding.Default.GetString(handshakeBuffer));
-                var hanshakeResponse = Helpers.GetHandshakeResponse(Helpers.HashKey(requestKey));
-
-                clientSocket.Send(Encoding.Default.GetBytes(hanshakeResponse));
-
-                var client = new Client(this, clientSocket);
-
-                _clients.Add(client);
-
-                if (OnClientConnected == null)
-                {
-                    throw new Exception("Server error: event OnClientConnected is not bound!");
-                }
-
-                OnClientConnected(this, new OnClientConnectedEvent(client));
-                Socket.BeginAccept(connectionCallback, null);
-
+                throw new Exception("Server error: event OnClientConnected is not bound!");
             }
-            catch (Exception Exception)
-            {
-                Console.WriteLine("An error has occured while trying to accept a connecting client.\n\n{0}", Exception.Message);
-            }
+
+            OnClientConnected(this, new OnClientConnectedEvent(client));
+            Socket.BeginAccept(connectionCallback, null);
         }
 
         public void ReceiveMessage(Client client, string message)
