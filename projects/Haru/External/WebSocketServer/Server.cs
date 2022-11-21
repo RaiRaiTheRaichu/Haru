@@ -73,7 +73,7 @@ namespace WebSocketServer
         {
             Socket.Bind(EndPoint);
             Socket.Listen(0);
-            Socket.BeginAccept(connectionCallback, null);
+            Socket.BeginAccept(ConnectionCallback, null);
         }
 
         public void Stop()
@@ -82,7 +82,7 @@ namespace WebSocketServer
             Socket.Dispose();
         }
 
-        private void connectionCallback(IAsyncResult asyncResult)
+        private void ConnectionCallback(IAsyncResult asyncResult)
         {
             var clientSocket = Socket.EndAccept(asyncResult);
             var handshakeBuffer = new byte[1024];
@@ -102,7 +102,7 @@ namespace WebSocketServer
             }
 
             OnClientConnected(this, new OnClientConnectedEvent(client));
-            Socket.BeginAccept(connectionCallback, null);
+            Socket.BeginAccept(ConnectionCallback, null);
         }
 
         public void ReceiveMessage(Client client, string message)
