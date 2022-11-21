@@ -1,5 +1,5 @@
 using Haru.Patches;
-using Haru.Server;
+using Haru.Server.Servers;
 using Haru.Utils;
 using NLog.Targets;
 
@@ -15,8 +15,8 @@ namespace Haru
 
             // run server
             Resource.RegisterAssembly(typeof(Resource).Assembly);
-            ServerManager.Initialize();
-            ServerManager.Server.Start();
+            ServerManager.GeneralServer.Start();
+            ServerManager.NotificationServer.Start();
         }
     }
 }

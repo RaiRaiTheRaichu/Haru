@@ -43,7 +43,7 @@ namespace Haru.Server.Services
             return new ProfileSelectModel()
             {
                 Status = "ok",
-                NotifierServerModel = new NotifierServerModel(sessionId, url)
+                NotifierServerModel = NotifierService.GetNotifier(sessionId)
             };
         }
 

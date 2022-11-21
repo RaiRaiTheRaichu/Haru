@@ -10,21 +10,16 @@ namespace WebSocketServer
     {
         private readonly List<Client> _clients;
         public Socket Socket { get; private set; }
-        public IPEndPoint EndPoint { get; private set; }
+        public string Address { get; private set; }
         public event EventHandler<OnSendMessageEvent> OnSendMessage;
         public event EventHandler<OnClientConnectedEvent> OnClientConnected;
         public event EventHandler<OnMessageReceivedEvent> OnMessageReceived;
         public event EventHandler<OnClientDisconnectedEvent> OnClientDisconnected;
 
-        public Server(IPEndPoint endPoint)
+        public Server(string address)
         {
-            if (endPoint == null)
-            {
-                return;
-            }
-
             _clients = new List<Client>();
-            EndPoint = EndPoint;
+            Address = address;
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
 
@@ -71,7 +66,10 @@ namespace WebSocketServer
 
         public void Start()
         {
-            Socket.Bind(EndPoint);
+            var uri = new Uri(Address);
+            var endpoint = new IPEndPoint(IPAddress.Parse(uri.Host), uri.Port);
+
+            Socket.Bind(endpoint);
             Socket.Listen(0);
             Socket.BeginAccept(ConnectionCallback, null);
         }

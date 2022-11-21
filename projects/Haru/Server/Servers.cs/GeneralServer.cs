@@ -3,17 +3,14 @@ using Haru.Server.Http;
 
 namespace Haru.Server
 {
-    public static class ServerManager
+    public class GeneralServer
     {
-        public static readonly HttpServer Server;
+        public HttpServer Server;
 
-        static ServerManager()
+        public GeneralServer()
         {
             Server = new HttpServer();
-        }
 
-        public static void Initialize()
-        {
             var router = Server.Router;
 
             router.AddController<CustomizationStorageController>();
@@ -38,6 +35,11 @@ namespace Haru.Server
             router.AddController<SettingsController>();
             router.AddController<TraderSettingsController>();
             router.AddController<WeatherController>();
+        }
+
+        public void Start()
+        {
+            Server.Start();
         }
     }
 }
