@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Haru.Models.EFT
 {
-    public struct ServerModel
+    public struct ServerInfoModel
     {
         [JsonProperty("ip")]
         public string Ip;

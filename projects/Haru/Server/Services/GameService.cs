@@ -34,18 +34,6 @@ namespace Haru.Server.Services
             };
         }
 
-        public static ProfileSelectModel SelectProfile(string sessionId)
-        {
-            var url = HttpConfig.GetUrl();
-
-            // note: dumped EFT server data
-            return new ProfileSelectModel()
-            {
-                Status = "ok",
-                NotifierServerModel = NotifierService.GetNotifier(sessionId)
-            };
-        }
-
         public static StartModel StartGame()
         {
             // note: dumped EFT server data

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Models.EFT;
-using Haru.Models.EFT.Game;
+using Haru.Models.EFT.Notification;
 using Haru.Server.Helpers;
 using Haru.Server.Http;
 using Haru.Server.Services;
@@ -20,7 +20,7 @@ namespace Haru.Server.Controllers
         public override async Task Run(RouterContext context)
         {
             var sessionId = RequestHelper.GetSessionId(context.Request);
-            var data = GameService.SelectProfile(sessionId);
+            var data = NotificationService.SelectProfile(sessionId);
             var body = new ResponseModel<ProfileSelectModel>(data);
             var json = Json.Serialize(body);
             await SendJson(context, json);

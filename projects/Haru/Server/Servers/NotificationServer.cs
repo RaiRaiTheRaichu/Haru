@@ -1,4 +1,10 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using WebSocketServer;
+using Haru.Models.EFT;
+using Haru.Models.EFT.Notification;
+using Haru.Server.Services;
 using Haru.Utils;
 
 namespace Haru.Server.Servers
@@ -21,9 +27,21 @@ namespace Haru.Server.Servers
             Server.Start();
         }
 
-        private void OnClientConnected(object sender, OnClientConnectedEvent e)
+        private async void PingClient(Client client, TimeSpan interval, CancellationToken cancellationToken)
+        {
+            while (true)
+            {
+                var data = NotificationService.GetPing();
+                var body = new ResponseModel<PingModel>(data);
+                client.Server.SendMessage(client, Json.Serialize(body));
+                await Task.Delay(interval, cancellationToken);
+            }
+        }
+
+        private async void OnClientConnected(object sender, OnClientConnectedEvent e)
         {
             Log.Write($"Client with GUID: {e.Client.Guid} Connected!");
+            await Task.Run(() => PingClient(e.Client, TimeSpan.FromSeconds(90), default(CancellationToken)));
         }
 
         private void OnClientDisconnected(object sender, OnClientDisconnectedEvent e)

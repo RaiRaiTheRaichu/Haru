@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Haru.Models.EFT.Game
+namespace Haru.Models.EFT.Notification
 {
     public struct ProfileSelectModel
     {
@@ -8,6 +8,6 @@ namespace Haru.Models.EFT.Game
         public string Status;
 
         [JsonProperty("notifier")]
-        public NotifierServerModel NotifierServerModel;
+        public NotifierModel NotificationServer;
     }
 }

@@ -19,7 +19,7 @@ namespace Haru.Server.Controllers
         public override async Task Run(RouterContext context)
         {
             var data = ServerService.GetServers();
-            var body = new ResponseModel<ServerModel[]>(data);
+            var body = new ResponseModel<ServerInfoModel[]>(data);
             var json = Json.Serialize(body);
             await SendJson(context, json);
         }

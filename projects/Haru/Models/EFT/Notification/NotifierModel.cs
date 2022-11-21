@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace Haru.Models.EFT
+namespace Haru.Models.EFT.Notification
 {
-    public struct NotifierServerModel
+    public struct NotifierModel
     {
         [JsonProperty("server")]
         public string Server;
@@ -20,7 +20,7 @@ namespace Haru.Models.EFT
         [JsonProperty("ws")]
         public string WebSocketUrl;
 
-        public NotifierServerModel(string sessionId, string httpUrl, string wsUrl)
+        public NotifierModel(string sessionId, string httpUrl, string wsUrl)
         {
             Server = wsUrl;
             ChannelId = sessionId;

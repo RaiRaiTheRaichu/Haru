@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Models.EFT;
+using Haru.Models.EFT.Notification;
 using Haru.Server.Helpers;
 using Haru.Server.Http;
 using Haru.Server.Services;
@@ -19,8 +20,8 @@ namespace Haru.Server.Controllers
         public override async Task Run(RouterContext context)
         {
             var sessionId = RequestHelper.GetSessionId(context.Request);
-            var data = NotifierService.GetNotifier(sessionId);
-            var body = new ResponseModel<NotifierServerModel>(data);
+            var data = NotificationService.GetNotifier(sessionId);
+            var body = new ResponseModel<NotifierModel>(data);
             var json = Json.Serialize(body);
             await SendJson(context, json);
         }

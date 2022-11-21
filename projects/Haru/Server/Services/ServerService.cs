@@ -5,11 +5,11 @@ namespace Haru.Server.Services
 {
     public static class ServerService
     {
-        public static ServerModel[] GetServers()
+        public static ServerInfoModel[] GetServers()
         {
-            return new ServerModel[]
+            return new ServerInfoModel[]
             {
-                new ServerModel()
+                new ServerInfoModel()
                 {
                     Ip = HttpConfig.GetHost(),
                     Port = HttpConfig.GetPort()
