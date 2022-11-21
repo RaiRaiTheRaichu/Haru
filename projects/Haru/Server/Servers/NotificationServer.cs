@@ -1,7 +1,7 @@
 using WebSocketServer;
 using Haru.Utils;
 
-namespace Haru.Server
+namespace Haru.Server.Servers
 {
     public class NotificationServer
     {

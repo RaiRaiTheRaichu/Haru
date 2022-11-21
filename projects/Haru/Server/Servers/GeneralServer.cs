@@ -1,7 +1,7 @@
 using Haru.Server.Controllers;
 using Haru.Server.Http;
 
-namespace Haru.Server
+namespace Haru.Server.Servers
 {
     public class GeneralServer
     {
@@ -13,6 +13,7 @@ namespace Haru.Server
 
             var router = Server.Router;
 
+            router.AddController<CheckVersionController>();
             router.AddController<CustomizationStorageController>();
             router.AddController<FriendRequestListInboxController>();
             router.AddController<FriendRequestListOutboxController>();

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Haru.Models.EFT;
 using Haru.Models.EFT.Game;
 using Haru.Server.Http;
 using Haru.Server.Repositories;
@@ -53,6 +52,16 @@ namespace Haru.Server.Services
             return new StartModel()
             {
                 LoginTime = 1650550833
+            };
+        }
+
+        public static CheckVersionModel IsCorrectVersion()
+        {
+            // note: dumped EFT server data
+            return new CheckVersionModel()
+            {
+                IsValid = true,
+                LatestVersion = "0.12.12.32.20243"
             };
         }
     }
