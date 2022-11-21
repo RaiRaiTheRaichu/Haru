@@ -50,7 +50,6 @@ namespace WebSocketServer
 
                 // Start to receive messages again
                 Socket.BeginReceive(new byte[] { 0 }, 0, 0, SocketFlags.None, messageCallback, null);
-
             }
             catch
             {
