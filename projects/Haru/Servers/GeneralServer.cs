@@ -15,6 +15,7 @@ namespace Haru.Servers
 
             router.AddController<CheckVersionController>();
             router.AddController<CustomizationStorageController>();
+            router.AddController<FriendListController>();
             router.AddController<FriendRequestListInboxController>();
             router.AddController<FriendRequestListOutboxController>();
             router.AddController<GameConfigController>();

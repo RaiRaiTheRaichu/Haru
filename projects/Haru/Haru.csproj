@@ -29,7 +29,6 @@
     <EmbeddedResource Include="Resources\Embedded\db\templates\scavcases.json" />
     <EmbeddedResource Include="Resources\Embedded\db\resxdb.json" />
     <EmbeddedResource Include="Resources\Embedded\client.customization.json" />
-    <EmbeddedResource Include="Resources\Embedded\client.friend.list.json" />
     <EmbeddedResource Include="Resources\Embedded\client.game.profile.list.json" />
     <EmbeddedResource Include="Resources\Embedded\client.globals.json" />
     <EmbeddedResource Include="Resources\Embedded\client.hideout.areas.json" />
