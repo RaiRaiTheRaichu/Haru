@@ -35,7 +35,6 @@
     <EmbeddedResource Include="Resources\Embedded\client.hideout.production.recipes.json" />
     <EmbeddedResource Include="Resources\Embedded\client.items.json" />
     <EmbeddedResource Include="Resources\Embedded\client.locations.json" />
-    <EmbeddedResource Include="Resources\Embedded\client.mail.dialog.list.json" />
     <EmbeddedResource Include="Resources\Embedded\client.quest.list.json" />
     <EmbeddedResource Include="Resources\Embedded\client.repeatalbequests.activityperiods.json" />
   </ItemGroup>

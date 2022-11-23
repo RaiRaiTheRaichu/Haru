@@ -6,7 +6,6 @@
     "/client/hideout/production/recipes": "client.hideout.production.recipes.json",
     "/client/items": "client.items.json",
     "/client/locations": "client.locations.json",
-    "/client/mail/dialog/list": "client.mail.dialog.list.json",
     "/client/quest/list": "client.quest.list.json",
     "/client/repeatalbeQuests/activityPeriods": "client.repeatalbequests.activityperiods.json"
 }
