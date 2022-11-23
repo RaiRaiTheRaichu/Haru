@@ -10,11 +10,8 @@ public class Mod
     {
         Log.Write("Loading Senko.Langpack");
 
-        // allow mod to load embedded resources
-        Resource.RegisterAssembly(typeof(Mod).Assembly);
-
         // locales to add (with name mapping)
-        var names = new Dictionary<string, string>()
+        var languages = new Dictionary<string, string>()
         {
             { "ch", "Chinese" },
             { "cz", "Czech" },
@@ -30,28 +27,38 @@ public class Mod
             { "tu", "Turkish" }
         };
 
-        // add language names to database
-        foreach (var kvp in names)
-        {
-            Database.Names.Add(kvp.Key, kvp.Value);
-        }
-        
-        // add global locales from game dump
-        foreach (var kvp in names)
-        {
-            var lang = kvp.Key;
-            var json = Resource.GetText($"Database.Locales.all-{lang}.json");
-            var body = Json.Deserialize<ResponseModel<GlobalModel>>(json);
-            Database.Globals.Add(lang, body.Data);
-        }
+        // load locales from resources
+        EnableResourceLoading();
 
-        // add menu locales from game dump
-        foreach (var kvp in names)
+        foreach (var kvp in languages)
         {
-            var lang = kvp.Key;
-            var json = Resource.GetText($"Database.Locales.menu-{lang}.json");
-            var body = Json.Deserialize<ResponseModel<MenuModel>>(json);
-            Database.Menus.Add(lang, body.Data);
+            AddLocaleName(kvp.Key, kvp.Value);
+            AddGlobalLocale(kvp.Key);
+            AddMenuLocale(kvp.Key);
         }
+    }
+
+    private static void EnableResourceLoading()
+    {
+        Resource.RegisterAssembly(typeof(Mod).Assembly);
+    }
+
+    private static void AddLocaleName(string language, string fullname)
+    {
+        Database.Names.Add(language, fullname);
+    }
+
+    private static void AddGlobalLocale(string language)
+    {
+        var json = Resource.GetText($"Database.Locales.all-{language}.json");
+        var body = Json.Deserialize<ResponseModel<GlobalModel>>(json);
+        Database.Globals.Add(language, body.Data);
+    }
+
+    private static void AddMenuLocale(string language)
+    {
+        var json = Resource.GetText($"Database.Locales.menu-{language}.json");
+        var body = Json.Deserialize<ResponseModel<MenuModel>>(json);
+        Database.Menus.Add(language, body.Data);
     }
 }
