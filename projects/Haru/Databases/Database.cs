@@ -1,7 +1,4 @@
-﻿// TODO:
-// - Add support for multiple languages
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Handbook;
 using Haru.Models.EFT.Hideout;
@@ -56,16 +53,24 @@ namespace Haru.Databases
 
         private static void LoadGlobals()
         {
-            var json = Resource.GetText("db.locale.all-en.json");
-            var body = Json.Deserialize<ResponseModel<GlobalModel>>(json);
-            Globals.Add("en", body.Data);
+            foreach (var name in Names)
+            {
+                var lang = name.Key;
+                var json = Resource.GetText($"db.locale.all-{lang}.json");
+                var body = Json.Deserialize<ResponseModel<GlobalModel>>(json);
+                Globals.Add(lang, body.Data);
+            }
         }
 
         private static void LoadMenus()
         {
-            var json = Resource.GetText("db.locale.menu-en.json");
-            var body = Json.Deserialize<ResponseModel<MenuModel>>(json);
-            Menus.Add("en", body.Data);
+            foreach (var name in Names)
+            {
+                var lang = name.Key;
+                var json = Resource.GetText($"db.locale.menu-{lang}.json");
+                var body = Json.Deserialize<ResponseModel<MenuModel>>(json);
+                Menus.Add(lang, body.Data);
+            }
         }
 
         private static void LoadHideoutSettings()

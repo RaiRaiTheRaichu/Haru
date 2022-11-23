@@ -22,6 +22,9 @@
     <EmbeddedResource Include="Resources\Embedded\db\locale\all-ru.json" />
     <EmbeddedResource Include="Resources\Embedded\db\locale\languages.json" />
     <EmbeddedResource Include="Resources\Embedded\db\locale\menu-en.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-ge.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-fr.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-ru.json" />
     <EmbeddedResource Include="Resources\Embedded\db\settings\client.json" />
     <EmbeddedResource Include="Resources\Embedded\db\settings\hideout.json" />
     <EmbeddedResource Include="Resources\Embedded\db\templates\handbook.json" />
