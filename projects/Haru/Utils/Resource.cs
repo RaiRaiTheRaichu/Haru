@@ -9,7 +9,7 @@ namespace Haru.Utils
     public static class Resource
     {
         private static readonly Dictionary<Assembly, string[]> _names;
-        private const string ROOT_PATH = "{0}.Resources.Embedded.{1}";
+        private const string ROOT_PATH = "{0}.Resources.{1}";
 
         static Resource()
         {

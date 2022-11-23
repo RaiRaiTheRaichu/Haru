@@ -8,7 +8,7 @@ public class Mod
 {
     public static void Run()
     {
-        Log.Write("Loaded Senko.Langpack");
+        Log.Write("Loading Senko.Langpack");
 
         // allow mod to load embedded resources
         Resource.RegisterAssembly(typeof(Mod).Assembly);
@@ -40,7 +40,7 @@ public class Mod
         foreach (var kvp in names)
         {
             var lang = kvp.Key;
-            var json = Resource.GetText($"db.locale.all-{lang}.json");
+            var json = Resource.GetText($"Database.Locales.all-{lang}.json");
             var body = Json.Deserialize<ResponseModel<GlobalModel>>(json);
             Database.Globals.Add(lang, body.Data);
         }
@@ -49,7 +49,7 @@ public class Mod
         foreach (var kvp in names)
         {
             var lang = kvp.Key;
-            var json = Resource.GetText($"db.locale.menu-{lang}.json");
+            var json = Resource.GetText($"Database.Locales.menu-{lang}.json");
             var body = Json.Deserialize<ResponseModel<MenuModel>>(json);
             Database.Menus.Add(lang, body.Data);
         }

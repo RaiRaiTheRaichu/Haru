@@ -4,6 +4,6 @@ public class Mod
 {
     public static void Run()
     {
-        Log.Write("Loaded Senko.Example");
+        Log.Write("Loading Senko.Example");
     }
 }
