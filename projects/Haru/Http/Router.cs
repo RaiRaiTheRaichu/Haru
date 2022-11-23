@@ -61,7 +61,7 @@ namespace Haru.Http
         public async Task Run(
             HttpListenerRequest request, HttpListenerResponse response)
         {
-            var misses = 0;
+            Controller target = null;
             var path = RequestHelper.GetPath(request);
             var context = new RouterContext()
             {
@@ -76,20 +76,20 @@ namespace Haru.Http
             {
                 if (controller.IsMatch(context))
                 {
-                    await controller.Run(context);
-                }
-                else
-                {
-                    ++misses;
+                    target = controller;
+                    break;
                 }
             }
 
-            if (misses == _controllers.Count)
+            if (target != null)
             {
+                await target.Run(context);
+            }
+            else
+            {
+                response.Close();
                 throw new UrlPathNotFoundException(context.Request.Url);
             }
-
-            response.Close();
         }
     }
 }
