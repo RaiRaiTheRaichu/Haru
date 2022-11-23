@@ -45,17 +45,17 @@ namespace Haru.Databases
             var json = Resource.GetText("db.locale.languages.json");
             var names = Json.Deserialize<Dictionary<string, string>>(json);
 
-            foreach (var name in names)
+            foreach (var kvp in names)
             {
-                Names.Add(name.Key, name.Value);
+                Names.Add(kvp.Key, kvp.Value);
             }
         }
 
         private static void LoadGlobals()
         {
-            foreach (var name in Names)
+            foreach (var kvp in Names)
             {
-                var lang = name.Key;
+                var lang = kvp.Key;
                 var json = Resource.GetText($"db.locale.all-{lang}.json");
                 var body = Json.Deserialize<ResponseModel<GlobalModel>>(json);
                 Globals.Add(lang, body.Data);
@@ -64,9 +64,9 @@ namespace Haru.Databases
 
         private static void LoadMenus()
         {
-            foreach (var name in Names)
+            foreach (var kvp in Names)
             {
-                var lang = name.Key;
+                var lang = kvp.Key;
                 var json = Resource.GetText($"db.locale.menu-{lang}.json");
                 var body = Json.Deserialize<ResponseModel<MenuModel>>(json);
                 Menus.Add(lang, body.Data);

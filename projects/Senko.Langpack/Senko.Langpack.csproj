@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>NLog.Senko.Langpack</AssemblyName>
+    <RootNamespace>Senko.Langpack</RootNamespace>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-ch.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-cz.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-es-mx.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-es.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-hu.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-it.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-jp.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-kr.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-pl.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-po.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-sk.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\all-tu.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-ch.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-cz.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-es-mx.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-es.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-hu.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-it.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-jp.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-kr.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-pl.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-po.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-sk.json" />
+    <EmbeddedResource Include="Resources\Embedded\db\locale\menu-tu.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" ExcludeAssets="runtime" PrivateAssets="All" />
+    <PackageReference Include="NLog" Version="4.7.15" ExcludeAssets="runtime" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Haru\Haru.csproj" />
+  </ItemGroup>
+
+</Project>
