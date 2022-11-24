@@ -9,7 +9,7 @@ using Haru.Utils;
 
 namespace Haru.Controllers
 {
-    public class MenuController : Controller
+    public class MenuLocaleController : Controller
     {
         private readonly LocaleHelper _localeHelper;
         private readonly RequestHelper _requestHelper;
@@ -17,7 +17,7 @@ namespace Haru.Controllers
         private readonly LocaleService _localeService;
         private const string _format = "/client/menu/locale/{0}";
 
-        public MenuController()
+        public MenuLocaleController()
         {
             _localeHelper = new LocaleHelper();
             _requestHelper = new RequestHelper();
