@@ -1,64 +1,54 @@
 using System.Collections.Generic;
-using Haru.Databases;
+using Haru.ModApi;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Locale;
-using Haru.Utils;
 
 public class Mod
 {
     public static void Run()
     {
-        Log.Write("Loading Senko.Langpack");
+        LogApi.Write("Loading Senko.Langpack");
 
         // locales to add (with name mapping)
         var languages = new Dictionary<string, string>()
         {
-            { "ch", "Chinese" },
-            { "cz", "Czech" },
-            { "hu", "Hungarian" },
-            { "it", "Italian" },
-            { "jp", "Japanese" },
-            { "kr", "Korean" },
-            { "pl", "Polish" },
-            { "po", "Portugal" },
-            { "sk", "Slovak" },
-            { "es", "Spanish" },
+            // Key     Value
+            { "ch",    "Chinese"        },
+            { "cz",    "Czech"          },
+            { "hu",    "Hungarian"      },
+            { "it",    "Italian"        },
+            { "jp",    "Japanese"       },
+            { "kr",    "Korean"         },
+            { "pl",    "Polish"         },
+            { "po",    "Portugal"       },
+            { "sk",    "Slovak"         },
+            { "es",    "Spanish"        },
             { "es-mx", "Spanish Mexico" },
-            { "tu", "Turkish" }
+            { "tu",    "Turkish"        }
         };
 
         // load locales from resources
-        EnableResourceLoading();
+        ResourceApi.EnableResourceLoading(typeof(Mod).Assembly);
 
         foreach (var kvp in languages)
         {
-            AddLocaleName(kvp.Key, kvp.Value);
+            LocaleApi.AddName(kvp.Key, kvp.Value);
             AddGlobalLocale(kvp.Key);
             AddMenuLocale(kvp.Key);
         }
     }
 
-    private static void EnableResourceLoading()
+    private static void AddGlobalLocale(string id)
     {
-        Resource.RegisterAssembly(typeof(Mod).Assembly);
+        var json = ResourceApi.GetText($"Database.Locales.all-{id}.json");
+        var body = JsonApi.Deserialize<ResponseModel<GlobalModel>>(json);
+        LocaleApi.AddGlobal(id, body.Data);
     }
 
-    private static void AddLocaleName(string language, string fullname)
+    private static void AddMenuLocale(string id)
     {
-        Database.Names.Add(language, fullname);
-    }
-
-    private static void AddGlobalLocale(string language)
-    {
-        var json = Resource.GetText($"Database.Locales.all-{language}.json");
-        var body = Json.Deserialize<ResponseModel<GlobalModel>>(json);
-        Database.Globals.Add(language, body.Data);
-    }
-
-    private static void AddMenuLocale(string language)
-    {
-        var json = Resource.GetText($"Database.Locales.menu-{language}.json");
-        var body = Json.Deserialize<ResponseModel<MenuModel>>(json);
-        Database.Menus.Add(language, body.Data);
+        var json = ResourceApi.GetText($"Database.Locales.menu-{id}.json");
+        var body = JsonApi.Deserialize<ResponseModel<MenuModel>>(json);
+        LocaleApi.AddMenu(id, body.Data);
     }
 }

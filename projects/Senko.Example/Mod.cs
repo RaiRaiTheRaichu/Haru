@@ -1,9 +1,9 @@
-using Haru.Utils;
+using Haru.ModApi;
 
 public class Mod
 {
     public static void Run()
     {
-        Log.Write("Loading Senko.Example");
+        LogApi.Write("Loading Senko.Example");
     }
 }

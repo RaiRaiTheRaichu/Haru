@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
@@ -41,6 +41,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Haru\Haru.csproj" />
+    <ProjectReference Include="..\Haru.ModApi\Haru.ModApi.csproj" />
   </ItemGroup>
 
 </Project>
