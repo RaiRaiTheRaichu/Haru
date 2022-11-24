@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Senko.Langpack", "Senko.Lan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haru.ModApi", "Haru.ModApi\Haru.ModApi.csproj", "{A24BE65A-47AD-45D1-94DD-69A72DB4D191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.EftData", "Senko.EftData\Senko.EftData.csproj", "{39A0F4D5-E96B-4877-BB56-FD08B541781C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A24BE65A-47AD-45D1-94DD-69A72DB4D191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A24BE65A-47AD-45D1-94DD-69A72DB4D191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A24BE65A-47AD-45D1-94DD-69A72DB4D191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A0F4D5-E96B-4877-BB56-FD08B541781C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A0F4D5-E96B-4877-BB56-FD08B541781C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A0F4D5-E96B-4877-BB56-FD08B541781C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A0F4D5-E96B-4877-BB56-FD08B541781C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

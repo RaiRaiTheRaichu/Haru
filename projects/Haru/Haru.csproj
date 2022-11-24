@@ -16,33 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Database\Locales\all-en.json" />
-    <EmbeddedResource Include="Resources\Database\Locales\all-fr.json" />
-    <EmbeddedResource Include="Resources\Database\Locales\all-ge.json" />
-    <EmbeddedResource Include="Resources\Database\Locales\all-ru.json" />
-    <EmbeddedResource Include="Resources\Database\Locales\languages.json" />
-    <EmbeddedResource Include="Resources\Database\Locales\menu-en.json" />
-    <EmbeddedResource Include="Resources\Database\Locales\menu-ge.json" />
-    <EmbeddedResource Include="Resources\Database\Locales\menu-fr.json" />
-    <EmbeddedResource Include="Resources\Database\Locales\menu-ru.json" />
-    <EmbeddedResource Include="Resources\Database\Settings\client.json" />
-    <EmbeddedResource Include="Resources\Database\Settings\hideout.json" />
-    <EmbeddedResource Include="Resources\Database\Templates\handbook.json" />
-    <EmbeddedResource Include="Resources\Database\Templates\traders.json" />
-    <EmbeddedResource Include="Resources\Database\Templates\scavcases.json" />
-    <EmbeddedResource Include="Resources\Database\resxdb.json" />
-    <EmbeddedResource Include="Resources\client.customization.json" />
-    <EmbeddedResource Include="Resources\client.game.profile.list.json" />
-    <EmbeddedResource Include="Resources\client.globals.json" />
-    <EmbeddedResource Include="Resources\client.hideout.areas.json" />
-    <EmbeddedResource Include="Resources\client.hideout.production.recipes.json" />
-    <EmbeddedResource Include="Resources\client.items.json" />
-    <EmbeddedResource Include="Resources\client.locations.json" />
-    <EmbeddedResource Include="Resources\client.quest.list.json" />
-    <EmbeddedResource Include="Resources\client.repeatalbequests.activityperiods.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <!-- prevent output of these files, EFT already has these -->
     <Reference PrivateAssets="All" Private="False" Include="Assembly-CSharp" HintPath="References\Assembly-CSharp.dll" />
     <Reference PrivateAssets="All" Private="False" Include="ComponentAce.Compression.Libs.zlib" HintPath="References\bsg.componentace.compression.libs.zlib.dll" />

@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>NLog.Senko.EftData</AssemblyName>
+    <RootNamespace>Senko.EftData</RootNamespace>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Database\Locales\all-en.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-fr.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-ge.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-ru.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\languages.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-en.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-ge.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-fr.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-ru.json" />
+    <EmbeddedResource Include="Resources\Database\Settings\client.json" />
+    <EmbeddedResource Include="Resources\Database\Settings\hideout.json" />
+    <EmbeddedResource Include="Resources\Database\Templates\handbook.json" />
+    <EmbeddedResource Include="Resources\Database\Templates\traders.json" />
+    <EmbeddedResource Include="Resources\Database\Templates\scavcases.json" />
+    <EmbeddedResource Include="Resources\Database\resxdb.json" />
+    <EmbeddedResource Include="Resources\client.customization.json" />
+    <EmbeddedResource Include="Resources\client.game.profile.list.json" />
+    <EmbeddedResource Include="Resources\client.globals.json" />
+    <EmbeddedResource Include="Resources\client.hideout.areas.json" />
+    <EmbeddedResource Include="Resources\client.hideout.production.recipes.json" />
+    <EmbeddedResource Include="Resources\client.items.json" />
+    <EmbeddedResource Include="Resources\client.locations.json" />
+    <EmbeddedResource Include="Resources\client.quest.list.json" />
+    <EmbeddedResource Include="Resources\client.repeatalbequests.activityperiods.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" ExcludeAssets="runtime" PrivateAssets="All" />
+    <PackageReference Include="NLog" Version="4.7.15" ExcludeAssets="runtime" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Haru\Haru.csproj" />
+    <ProjectReference Include="..\Haru.ModApi\Haru.ModApi.csproj" />
+  </ItemGroup>
+
+</Project>

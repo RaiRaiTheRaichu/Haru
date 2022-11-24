@@ -4,6 +4,7 @@
 
 	<targets>
 		<target name="Haru" xsi:type="Haru" />
+		<target name="Senko.EftData" xsi:type="Senko.EftData" />
 	</targets>
 
 </nlog>
