@@ -3,11 +3,18 @@ using Haru.Databases;
 
 namespace Haru.Repositories
 {
-    public static class TraderRepository
+    public class TraderRepository
     {
-        public static TraderModel[] GetTraders()
+        private readonly Database _database;
+
+        public TraderRepository()
         {
-            return Database.Traders.ToArray();
+            _database = Database.Instance;
+        }
+
+        public TraderModel[] GetTraders()
+        {
+            return _database.Traders.ToArray();
         }
     }
 }

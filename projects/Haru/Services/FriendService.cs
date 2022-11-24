@@ -2,9 +2,9 @@
 
 namespace Haru.Services
 {
-    public static class FriendService
+    public class FriendService
     {
-        public static FriendListModel GetFriends()
+        public FriendListModel GetFriends()
         {
             return new FriendListModel();
         }

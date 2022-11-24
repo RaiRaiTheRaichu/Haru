@@ -5,19 +5,26 @@ namespace Haru.ModApi
 {
     public static class ResourceApi
     {
+        private static readonly Resource _resource;
+
+        static ResourceApi()
+        {
+            _resource = new Resource();
+        }
+
         public static void EnableResourceLoading(Assembly assembly)
         {
-            Resource.RegisterAssembly(assembly);
+            _resource.RegisterAssembly(assembly);
         }
 
         public static string GetText(string key)
         {
-            return Resource.GetText(key);
+            return _resource.GetText(key);
         }
 
         public static byte[] GetData(string key)
         {
-            return Resource.GetData(key);
+            return _resource.GetData(key);
         }
     }
 }

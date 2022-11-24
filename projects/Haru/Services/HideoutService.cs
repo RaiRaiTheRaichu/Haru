@@ -3,16 +3,23 @@ using Haru.Repositories;
 
 namespace Haru.Services
 {
-    public static class HideoutService
+    public class HideoutService
     {
-        public static SettingsModel GetSettings()
+        private readonly HideoutRepository _hideoutRepository;
+
+        public HideoutService()
         {
-            return HideoutRepository.GetSettings();
+            _hideoutRepository = new HideoutRepository();
         }
 
-        public static ScavcaseModel[] GetScavcases()
+        public SettingsModel GetSettings()
         {
-            return HideoutRepository.GetScavcases();
+            return _hideoutRepository.GetSettings();
+        }
+
+        public ScavcaseModel[] GetScavcases()
+        {
+            return _hideoutRepository.GetScavcases();
         }
     }
 }

@@ -6,7 +6,7 @@ using Haru.Extensions;
 
 namespace Haru.Utils
 {
-    public static class Resource
+    public class Resource
     {
         private static readonly Dictionary<Assembly, string[]> _names;
         private const string ROOT_PATH = "{0}.Resources.{1}";
@@ -16,12 +16,12 @@ namespace Haru.Utils
             _names = new Dictionary<Assembly, string[]>();
         }
 
-        public static void RegisterAssembly(Assembly asm)
+        public void RegisterAssembly(Assembly asm)
         {
             _names.Add(asm, asm.GetManifestResourceNames());
         }
 
-        public static Stream GetStream(string filepath)
+        private Stream GetStream(string filepath)
         {
             foreach (var kvp in _names)
             {
@@ -44,7 +44,7 @@ namespace Haru.Utils
                 $"Cannot find resource {filepath}");
         }
 
-        public static string GetText(string filepath)
+        public string GetText(string filepath)
         {
             using (var resource = GetStream(filepath))
             {
@@ -55,7 +55,7 @@ namespace Haru.Utils
             }
         }
 
-        public static byte[] GetData(string filepath)
+        public byte[] GetData(string filepath)
         {
             using (var resource = GetStream(filepath))
             {

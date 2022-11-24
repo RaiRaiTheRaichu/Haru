@@ -2,9 +2,9 @@
 
 namespace Haru.Services
 {
-    public static class MailService
+    public class MailService
     {
-        public static MailModel[] GetConversations()
+        public MailModel[] GetConversations()
         {
             return new MailModel[0];
         }

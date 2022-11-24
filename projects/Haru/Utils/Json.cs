@@ -2,14 +2,14 @@ using Newtonsoft.Json;
 
 namespace Haru.Utils
 {
-    public static class Json
+    public class Json
     {
-        public static T Deserialize<T>(string json)
+        public T Deserialize<T>(string json)
         {
             return JsonConvert.DeserializeObject<T>(json);
         }
 
-        public static string Serialize<T>(T o, bool stripNull = true)
+        public string Serialize<T>(T o, bool stripNull = true)
         {
             var settings = new JsonSerializerSettings()
             {

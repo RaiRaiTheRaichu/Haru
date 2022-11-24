@@ -3,11 +3,18 @@ using Haru.Databases;
 
 namespace Haru.Repositories
 {
-    public static class SettingsRepository
+    public class SettingsRepository
     {
-        public static ClientModel GetClientSettings()
+        private readonly Database _database;
+
+        public SettingsRepository()
         {
-            return Database.ClientSettings;
+            _database = Database.Instance;
+        }
+
+        public ClientModel GetClientSettings()
+        {
+            return _database.ClientSettings;
         }
     }
 }

@@ -2,25 +2,33 @@ using System;
 
 namespace Haru.Utils
 {
-    public static class Log
+    public class Log
     {
         private static readonly string _filepath;
+        private readonly VFS _vfs;
 
         static Log()
         {
             _filepath = "./Logs/Haru.log";
+        }
 
-            if (VFS.Exists(_filepath))
+        public Log()
+        {
+            _vfs = new VFS();
+
+            if (_vfs.Exists(_filepath))
             {
-                VFS.WriteText(_filepath, string.Empty);
+                _vfs.WriteText(_filepath, string.Empty);
             }
         }
 
-        public static void Write(string text)
+        public void Write(string text)
         {
-            var formatted = $"[{DateTime.Now}]: {text}";
+            var datetime = DateTime.Now.ToString("[MM/dd/yyyy hh:mm:ss]");
+            var formatted = $"[{datetime}]: {text}";
+
             Console.WriteLine(formatted);
-            VFS.WriteText(_filepath, formatted, true);
+            _vfs.WriteText(_filepath, formatted, true);
         }
     }
 }

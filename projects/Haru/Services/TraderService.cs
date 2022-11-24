@@ -3,11 +3,18 @@ using Haru.Repositories;
 
 namespace Haru.Services
 {
-    public static class TraderService
+    public class TraderService
     {
-        public static TraderModel[] GetTraders()
+        private readonly TraderRepository _traderRepository;
+
+        public TraderService()
         {
-            return TraderRepository.GetTraders();
+            _traderRepository = new TraderRepository();
+        }
+
+        public TraderModel[] GetTraders()
+        {
+            return _traderRepository.GetTraders();
         }
     }
 }

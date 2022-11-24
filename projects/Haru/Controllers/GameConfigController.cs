@@ -11,17 +11,28 @@ namespace Haru.Controllers
 {
     public class GameConfigController : Controller
     {
+        private readonly RequestHelper _requestHelper;
+        private readonly Json _json;
+        private readonly GameService _gameService;
+
+        public GameConfigController()
+        {
+            _requestHelper = new RequestHelper();
+            _json = new Json();
+            _gameService = new GameService();
+        }
+
         public override bool IsMatch(RouterContext context)
         {
-            return RequestHelper.GetPath(context.Request)
+            return _requestHelper.GetPath(context.Request)
                 == "/client/game/config";
         }
 
         public override async Task Run(RouterContext context)
         {
-            var data = GameService.GetConfigModel();
+            var data = _gameService.GetConfigModel();
             var body = new ResponseModel<ConfigModel>(data);
-            var json = Json.Serialize(body);
+            var json = _json.Serialize(body);
             await SendJson(context, json);
         }
     }

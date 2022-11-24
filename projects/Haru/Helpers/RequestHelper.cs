@@ -3,9 +3,9 @@ using Haru.Models.EFT;
 
 namespace Haru.Helpers
 {
-    public static class RequestHelper
+    public class RequestHelper
     {
-        public static string GetPath(HttpListenerRequest request)
+        public string GetPath(HttpListenerRequest request)
         {
             var url = request.Url;
             var result = url.PathAndQuery;
@@ -18,17 +18,17 @@ namespace Haru.Helpers
             return result;
         }
 
-        public static string GetSessionId(HttpListenerRequest request)
+        public string GetSessionId(HttpListenerRequest request)
         {
             return request.Headers["SessionId"];
         }
 
-        public static ResponseModel<object> GetEmptyResponse()
+        public ResponseModel<object> GetEmptyResponse()
         {
             return new ResponseModel<object>(null);
         }
 
-        public static ResponseModel<object[]> GetEmptyArrayResponse()
+        public ResponseModel<object[]> GetEmptyArrayResponse()
         {
             return new ResponseModel<object[]>(new object[0]);
         }

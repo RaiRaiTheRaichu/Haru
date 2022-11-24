@@ -11,17 +11,28 @@ namespace Haru.Controllers
 {
     public class ProfileStatusController : Controller
     {
+        private readonly RequestHelper _requestHelper;
+        private readonly Json _json;
+        private readonly ProfileService _profileService;
+
+        public ProfileStatusController()
+        {
+            _requestHelper = new RequestHelper();
+            _json = new Json();
+            _profileService = new ProfileService();
+        }
+
         public override bool IsMatch(RouterContext context)
         {
-            return RequestHelper.GetPath(context.Request)
+            return _requestHelper.GetPath(context.Request)
                 == "/client/profile/status";
         }
 
         public override async Task Run(RouterContext context)
         {
-            var data = ProfileService.GetProfileStatusModel();
+            var data = _profileService.GetProfileStatusModel();
             var body = new ResponseModel<StatusModel>(data);
-            var json = Json.Serialize(body);
+            var json = _json.Serialize(body);
             await SendJson(context, json);
         }
     }

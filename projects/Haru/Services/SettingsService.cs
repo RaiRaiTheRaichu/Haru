@@ -3,11 +3,18 @@ using Haru.Repositories;
 
 namespace Haru.Services
 {
-    public static class SettingsService
+    public class SettingsService
     {
-        public static ClientModel GetClientSettings()
+        private readonly SettingsRepository _settingsRepository;
+
+        public SettingsService()
         {
-            return SettingsRepository.GetClientSettings();
+            _settingsRepository = new SettingsRepository();
+        }
+
+        public ClientModel GetClientSettings()
+        {
+            return _settingsRepository.GetClientSettings();
         }
     }
 }

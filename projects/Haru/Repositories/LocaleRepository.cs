@@ -4,26 +4,33 @@ using Haru.Databases;
 
 namespace Haru.Repositories
 {
-    public static class LocaleRepository
+    public class LocaleRepository
     {
-        public static bool HasLocale(string id)
+        private readonly Database _database;
+
+        public LocaleRepository()
         {
-            return Database.Globals.ContainsKey(id);
+            _database = Database.Instance;
         }
 
-        public static Dictionary<string, string> GetNames()
+        public bool HasLocale(string id)
         {
-            return Database.Names;
+            return _database.Globals.ContainsKey(id);
         }
 
-        public static GlobalModel GetGlobal(string id)
+        public Dictionary<string, string> GetNames()
         {
-            return Database.Globals[id];
+            return _database.Names;
         }
 
-        public static MenuModel GetMenu(string id)
+        public GlobalModel GetGlobal(string id)
         {
-            return Database.Menus[id];
+            return _database.Globals[id];
+        }
+
+        public MenuModel GetMenu(string id)
+        {
+            return _database.Menus[id];
         }
     }
 }

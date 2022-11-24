@@ -11,17 +11,28 @@ namespace Haru.Controllers
 {
     public class GameStartController : Controller
     {
+        private readonly RequestHelper _requestHelper;
+        private readonly Json _json;
+        private readonly GameService _gameService;
+
+        public GameStartController()
+        {
+            _requestHelper = new RequestHelper();
+            _json = new Json();
+            _gameService = new GameService();
+        }
+
         public override bool IsMatch(RouterContext context)
         {
-            return RequestHelper.GetPath(context.Request)
+            return _requestHelper.GetPath(context.Request)
                 == "/client/game/start";
         }
 
         public override async Task Run(RouterContext context)
         {
-            var data = GameService.StartGame();
+            var data = _gameService.StartGame();
             var body = new ResponseModel<StartModel>(data);
-            var json = Json.Serialize(body);
+            var json = _json.Serialize(body);
             await SendJson(context, json);
         }
     }

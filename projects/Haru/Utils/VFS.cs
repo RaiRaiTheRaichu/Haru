@@ -2,20 +2,20 @@ using System.IO;
 
 namespace Haru.Utils
 {
-    public static class VFS
+    public class VFS
     {
-        public static bool Exists(string filepath)
+        public bool Exists(string filepath)
         {
             return (File.Exists(filepath) || Directory.Exists(filepath));
         }
 
-        public static void CreateDirectory(string filepath)
+        public void CreateDirectory(string filepath)
         {
             var path = Path.GetDirectoryName(filepath);
             Directory.CreateDirectory(path);
         }
 
-        public static void WriteText(
+        public void WriteText(
             string filepath, string text, bool append = false)
         {
             if (!Exists(filepath))
@@ -34,7 +34,7 @@ namespace Haru.Utils
             }
         }
 
-        public static string ReadText(string filepath)
+        public string ReadText(string filepath)
         {
             if (!Exists(filepath))
             {
@@ -51,12 +51,12 @@ namespace Haru.Utils
             }
         }
 
-        public static string GetFileExtension(string filepath)
+        public string GetFileExtension(string filepath)
         {
             return Path.GetExtension(filepath);
         }
 
-        public static string GetFileName(string filepath)
+        public string GetFileName(string filepath)
         {
             return Path.GetFileNameWithoutExtension(filepath);
         }

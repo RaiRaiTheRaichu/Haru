@@ -2,16 +2,23 @@ using Haru.Databases;
 
 namespace Haru.Repositories
 {
-    public static class ResourceRepository
+    public class ResourceRepository
     {
-        public static bool HasFile(string url)
+        private readonly Database _database;
+
+        public ResourceRepository()
         {
-            return Database.Files.ContainsKey(url);
+            _database = Database.Instance;
         }
 
-        public static string GetFile(string url)
+        public bool HasFile(string url)
         {
-            return Database.Files[url];
+            return _database.Files.ContainsKey(url);
+        }
+
+        public string GetFile(string url)
+        {
+            return _database.Files[url];
         }
     }
 }

@@ -2,16 +2,23 @@ using Haru.Repositories;
 
 namespace Haru.Services
 {
-    public static class ResourceService
+    public class ResourceService
     {
-        public static bool HasFile(string url)
+        private readonly ResourceRepository _resourceRepository;
+
+        public ResourceService()
         {
-            return ResourceRepository.HasFile(url);
+            _resourceRepository = new ResourceRepository();
         }
 
-        public static string GetFile(string url)
+        public bool HasFile(string url)
         {
-            return ResourceRepository.GetFile(url);
+            return _resourceRepository.HasFile(url);
+        }
+
+        public string GetFile(string url)
+        {
+            return _resourceRepository.GetFile(url);
         }
     }
 }

@@ -7,39 +7,48 @@ namespace Haru.ModApi
 {
     public static class LocaleApi
     {
+        private static readonly Database _database;
+        private static readonly LocaleRepository _localeRepository;
+
+        static LocaleApi()
+        {
+            _database = Database.Instance;
+            _localeRepository = new LocaleRepository();
+        }
+
         public static bool HasLocale(string id)
         {
-            return LocaleRepository.HasLocale(id);
+            return _localeRepository.HasLocale(id);
         }
 
         public static Dictionary<string, string> GetNames()
         {
-            return LocaleRepository.GetNames();
+            return _localeRepository.GetNames();
         }
 
         public static GlobalModel GetGlobal(string id)
         {
-            return LocaleRepository.GetGlobal(id);
+            return _localeRepository.GetGlobal(id);
         }
 
         public static MenuModel GetMenu(string id)
         {
-            return LocaleRepository.GetMenu(id);
+            return _localeRepository.GetMenu(id);
         }
 
         public static void AddName(string id, string value)
         {
-            Database.Names.Add(id, value);
+            _database.Names.Add(id, value);
         }
 
         public static void AddGlobal(string id, GlobalModel value)
         {
-            Database.Globals.Add(id, value);
+            _database.Globals.Add(id, value);
         }
 
         public static void AddMenu(string id, MenuModel value)
         {
-            Database.Menus.Add(id, value);
+            _database.Menus.Add(id, value);
         }
     }
 }

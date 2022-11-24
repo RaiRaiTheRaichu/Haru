@@ -3,11 +3,18 @@ using Haru.Repositories;
 
 namespace Haru.Services
 {
-    public static class HandbookService
+    public class HandbookService
     {
-        public static TemplatesModel GetTemplates()
+        private readonly HandbookRepository _handbookRepository;
+
+        public HandbookService()
         {
-            return HandbookRepository.GetTemplates();
+            _handbookRepository = new HandbookRepository();
+        }
+
+        public TemplatesModel GetTemplates()
+        {
+            return _handbookRepository.GetTemplates();
         }
     }
 }

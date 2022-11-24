@@ -9,17 +9,30 @@ namespace Haru.Controllers
 {
     public class ResourceController : Controller
     {
+        private readonly RequestHelper _requestHelper;
+        private readonly Json _json;
+        private readonly Resource _resource;
+        private readonly ResourceService _resourceService;
+
+        public ResourceController()
+        {
+            _requestHelper = new RequestHelper();
+            _json = new Json();
+            _resource = new Resource();
+            _resourceService = new ResourceService();
+        }
+
         public override bool IsMatch(RouterContext context)
         {
-            var url = RequestHelper.GetPath(context.Request);
-            return ResourceService.HasFile(url);
+            var url = _requestHelper.GetPath(context.Request);
+            return _resourceService.HasFile(url);
         }
 
         public override async Task Run(RouterContext context)
         {
-            var url = RequestHelper.GetPath(context.Request);            
-            var file = ResourceService.GetFile(url);
-            var data = Resource.GetData(file);
+            var url = _requestHelper.GetPath(context.Request);            
+            var file = _resourceService.GetFile(url);
+            var data = _resource.GetData(file);
             await Send(context, data);
         }
     }

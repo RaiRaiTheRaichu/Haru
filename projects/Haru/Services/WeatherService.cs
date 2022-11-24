@@ -2,9 +2,9 @@
 
 namespace Haru.Services
 {
-    public static class WeatherService
+    public class WeatherService
     {
-        public static WeatherModel GetWeather()
+        public WeatherModel GetWeather()
         {
             // note: dumped EFT server data
             return new WeatherModel

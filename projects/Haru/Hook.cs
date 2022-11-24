@@ -1,6 +1,6 @@
+using Haru.Databases;
 using Haru.Patches;
 using Haru.Servers;
-using Haru.Utils;
 using NLog.Targets;
 
 namespace Haru
@@ -13,8 +13,11 @@ namespace Haru
             // patch client
             new BattlEyePatch();
 
-            // run server
-            Resource.RegisterAssembly(typeof(Resource).Assembly);
+            // load database
+            var importer = new Importer();
+            importer.LoadDatabase();
+
+            // run servers
             ServerManager.GeneralServer.Start();
             ServerManager.NotificationServer.Start();
         }

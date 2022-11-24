@@ -3,11 +3,18 @@ using Haru.Databases;
 
 namespace Haru.Repositories
 {
-    public static class HandbookRepository
+    public class HandbookRepository
     {
-        public static TemplatesModel GetTemplates()
+        private readonly Database _database;
+
+        public HandbookRepository()
         {
-            return Database.HandbookTemplates;
+            _database = Database.Instance;
+        }
+
+        public TemplatesModel GetTemplates()
+        {
+            return _database.HandbookTemplates;
         }
     }
 }

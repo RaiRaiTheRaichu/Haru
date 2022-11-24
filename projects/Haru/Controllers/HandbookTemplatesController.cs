@@ -11,17 +11,28 @@ namespace Haru.Controllers
 {
     public class HandbookTemplatesController : Controller
     {
+        private readonly RequestHelper _requestHelper;
+        private readonly Json _json;
+        private readonly HandbookService _handbookService;
+
+        public HandbookTemplatesController()
+        {
+            _requestHelper = new RequestHelper();
+            _json = new Json();
+            _handbookService = new HandbookService();
+        }
+
         public override bool IsMatch(RouterContext context)
         {
-            return RequestHelper.GetPath(context.Request)
+            return _requestHelper.GetPath(context.Request)
                 == "/client/handbook/templates";
         }
 
         public override async Task Run(RouterContext context)
         {
-            var data = HandbookService.GetTemplates();
+            var data = _handbookService.GetTemplates();
             var body = new ResponseModel<TemplatesModel>(data);
-            var json = Json.Serialize(body);
+            var json = _json.Serialize(body);
             await SendJson(context, json);
         }
     }

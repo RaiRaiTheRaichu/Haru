@@ -11,17 +11,28 @@ namespace Haru.Controllers
 {
     public class WeatherController : Controller
     {
+        private readonly RequestHelper _requestHelper;
+        private readonly Json _json;
+        private readonly WeatherService _weatherService;
+
+        public WeatherController()
+        {
+            _requestHelper = new RequestHelper();
+            _json = new Json();
+            _weatherService = new WeatherService();
+        }
+
         public override bool IsMatch(RouterContext context)
         {
-            return RequestHelper.GetPath(context.Request)
+            return _requestHelper.GetPath(context.Request)
                 == "/client/weather";
         }
 
         public override async Task Run(RouterContext context)
         {
-            var data = WeatherService.GetWeather();
+            var data = _weatherService.GetWeather();
             var body = new ResponseModel<WeatherModel>(data);
-            var json = Json.Serialize(body);
+            var json = _json.Serialize(body);
             await SendJson(context, json);
         }
     }

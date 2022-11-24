@@ -3,9 +3,9 @@ using Haru.Http;
 
 namespace Haru.Services
 {
-    public static class ServerService
+    public class ServerService
     {
-        public static ServerInfoModel[] GetServers()
+        public ServerInfoModel[] GetServers()
         {
             return new ServerInfoModel[]
             {

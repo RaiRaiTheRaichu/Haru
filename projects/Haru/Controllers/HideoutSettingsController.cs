@@ -11,17 +11,28 @@ namespace Haru.Controllers
 {
     public class HideoutSettingsController : Controller
     {
+        private readonly RequestHelper _requestHelper;
+        private readonly Json _json;
+        private readonly HideoutService _hideoutService;
+
+        public HideoutSettingsController()
+        {
+            _requestHelper = new RequestHelper();
+            _json = new Json();
+            _hideoutService = new HideoutService();
+        }
+
         public override bool IsMatch(RouterContext context)
         {
-            return RequestHelper.GetPath(context.Request)
+            return _requestHelper.GetPath(context.Request)
                 == "/client/hideout/settings";
         }
 
         public override async Task Run(RouterContext context)
         {
-            var data = HideoutService.GetSettings();
+            var data = _hideoutService.GetSettings();
             var body = new ResponseModel<SettingsModel>(data);
-            var json = Json.Serialize(body);
+            var json = _json.Serialize(body);
             await SendJson(context, json);
         }
     }

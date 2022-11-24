@@ -4,9 +4,9 @@ using Haru.Http;
 
 namespace Haru.Services
 {
-    public static class ProfileService
+    public class ProfileService
     {
-        public static CustomizationStorageModel GetCustomizationStorageModel()
+        public CustomizationStorageModel GetCustomizationStorageModel()
         {
             // note: dumped EFT server data
             return new CustomizationStorageModel
@@ -20,7 +20,7 @@ namespace Haru.Services
             };
         }
 
-        public static StatusModel GetProfileStatusModel()
+        public StatusModel GetProfileStatusModel()
         {
             var host = HttpConfig.GetHost();
             var port = HttpConfig.GetPort();

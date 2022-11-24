@@ -10,10 +10,14 @@ namespace Haru.Http
 {
     public class Router
     {
+        private readonly RequestHelper _requestHelper;
+        private readonly Log _log;
         private readonly List<Controller> _controllers;
 
         public Router()
         {
+            _requestHelper = new RequestHelper();
+            _log = new Log();
             _controllers = new List<Controller>();
         }
 
@@ -62,7 +66,7 @@ namespace Haru.Http
             HttpListenerRequest request, HttpListenerResponse response)
         {
             Controller target = null;
-            var path = RequestHelper.GetPath(request);
+            var path = _requestHelper.GetPath(request);
             var context = new RouterContext()
             {
                 Request = request,
@@ -70,7 +74,7 @@ namespace Haru.Http
                 HasBody = (request.HttpMethod == "POST")
             };
 
-            Log.Write(path);
+            _log.Write(path);
 
             foreach (var controller in _controllers)
             {

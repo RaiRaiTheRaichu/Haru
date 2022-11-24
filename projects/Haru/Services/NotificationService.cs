@@ -4,16 +4,16 @@ using Haru.Servers;
 
 namespace Haru.Services
 {
-    public static class NotificationService
+    public class NotificationService
     {
-        public static NotifierModel GetNotifier(string sessionId)
+        public NotifierModel GetNotifier(string sessionId)
         {
             var httpUrl = HttpConfig.GetUrl();
             var wsUrl = ServerManager.NotificationServer.Server.Address;
             return new NotifierModel(sessionId, httpUrl, wsUrl);
         }
 
-        public static ProfileSelectModel SelectProfile(string sessionId)
+        public ProfileSelectModel SelectProfile(string sessionId)
         {
             var url = HttpConfig.GetUrl();
 
@@ -25,7 +25,7 @@ namespace Haru.Services
             };
         }
 
-        public static PingModel GetPing()
+        public PingModel GetPing()
         {
             return new PingModel();
         }

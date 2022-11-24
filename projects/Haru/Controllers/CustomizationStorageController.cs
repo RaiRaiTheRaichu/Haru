@@ -10,17 +10,28 @@ namespace Haru.Controllers
 {
     public class CustomizationStorageController : Controller
     {
+        private readonly RequestHelper _requestHelper;
+        private readonly Json _json;
+        private readonly ProfileService _profileService;
+
+        public CustomizationStorageController()
+        {
+            _requestHelper = new RequestHelper();
+            _json = new Json();
+            _profileService = new ProfileService();
+        }
+
         public override bool IsMatch(RouterContext context)
         {
-            return RequestHelper.GetPath(context.Request)
+            return _requestHelper.GetPath(context.Request)
                 == "/client/trading/customization/storage";
         }
 
         public override async Task Run(RouterContext context)
         {
-            var data = ProfileService.GetCustomizationStorageModel();
+            var data = _profileService.GetCustomizationStorageModel();
             var body = new ResponseModel<CustomizationStorageModel>(data);
-            var json = Json.Serialize(body);
+            var json = _json.Serialize(body);
             await SendJson(context, json);
         }
     }

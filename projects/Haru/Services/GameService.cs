@@ -5,9 +5,16 @@ using Haru.Repositories;
 
 namespace Haru.Services
 {
-    public static class GameService
+    public class GameService
     {
-        public static ConfigModel GetConfigModel()
+        private readonly LocaleRepository _localeRepository;
+
+        public GameService()
+        {
+            _localeRepository = new LocaleRepository();
+        }
+
+        public ConfigModel GetConfigModel()
         {
             var url = HttpConfig.GetUrl();
 
@@ -16,7 +23,7 @@ namespace Haru.Services
             {
                 AccountId = 1516319,
                 Language = "en",
-                Languages = LocaleRepository.GetNames(),
+                Languages = _localeRepository.GetNames(),
                 IsNdaFree = false,
                 Taxamony = 6,
                 ProfileId = "5e23714d4a886443e031fe47",
@@ -34,7 +41,7 @@ namespace Haru.Services
             };
         }
 
-        public static StartModel StartGame()
+        public StartModel StartGame()
         {
             // note: dumped EFT server data
             return new StartModel()
@@ -43,7 +50,7 @@ namespace Haru.Services
             };
         }
 
-        public static CheckVersionModel IsCorrectVersion()
+        public CheckVersionModel IsCorrectVersion()
         {
             // note: dumped EFT server data
             return new CheckVersionModel()

@@ -3,16 +3,23 @@ using Haru.Repositories;
 
 namespace Haru.Services
 {
-    public static class LocaleService
+    public class LocaleService
     {
-        public static bool HasLocale(string id)
+        private readonly LocaleRepository _localeRepository;
+
+        public LocaleService()
         {
-            return LocaleRepository.HasLocale(id);
+            _localeRepository = new LocaleRepository();
         }
 
-        public static NameModel[] GetLanguages()
+        public bool HasLocale(string id)
         {
-            var names = LocaleRepository.GetNames();
+            return _localeRepository.HasLocale(id);
+        }
+
+        public NameModel[] GetLanguages()
+        {
+            var names = _localeRepository.GetNames();
             var data = new NameModel[names.Count];
             var i = 0;
 
@@ -28,14 +35,14 @@ namespace Haru.Services
             return data;
         }
 
-        public static GlobalModel GetGlobal(string id)
+        public GlobalModel GetGlobal(string id)
         {
-            return LocaleRepository.GetGlobal(id);
+            return _localeRepository.GetGlobal(id);
         }
 
-        public static MenuModel GetMenu(string id)
+        public MenuModel GetMenu(string id)
         {
-            return LocaleRepository.GetMenu(id);
+            return _localeRepository.GetMenu(id);
         }
     }
 }

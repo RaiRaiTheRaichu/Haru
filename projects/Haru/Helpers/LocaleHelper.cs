@@ -3,12 +3,21 @@ using Haru.Services;
 
 namespace Haru.Helpers
 {
-    public static class LocaleHelper
+    public class LocaleHelper
     {
-        public static string FindLocale(RouterContext context, string format)
+        private readonly RequestHelper _requestHelper;
+        private readonly LocaleService _localeService;
+
+        public LocaleHelper()
         {
-            var url = RequestHelper.GetPath(context.Request);
-            var languages = LocaleService.GetLanguages();
+            _requestHelper = new RequestHelper();
+            _localeService = new LocaleService();
+        }
+
+        public string FindLocale(RouterContext context, string format)
+        {
+            var url = _requestHelper.GetPath(context.Request);
+            var languages = _localeService.GetLanguages();
 
             foreach (var language in languages)
             {
