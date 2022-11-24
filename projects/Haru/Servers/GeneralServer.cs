@@ -30,7 +30,7 @@ namespace Haru.Servers
             router.AddController<LanguagesController>();
             router.AddController<LocaleController>();
             router.AddController<MailDialogListController>();
-            router.AddController<MenuController>();
+            router.AddController<MenuLocaleController>();
             router.AddController<NotifierChannelCreateController>();
             router.AddController<ProfileStatusController>();
             router.AddController<ResourceController>();
