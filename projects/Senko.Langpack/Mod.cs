@@ -9,6 +9,9 @@ public class Mod
     {
         LogApi.Write("Loading Senko.Langpack");
 
+        // allow loading of embeddded files
+        ResourceApi.EnableResourceLoading(typeof(Mod).Assembly);
+
         // locales to add (with name mapping)
         var languages = new Dictionary<string, string>()
         {
@@ -28,27 +31,23 @@ public class Mod
         };
 
         // load locales from resources
-        ResourceApi.EnableResourceLoading(typeof(Mod).Assembly);
-
         foreach (var kvp in languages)
         {
-            LocaleApi.AddName(kvp.Key, kvp.Value);
-            AddGlobalLocale(kvp.Key);
-            AddMenuLocale(kvp.Key);
+            var langId = kvp.Key;
+            var langName = kvp.Value;
+
+            // register language
+            LocaleApi.AddName(langId, langName);
+
+            // add global locale
+            var globalJson = ResourceApi.GetText($"Database.Locales.all-{langId}.json");
+            var globalBody = JsonApi.Deserialize<ResponseModel<GlobalModel>>(globalJson);
+            LocaleApi.AddGlobal(langId, globalBody.Data);
+
+            // add menu locale
+            var menuJson = ResourceApi.GetText($"Database.Locales.menu-{langId}.json");
+            var menuBody = JsonApi.Deserialize<ResponseModel<MenuModel>>(menuJson);
+            LocaleApi.AddMenu(langId, menuBody.Data);
         }
-    }
-
-    private static void AddGlobalLocale(string id)
-    {
-        var json = ResourceApi.GetText($"Database.Locales.all-{id}.json");
-        var body = JsonApi.Deserialize<ResponseModel<GlobalModel>>(json);
-        LocaleApi.AddGlobal(id, body.Data);
-    }
-
-    private static void AddMenuLocale(string id)
-    {
-        var json = ResourceApi.GetText($"Database.Locales.menu-{id}.json");
-        var body = JsonApi.Deserialize<ResponseModel<MenuModel>>(json);
-        LocaleApi.AddMenu(id, body.Data);
     }
 }
