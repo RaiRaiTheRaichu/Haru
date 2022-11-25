@@ -3,6 +3,7 @@
 .vscode/
 .idea/
 *.DotSettings.user
+NuGet.Config
 
 # build artifacts
 **/obj/
