@@ -1,13 +1,55 @@
 # Technical
 
-## Game version
+## EFT implementation details
 
-**Name**           | **Version**
------------------- | ----------------
-Escape From Tarkov | 0.12.12.32.20243
-Unity Engine       | 2019.4.39f1
+### Security mechanisms
 
-## Haru database mappings
+EFT implements BattlEye as it's anti-cheat solution. It is capable of detecting
+newly-injected assemblies into the game as long as the namespace doesn't match
+with one already in EFT (BettlEye's namespace scanning is case-insensitive,
+which can be taken advantage of). 
+
+In addtion, EFT implements a custom integrity validator (`FilesChecker.dll`).
+It's not capable of detecting newly added files.
+
+### Request handling
+
+A HTTP packet from EFT does not include proper headers (compression headers are
+missing). Payload for HTTP and WS is compressed with ZLib (RFC1950). Using
+`deflate` in the HTTP header will cause unity to attempt at automatic
+decompression which will fail and softlock the game.
+
+Optional measures implemented in EFT is support for HTTPS/WSS and AES-256
+encryption for HTTP payloads. These are not required for the server and are
+left unimplemented.
+
+## Haru implementation details
+
+### Defeating security mechanisms
+
+BattlEye has a glaring security risk: it's reliance on `NLog.dll`. The problem
+with Nlog is code injection as it contains an automated module loading
+mechanism (`NLog targets`). After NLog and all other dependencies have been
+resolved, BattlEye initializes.
+
+This gives Haru two things:
+
+1. A way of automated code injection (Register custom target in
+   `NLog.dll.nlog`)
+2. Timing to defeat BattlEye (patch BattlEye's validator class in EFT)
+
+Unlike Aki, Haru doesn't use deobfuscation to work, thus it doesn't have to
+deal with the integrity validator.
+
+### Server implementation
+
+...
+
+## Mod Info
+
+### Senko.EftData
+
+Contains all required data to get into the game and play a basic offline raid.
 
 **live eft path**                             | **filepath**
 --------------------------------------------- | --------------------------
@@ -20,15 +62,55 @@ Unity Engine       | 2019.4.39f1
 `/client/locale/ru`                           | `locale/all-ru.json`
 `/client/languages`                           | `locale/languages.json`
 `/client/menu/locale/en`                      | `locale/menu-en.json`
-`/client/menu/locale/ge`                      | `locale/menu-ge.json`
 `/client/menu/locale/fr`                      | `locale/menu-fr.json`
+`/client/menu/locale/ge`                      | `locale/menu-ge.json`
 `/client/menu/locale/ru`                      | `locale/menu-ru.json`
 `/client/settings`                            | `settings/client.json`
 `/client/trading/api/tradersettings`          | `templates/traders.json`
 
-## EFT map data locations
+### Senko.Langpack
 
-Haru always uses the first entry (example: `bigmap1`).
+Contains optional languages from EFT (live).
+
+**live eft path**                             | **filepath**
+--------------------------------------------- | --------------------------
+`/client/locale/ch`                           | `locale/all-ch.json`
+`/client/locale/cz`                           | `locale/all-cz.json`
+`/client/locale/es`                           | `locale/all-es.json`
+`/client/locale/es-mx`                        | `locale/all-es-mx.json`
+`/client/locale/hu`                           | `locale/all-hu.json`
+`/client/locale/it`                           | `locale/all-it.json`
+`/client/locale/jp`                           | `locale/all-jp.json`
+`/client/locale/kr`                           | `locale/all-kr.json`
+`/client/locale/pl`                           | `locale/all-pl.json`
+`/client/locale/po`                           | `locale/all-po.json`
+`/client/locale/sk`                           | `locale/all-sk.json`
+`/client/locale/tu`                           | `locale/all-tu.json`
+`/client/menu/locale/ch`                      | `locale/menu-ch.json`
+`/client/menu/locale/cz`                      | `locale/menu-cz.json`
+`/client/menu/locale/es`                      | `locale/menu-es.json`
+`/client/menu/locale/es-mx`                   | `locale/menu-es-mx.json`
+`/client/menu/locale/hu`                      | `locale/menu-hu.json`
+`/client/menu/locale/it`                      | `locale/menu-it.json`
+`/client/menu/locale/jp`                      | `locale/menu-jp.json`
+`/client/menu/locale/kr`                      | `locale/menu-kr.json`
+`/client/menu/locale/pl`                      | `locale/menu-pl.json`
+`/client/menu/locale/po`                      | `locale/menu-po.json`
+`/client/menu/locale/sk`                      | `locale/menu-sk.json`
+`/client/menu/locale/tu`                      | `locale/menu-tu.json`
+
+## Resources
+
+### Game version
+
+**Name**           | **Version**
+------------------ | ----------------
+Escape From Tarkov | 0.12.12.32.20243
+Unity Engine       | 2019.4.39f1
+
+### EFT map data locations
+
+`Senko.EftData` always uses the first entry (example: `bigmap1`).
 
 **eft asset bundle**                         | **Type**  | **filename**
 -------------------------------------------- | --------- | ------------
