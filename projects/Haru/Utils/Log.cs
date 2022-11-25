@@ -24,7 +24,7 @@ namespace Haru.Utils
 
         public void Write(string text)
         {
-            var datetime = DateTime.Now.ToString("[MM/dd/yyyy hh:mm:ss]");
+            var datetime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss");
             var formatted = $"[{datetime}]: {text}";
 
             Console.WriteLine(formatted);
