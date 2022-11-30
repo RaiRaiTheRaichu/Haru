@@ -6,6 +6,5 @@ namespace Haru.Models
     {
         public HttpListenerRequest Request;
         public HttpListenerResponse Response;
-        public bool HasBody;
     }
 }

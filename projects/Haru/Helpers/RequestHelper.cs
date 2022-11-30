@@ -1,26 +1,52 @@
+using System.IO;
 using System.Net;
+using System.Text;
 using Haru.Models.EFT;
+using Haru.Utils;
 
 namespace Haru.Helpers
 {
     public class RequestHelper
     {
+        private readonly Zlib _zlib;
+
+        public RequestHelper()
+        {
+            _zlib = new Zlib();
+        }
+
         public string GetPath(HttpListenerRequest request)
         {
             var url = request.Url;
-            var result = url.PathAndQuery;
+            var path = url.PathAndQuery;
 
-            if (url.Query.Length > 0)
+            if (path.Contains("?"))
             {
-                result.Replace(url.Query, string.Empty);
+                path = path.Split('?')[0];
             }
 
-            return result;
+            return path;
         }
 
         public string GetSessionId(HttpListenerRequest request)
         {
             return request.Headers["SessionId"];
+        }
+
+        public string GetBody(HttpListenerRequest request)
+        {
+            if (!request.HasEntityBody)
+            {
+                return null;
+            }
+
+            using (var ms = new MemoryStream())
+            {
+                request.InputStream.CopyTo(ms);
+                var zlibbed = ms.ToArray();
+                var bytes = _zlib.Decompress(zlibbed);
+                return Encoding.UTF8.GetString(bytes);
+            }
         }
 
         public ResponseModel<object> GetEmptyResponse()

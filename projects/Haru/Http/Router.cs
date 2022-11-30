@@ -70,8 +70,7 @@ namespace Haru.Http
             var context = new RouterContext()
             {
                 Request = request,
-                Response = response,
-                HasBody = (request.HttpMethod == "POST")
+                Response = response
             };
 
             _log.Write(path);
