@@ -43,7 +43,19 @@ deal with the integrity validator.
 
 ### Server implementation
 
-...
+- Server: gets incoming requests
+- Router: assigns a Controller to handle a request
+- Controller: sends response
+- Service: generates data for a response
+- Repository: database access
+- Database: stores data
+
+### FAQ
+
+> Why doesn't Haru use SimpleZlib for (de)compression?
+
+EFT's implementation is flawed for async operations. The ArrayPool's buffer is
+rented before returning, causing overlap, which results in corrupted data.
 
 ## Mod Info
 
