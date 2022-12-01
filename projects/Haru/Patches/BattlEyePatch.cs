@@ -9,13 +9,13 @@ namespace Haru.Patches
     {
         private static PropertyInfo _succeed;
 
-        static BattlEyePatch()
+        public BattlEyePatch()
         {
             var harmony = new Harmony("com.haru.patches.battleye");
             harmony.Patch(GetOriginalMethod(), prefix: GetPatchMethod());
         }
 
-        private static MethodBase GetOriginalMethod()
+        private MethodBase GetOriginalMethod()
         {
             var name = "RunValidation";
             var types = typeof(ESideType).Assembly.GetTypes();
@@ -24,10 +24,10 @@ namespace Haru.Patches
             return type.GetMethod(name);
         }
 
-        private static HarmonyMethod GetPatchMethod()
+        private HarmonyMethod GetPatchMethod()
         {
             var flags = BindingFlags.NonPublic | BindingFlags.Static;
-            var method = typeof(BattlEyePatch).GetMethod("Patch", flags);
+            var method = GetType().GetMethod("Patch", flags);
             return new HarmonyMethod(method);
         }
 

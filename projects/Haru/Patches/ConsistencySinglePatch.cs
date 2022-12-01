@@ -8,13 +8,13 @@ namespace Haru.Patches
 {
     public class ConsistencySinglePatch
     {
-        static ConsistencySinglePatch()
+        public ConsistencySinglePatch()
         {
             var harmony = new Harmony("com.haru.patches.consistencysingle");
             harmony.Patch(GetOriginalMethod(), prefix: GetPatchMethod());
         }
 
-        private static MethodBase GetOriginalMethod()
+        private MethodBase GetOriginalMethod()
         {
             var types = typeof(ICheckResult).Assembly.GetTypes();
             var type = types.Single(x => x.Name == "ConsistencyController");
@@ -23,10 +23,10 @@ namespace Haru.Patches
             return method;
         }
 
-        private static HarmonyMethod GetPatchMethod()
+        private HarmonyMethod GetPatchMethod()
         {
             var flags = BindingFlags.NonPublic | BindingFlags.Static;
-            var method = typeof(ConsistencySinglePatch).GetMethod("Patch", flags);
+            var method = GetType().GetMethod("Patch", flags);
             return new HarmonyMethod(method);
         }
 
