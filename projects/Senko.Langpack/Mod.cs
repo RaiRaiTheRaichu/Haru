@@ -5,7 +5,7 @@ using Haru.Models.EFT.Locale;
 
 public class Mod
 {
-    public static void Run()
+    public static async void Run()
     {
         LogApi.Write("Loading Senko.Langpack");
 
@@ -40,12 +40,12 @@ public class Mod
             LocaleApi.AddName(langId, langName);
 
             // add global locale
-            var globalJson = ResourceApi.GetText($"Database.Locales.all-{langId}.json");
+            var globalJson = await ResourceApi.GetText($"Database.Locales.all-{langId}.json");
             var globalBody = JsonApi.Deserialize<ResponseModel<GlobalModel>>(globalJson);
             LocaleApi.AddGlobal(langId, globalBody.Data);
 
             // add menu locale
-            var menuJson = ResourceApi.GetText($"Database.Locales.menu-{langId}.json");
+            var menuJson = await ResourceApi.GetText($"Database.Locales.menu-{langId}.json");
             var menuBody = JsonApi.Deserialize<ResponseModel<MenuModel>>(menuJson);
             LocaleApi.AddMenu(langId, menuBody.Data);
         }

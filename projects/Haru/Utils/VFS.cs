@@ -1,4 +1,5 @@
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Haru.Utils
 {
@@ -15,7 +16,7 @@ namespace Haru.Utils
             Directory.CreateDirectory(path);
         }
 
-        public void WriteText(
+        public async Task WriteText(
             string filepath, string text, bool append = false)
         {
             if (!Exists(filepath))
@@ -29,12 +30,12 @@ namespace Haru.Utils
             {
                 using (var sr = new StreamWriter(fs))
                 {
-                    sr.WriteLine(text);
+                    await sr.WriteLineAsync(text);
                 }
             }
         }
 
-        public string ReadText(string filepath)
+        public async Task<string> ReadText(string filepath)
         {
             if (!Exists(filepath))
             {
@@ -46,7 +47,7 @@ namespace Haru.Utils
             {
                 using (var sr = new StreamReader(fs))
                 {
-                    return sr.ReadToEnd();
+                    return await sr.ReadToEndAsync();
                 }
             }
         }

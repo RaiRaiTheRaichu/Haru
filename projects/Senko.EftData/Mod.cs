@@ -33,9 +33,9 @@ public class Mod
         LoadFiles();
     }
 
-    private static void LoadLanguages()
+    private async static void LoadLanguages()
     {
-        var json = ResourceApi.GetText("Database.Locales.languages.json");
+        var json = await ResourceApi.GetText("Database.Locales.languages.json");
         var names = JsonApi.Deserialize<Dictionary<string, string>>(json);
 
         foreach (var kvp in names)
@@ -44,66 +44,66 @@ public class Mod
         }
     }
 
-    private static void LoadGlobals()
+    private async static void LoadGlobals()
     {
         foreach (var kvp in _database.Names)
         {
             var lang = kvp.Key;
-            var json = ResourceApi.GetText($"Database.Locales.all-{lang}.json");
+            var json = await ResourceApi.GetText($"Database.Locales.all-{lang}.json");
             var body = JsonApi.Deserialize<ResponseModel<GlobalModel>>(json);
             _database.Globals.Add(lang, body.Data);
         }
     }
 
-    private static void LoadMenus()
+    private async static void LoadMenus()
     {
         foreach (var kvp in _database.Names)
         {
             var lang = kvp.Key;
-            var json = ResourceApi.GetText($"Database.Locales.menu-{lang}.json");
+            var json = await ResourceApi.GetText($"Database.Locales.menu-{lang}.json");
             var body = JsonApi.Deserialize<ResponseModel<MenuModel>>(json);
             _database.Menus.Add(lang, body.Data);
         }
     }
 
-    private static void LoadHideoutSettings()
+    private async static void LoadHideoutSettings()
     {
-        var json = ResourceApi.GetText("Database.Settings.hideout.json");
+        var json = await ResourceApi.GetText("Database.Settings.hideout.json");
         var body = JsonApi.Deserialize<ResponseModel<SettingsModel>>(json);
         _database.HideoutSettings = body.Data;
     }
 
-    private static void LoadScavcases()
+    private async static void LoadScavcases()
     {
-        var json = ResourceApi.GetText("Database.Templates.scavcases.json");
+        var json = await ResourceApi.GetText("Database.Templates.scavcases.json");
         var body = JsonApi.Deserialize<ResponseModel<ScavcaseModel[]>>(json);
         _database.Scavcases.AddRange(body.Data);
     }
 
-    private static void LoadClientSettings()
+    private async static void LoadClientSettings()
     {
-        var json = ResourceApi.GetText("Database.Settings.client.json");
+        var json = await ResourceApi.GetText("Database.Settings.client.json");
         var body = JsonApi.Deserialize<ResponseModel<ClientModel>>(json);
         _database.ClientSettings = body.Data;
     }
 
-    private static void LoadTraders()
+    private async static void LoadTraders()
     {
-        var json = ResourceApi.GetText("Database.Templates.traders.json");
+        var json = await ResourceApi.GetText("Database.Templates.traders.json");
         var body = JsonApi.Deserialize<ResponseModel<Haru.Models.EFT.Trader.TraderModel[]>>(json);
         _database.Traders.AddRange(body.Data);
     }
 
-    private static void LoadHandbookTemplates()
+    private async static void LoadHandbookTemplates()
     {
-        var json = ResourceApi.GetText("Database.Templates.handbook.json");
+        var json = await ResourceApi.GetText("Database.Templates.handbook.json");
         var body = JsonApi.Deserialize<ResponseModel<TemplatesModel>>(json);
         _database.HandbookTemplates = body.Data;
     }
 
-    private static void LoadFiles()
+    private async static void LoadFiles()
     {
-        var json = ResourceApi.GetText("Database.resxdb.json");
+        var json = await ResourceApi.GetText("Database.resxdb.json");
         var files = JsonApi.Deserialize<Dictionary<string, string>>(json);
 
         foreach (var kvp in files)

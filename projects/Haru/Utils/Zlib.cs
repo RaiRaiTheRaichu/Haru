@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using ComponentAce.Compression.Libs.zlib;
 using Haru.Models;
 
@@ -34,7 +35,7 @@ namespace Haru.Utils
             return data;
         }
 
-        public byte[] Decompress(byte[] data)
+        public async Task<byte[]> Decompress(byte[] data)
         {
             var buffer = new byte[4096];
             var zs = CreateZStream(ref data, ref buffer);
@@ -56,7 +57,7 @@ namespace Haru.Utils
                         break;
                     }
 
-                    ms.Write(zs.next_out, 0, zs.next_out_index);
+                    await ms.WriteAsync(zs.next_out, 0, zs.next_out_index);
                 }
                 while (zs.avail_in > 0 || zs.avail_out == 0);
 

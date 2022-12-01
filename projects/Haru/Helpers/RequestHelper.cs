@@ -1,6 +1,7 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Haru.Models.EFT;
 using Haru.Utils;
 
@@ -33,7 +34,7 @@ namespace Haru.Helpers
             return request.Headers["SessionId"];
         }
 
-        public string GetBody(HttpListenerRequest request)
+        public async Task<string> GetBody(HttpListenerRequest request)
         {
             if (!request.HasEntityBody)
             {
@@ -42,9 +43,9 @@ namespace Haru.Helpers
 
             using (var ms = new MemoryStream())
             {
-                request.InputStream.CopyTo(ms);
+                await request.InputStream.CopyToAsync(ms);
                 var zlibbed = ms.ToArray();
-                var bytes = _zlib.Decompress(zlibbed);
+                var bytes = await _zlib.Decompress(zlibbed);
                 return Encoding.UTF8.GetString(bytes);
             }
         }

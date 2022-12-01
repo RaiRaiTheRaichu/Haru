@@ -11,9 +11,9 @@ namespace Haru.ModApi
             _log = new Log();
         }
 
-        public static void Write(string text)
+        public static async void Write(string text)
         {
-            _log.Write(text);
+            await _log.Write(text);
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Haru.Http
                 Response = response
             };
 
-            _log.Write(path);
+            await _log.Write(path);
 
             foreach (var controller in _controllers)
             {

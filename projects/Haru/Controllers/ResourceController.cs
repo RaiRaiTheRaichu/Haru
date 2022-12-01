@@ -32,7 +32,7 @@ namespace Haru.Controllers
         {
             var url = _requestHelper.GetPath(context.Request);            
             var file = _resourceService.GetFile(url);
-            var data = _resource.GetData(file);
+            var data = await _resource.GetData(file);
             await Send(context, data);
         }
     }

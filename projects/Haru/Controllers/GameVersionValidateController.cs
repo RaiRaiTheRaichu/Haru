@@ -26,7 +26,7 @@ namespace Haru.Controllers
 
         public override async Task Run(RouterContext context)
         {
-            var request = _requestHelper.GetBody(context.Request);
+            var request = await _requestHelper.GetBody(context.Request);
             var info = _json.Deserialize<VersionValidateModel>(request);
             var body = _requestHelper.GetEmptyResponse();
             

@@ -35,7 +35,7 @@ namespace Haru.Http
         public async void Start()
         {
             IsRunning = true;
-            _log.Write($"Starting server on {HttpConfig.GetUrl()}");
+            await _log.Write($"Starting server on {HttpConfig.GetUrl()}");
             await Task.Run(() => HandleRequest());
         }
 
