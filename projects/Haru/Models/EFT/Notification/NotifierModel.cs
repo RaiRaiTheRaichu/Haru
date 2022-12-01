@@ -9,8 +9,7 @@ namespace Haru.Models.EFT.Notification
 
         [JsonProperty("channel_id")]
         public string ChannelId;
-
-        // unused?
+        
         [JsonProperty("url")]
         public string Url;
 

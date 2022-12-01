@@ -13,9 +13,7 @@ namespace Haru.Utils
         {
             var settings = new JsonSerializerSettings()
             {
-                NullValueHandling = (stripNull)
-                    ? NullValueHandling.Ignore
-                    : NullValueHandling.Include
+                NullValueHandling = (stripNull) ? NullValueHandling.Ignore : NullValueHandling.Include
             };
 
             return JsonConvert.SerializeObject(o, settings);

@@ -16,8 +16,7 @@ namespace Haru.Utils
             Directory.CreateDirectory(path);
         }
 
-        public async Task WriteText(
-            string filepath, string text, bool append = false)
+        public async Task WriteText(string filepath, string text, bool append = false)
         {
             if (!Exists(filepath))
             {
@@ -42,8 +41,7 @@ namespace Haru.Utils
                 return "";
             }
 
-            using (var fs = new FileStream(
-                filepath,FileMode.Open, FileAccess.Read))
+            using (var fs = new FileStream(filepath,FileMode.Open, FileAccess.Read))
             {
                 using (var sr = new StreamReader(fs))
                 {

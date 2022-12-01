@@ -24,8 +24,7 @@ namespace Haru.Controllers
 
         public override bool IsMatch(RouterContext context)
         {
-            return _requestHelper.GetPath(context.Request)
-                == "/client/trading/api/traderSettings";
+            return _requestHelper.GetPath(context.Request) == "/client/trading/api/traderSettings";
         }
 
         public override async Task Run(RouterContext context)

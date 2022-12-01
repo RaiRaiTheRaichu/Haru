@@ -12,10 +12,10 @@ namespace Haru.Utils
         {
             _filepath = "./Logs/Haru.log";
             _vfs = new VFS();
-            Initialize();
+            Clear();
         }
 
-        public static async void Initialize()
+        public static async void Clear()
         {
             if (_vfs.Exists(_filepath))
             {
@@ -25,9 +25,8 @@ namespace Haru.Utils
 
         public async Task Write(string text)
         {
-            var datetime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss");
+            var datetime = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
             var formatted = $"[{datetime}]: {text}";
-
             Console.WriteLine(formatted);
             await _vfs.WriteText(_filepath, formatted, true);
         }

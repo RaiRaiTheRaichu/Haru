@@ -18,8 +18,7 @@ namespace Haru.Http
 
         public abstract Task Run(RouterContext context);
 
-        public async Task Send(
-            RouterContext context, byte[] data, string mime = null)
+        public async Task Send(RouterContext context, byte[] data, string mime = null)
         {
             var response = context.Response;
             var bytes = await _zlib.Compress(data, ZlibCompression.Maximum);

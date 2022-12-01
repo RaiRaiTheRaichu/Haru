@@ -24,8 +24,7 @@ namespace Haru.Controllers
 
         public override bool IsMatch(RouterContext context)
         {
-            return _requestHelper.GetPath(context.Request)
-                == "/client/game/profile/select";
+            return _requestHelper.GetPath(context.Request) == "/client/game/profile/select";
         }
 
         public override async Task Run(RouterContext context)

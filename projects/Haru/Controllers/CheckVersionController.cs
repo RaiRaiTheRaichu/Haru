@@ -24,8 +24,7 @@ namespace Haru.Controllers
 
         public override bool IsMatch(RouterContext context)
         {
-            return _requestHelper.GetPath(context.Request)
-                == "/client/checkVersion";
+            return _requestHelper.GetPath(context.Request) == "/client/checkVersion";
         }
 
         public override async Task Run(RouterContext context)

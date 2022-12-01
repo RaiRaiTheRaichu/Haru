@@ -190,7 +190,7 @@ namespace WebSocketServer
             }
 
             // Return the guid with a prefix
-            return string.Format("{0}-{1}", prefix, final);
+            return $"{prefix}-{final}";
         }
     }
 }

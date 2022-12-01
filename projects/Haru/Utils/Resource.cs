@@ -10,7 +10,6 @@ namespace Haru.Utils
     public class Resource
     {
         private static readonly Dictionary<Assembly, string[]> _names;
-        private const string ROOT_PATH = "{0}.Resources.{1}";
 
         static Resource()
         {
@@ -33,7 +32,7 @@ namespace Haru.Utils
                 name = name.ReplaceFirst("NLog.", "");
 
                 // find assembly resource
-                var resx = string.Format(ROOT_PATH, name, filepath);
+                var resx = $"{name}.Resources.{filepath}";
 
                 if (Array.IndexOf(kvp.Value, resx) != -1)
                 {
@@ -41,8 +40,7 @@ namespace Haru.Utils
                 }
             }
 
-            throw new ResourceNotFoundException(
-                $"Cannot find resource {filepath}");
+            throw new ResourceNotFoundException($"Cannot find resource {filepath}");
         }
 
         public async Task<string> GetText(string filepath)

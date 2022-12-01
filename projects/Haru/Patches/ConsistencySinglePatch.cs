@@ -18,8 +18,8 @@ namespace Haru.Patches
         {
             var types = typeof(ICheckResult).Assembly.GetTypes();
             var type = types.Single(x => x.Name == "ConsistencyController");
-            var method = type.GetMethods().Single(x => x.Name == "EnsureConsistencySingle"
-                && x.ReturnType == typeof(Task<ICheckResult>));
+            var method = type.GetMethods()
+                .Single(x => x.Name == "EnsureConsistencySingle" && x.ReturnType == typeof(Task<ICheckResult>));
             return method;
         }
 

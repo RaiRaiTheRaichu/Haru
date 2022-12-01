@@ -16,9 +16,7 @@ namespace Haru.Utils
                 // It's fucking stupid, but whatever.
                 // -- Waffle.Lord, 2022-12-01
 
-                using (var zs = (compress)
-                    ? new ZOutputStream(ms, (int)level)
-                    : new ZOutputStream(ms))
+                using (var zs = (compress) ? new ZOutputStream(ms, (int)level) : new ZOutputStream(ms))
                 {
                     await zs.WriteAsync(data, 0, data.Length);
                 }

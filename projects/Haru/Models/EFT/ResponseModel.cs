@@ -28,7 +28,7 @@ namespace Haru.Models.EFT
         {
             ErrorCode = errorCode;
             ErrorMessage = errorMessage;
-            Data = default(T);
+            Data = default;
             Crc = 0;
         }
     }

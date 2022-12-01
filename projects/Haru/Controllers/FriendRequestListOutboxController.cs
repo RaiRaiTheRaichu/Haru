@@ -19,8 +19,7 @@ namespace Haru.Controllers
 
         public override bool IsMatch(RouterContext context)
         {
-            return _requestHelper.GetPath(context.Request)
-                == "/client/friend/request/list/outbox";
+            return _requestHelper.GetPath(context.Request) == "/client/friend/request/list/outbox";
         }
 
         public override async Task Run(RouterContext context)

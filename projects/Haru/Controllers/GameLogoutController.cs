@@ -19,8 +19,7 @@ namespace Haru.Controllers
 
         public override bool IsMatch(RouterContext context)
         {
-            return _requestHelper.GetPath(context.Request)
-                == "/client/game/logout";
+            return _requestHelper.GetPath(context.Request) == "/client/game/logout";
         }
 
         public override async Task Run(RouterContext context)

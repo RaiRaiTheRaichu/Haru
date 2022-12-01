@@ -14,7 +14,7 @@ namespace Haru.Servers
         private readonly NotificationService _notificationService;
         private readonly Json _json;
         private readonly Log _log;
-        public readonly WebSocketServer.Server Server;
+        public readonly Server Server;
 
         public NotificationServer()
         {
@@ -22,7 +22,7 @@ namespace Haru.Servers
             _json = new Json();
             _log = new Log();
 
-            Server = new WebSocketServer.Server("ws://127.0.0.1:80/");
+            Server = new Server("ws://127.0.0.1:80/");
             Server.OnClientConnected += OnClientConnected;
             Server.OnClientDisconnected += OnClientDisconnected;
             Server.OnMessageReceived += OnMessageReceived;
@@ -48,7 +48,7 @@ namespace Haru.Servers
         private async void OnClientConnected(object sender, OnClientConnectedEvent e)
         {
             await _log.Write($"Client with GUID: {e.Client.Guid} Connected!");
-            await Task.Run(() => PingClient(e.Client, TimeSpan.FromSeconds(90), default(CancellationToken)));
+            await Task.Run(() => PingClient(e.Client, TimeSpan.FromSeconds(90), default));
         }
 
         private async void OnClientDisconnected(object sender, OnClientDisconnectedEvent e)

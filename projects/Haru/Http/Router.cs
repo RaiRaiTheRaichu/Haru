@@ -40,8 +40,7 @@ namespace Haru.Http
         {
             if (GetController(out T controller))
             {
-                throw new ControllerAlreadyAddedException(
-                    controller.ToString());
+                throw new ControllerAlreadyAddedException(controller.ToString());
             }
             else
             {
@@ -57,13 +56,11 @@ namespace Haru.Http
             }
             else
             {
-                throw new ControllerDoesNotExistException(
-                    typeof(T).ToString());
+                throw new ControllerDoesNotExistException(typeof(T).ToString());
             }
         }
 
-        public async Task Run(
-            HttpListenerRequest request, HttpListenerResponse response)
+        public async Task Run(HttpListenerRequest request, HttpListenerResponse response)
         {
             Controller target = null;
             var path = _requestHelper.GetPath(request);
