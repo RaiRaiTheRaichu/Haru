@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Threading.Tasks;
 using ComponentAce.Compression.Libs.zlib;
@@ -8,7 +7,7 @@ namespace Haru.Utils
 {
     public class Zlib
     {
-        public Task<byte[]> Compress(byte[] data, ZlibCompression level)
+        public async Task<byte[]> Compress(byte[] data, ZlibCompression level)
         {
             var buffer = new byte[data.Length + 24];
             var zs = new ZStream()
@@ -24,10 +23,11 @@ namespace Haru.Utils
             zs.deflateInit((int)level);
             zs.deflate(zlibConst.Z_FINISH);
 
-            data = new byte[zs.next_out_index];
-            Array.Copy(zs.next_out, 0, data, 0, zs.next_out_index);
-
-            return Task.FromResult(data);
+            using (var ms = new MemoryStream())
+            {
+                await ms.WriteAsync(zs.next_out, 0, zs.next_out_index);
+                return ms.ToArray();
+            }
         }
 
         public async Task<byte[]> Decompress(byte[] data)

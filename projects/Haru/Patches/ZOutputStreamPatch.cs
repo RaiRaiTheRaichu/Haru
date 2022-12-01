@@ -1,4 +1,4 @@
-﻿// ZOutputStream.CanRead must be patched to make Stream.CopyToAsync work.
+﻿// ZOutputStream's CanRead and CanWrite must be patched to make Stream.CopyToAsync work.
 // While it never reads the destination, it still requires it to be enabled.
 // https://referencesource.microsoft.com/mscorlib/system/io/stream.cs.html#162
 
