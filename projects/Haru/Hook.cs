@@ -13,6 +13,7 @@ namespace Haru
             new BattlEyePatch();
             new ConsistencyMultiPatch();
             new ConsistencySinglePatch();
+            new ZOutputStreamPatch();
 
             // run servers
             ServerManager.GeneralServer.Start();

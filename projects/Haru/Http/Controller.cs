@@ -22,7 +22,7 @@ namespace Haru.Http
             RouterContext context, byte[] data, string mime = null)
         {
             var response = context.Response;
-            var bytes = _zlib.Compress(data, ZlibCompression.Maximum);
+            var bytes = await _zlib.Compress(data, ZlibCompression.Maximum);
             response.ContentType = mime ?? Mime.DEFAULT;
             response.ContentLength64 = bytes.LongLength;
 

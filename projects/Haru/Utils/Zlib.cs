@@ -8,9 +8,10 @@ namespace Haru.Utils
 {
     public class Zlib
     {
-        private ZStream CreateZStream(ref byte[] data, ref byte[] buffer)
+        public Task<byte[]> Compress(byte[] data, ZlibCompression level)
         {
-            return new ZStream()
+            var buffer = new byte[data.Length + 24];
+            var zs = new ZStream()
             {
                 avail_in = data.Length,
                 next_in = data,
@@ -19,12 +20,6 @@ namespace Haru.Utils
                 next_out = buffer,
                 next_out_index = 0
             };
-        }
-
-        public byte[] Compress(byte[] data, ZlibCompression level)
-        {
-            var buffer = new byte[data.Length + 24];
-            var zs = CreateZStream(ref data, ref buffer);
 
             zs.deflateInit((int)level);
             zs.deflate(zlibConst.Z_FINISH);
@@ -32,36 +27,21 @@ namespace Haru.Utils
             data = new byte[zs.next_out_index];
             Array.Copy(zs.next_out, 0, data, 0, zs.next_out_index);
 
-            return data;
+            return Task.FromResult(data);
         }
 
         public async Task<byte[]> Decompress(byte[] data)
         {
-            var buffer = new byte[4096];
-            var zs = CreateZStream(ref data, ref buffer);
-
-            zs.inflateInit();
-
-            using (var ms = new MemoryStream())
+            using (var msOut = new MemoryStream())
             {
-                do
+                using (var zsOut = new ZOutputStream(msOut))
                 {
-                    zs.avail_out = buffer.Length;
-                    zs.next_out = buffer;
-                    zs.next_out_index = 0;
-
-                    var result = zs.inflate(0);
-
-                    if (result != 0 && result != 1)
+                    using (var msIn = new MemoryStream(data))
                     {
-                        break;
+                        await msIn.CopyToAsync(zsOut);
+                        return msOut.ToArray();
                     }
-
-                    await ms.WriteAsync(zs.next_out, 0, zs.next_out_index);
                 }
-                while (zs.avail_in > 0 || zs.avail_out == 0);
-
-                return ms.ToArray();
             }
         }
     }
