@@ -7,16 +7,21 @@ namespace Haru.Patches
 {
     public class BattlEyePatch
     {
-        private static readonly PropertyInfo _succeed;
+        private static PropertyInfo _succeed;
 
         static BattlEyePatch()
         {
             var harmony = new Harmony("com.haru.patches.battleye");
+            harmony.Patch(GetOriginalMethod(), prefix: GetPatchMethod());
+        }
+
+        private static MethodBase GetOriginalMethod()
+        {
             var name = "RunValidation";
             var types = typeof(ESideType).Assembly.GetTypes();
             var type = types.Single(x => x?.GetMethod(name) != null);
             _succeed = type.GetProperties().Single(x => x.Name == "Succeed");
-            harmony.Patch(type.GetMethod(name), prefix: GetPatchMethod());
+            return type.GetMethod(name);
         }
 
         private static HarmonyMethod GetPatchMethod()
