@@ -9,21 +9,21 @@ namespace Haru.Utils
     {
         private async Task<byte[]> Run(byte[] data, bool compress, ZlibCompression level = ZlibCompression.Store)
         {
-            using (var msOut = new MemoryStream())
+            using (var ms = new MemoryStream())
             {
                 // ZOutputStream.Close() flushes itself.
                 // ZOutputStream.Flush() flushes the target stream.
                 // It's fucking stupid, but whatever.
                 // -- Waffle.Lord, 2022-12-01
 
-                using (var zsOut = (compress)
-                    ? new ZOutputStream(msOut, (int)level)
-                    : new ZOutputStream(msOut))
+                using (var zs = (compress)
+                    ? new ZOutputStream(ms, (int)level)
+                    : new ZOutputStream(ms))
                 {
-                    await zsOut.WriteAsync(data, 0, data.Length);
+                    await zs.WriteAsync(data, 0, data.Length);
                 }
 
-                return msOut.ToArray();
+                return ms.ToArray();
             }
         }
 
