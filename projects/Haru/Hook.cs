@@ -11,6 +11,8 @@ namespace Haru
         {
             // patch client
             new BattlEyePatch();
+            new ConsistencyMultiPatch();
+            new ConsistencySinglePatch();
 
             // run servers
             ServerManager.GeneralServer.Start();
