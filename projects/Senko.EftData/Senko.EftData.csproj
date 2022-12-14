@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
@@ -21,6 +21,7 @@
     <EmbeddedResource Include="Resources\Database\Settings\hideout.json" />
     <EmbeddedResource Include="Resources\Database\Templates\handbook.json" />
     <EmbeddedResource Include="Resources\Database\Templates\traders.json" />
+    <EmbeddedResource Include="Resources\Database\Templates\locations.json" />
     <EmbeddedResource Include="Resources\Database\Templates\scavcases.json" />
     <EmbeddedResource Include="Resources\Database\resxdb.json" />
     <EmbeddedResource Include="Resources\client.customization.json" />
@@ -29,7 +30,6 @@
     <EmbeddedResource Include="Resources\client.hideout.areas.json" />
     <EmbeddedResource Include="Resources\client.hideout.production.recipes.json" />
     <EmbeddedResource Include="Resources\client.items.json" />
-    <EmbeddedResource Include="Resources\client.locations.json" />
     <EmbeddedResource Include="Resources\client.quest.list.json" />
     <EmbeddedResource Include="Resources\client.repeatalbequests.activityperiods.json" />
   </ItemGroup>

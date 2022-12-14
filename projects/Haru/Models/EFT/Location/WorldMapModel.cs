@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Haru.Models.EFT.Location
 {
-    public struct SelectLocationModel
+    public struct WorldMapModel
     {
         [JsonProperty("locations")]
         public Dictionary<string, LocationModel> Locations;

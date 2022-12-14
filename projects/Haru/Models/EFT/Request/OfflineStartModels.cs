@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Haru.Models.EFT.Request
 {
-    public struct OfflineBeginModel
+    public struct OfflineStartModel
     {
         [JsonProperty("locationName")]
         public string LocationName;

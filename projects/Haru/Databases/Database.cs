@@ -2,6 +2,7 @@
 using Haru.Models.EFT.Handbook;
 using Haru.Models.EFT.Hideout;
 using Haru.Models.EFT.Locale;
+using Haru.Models.EFT.Location;
 using Haru.Models.EFT.Settings;
 
 namespace Haru.Databases
@@ -17,6 +18,7 @@ namespace Haru.Databases
         public readonly List<Models.EFT.Trader.TraderModel> Traders;
         public TemplatesModel HandbookTemplates;
         public readonly Dictionary<string, string> Files;
+        public WorldMapModel WorldMap;
 
         private static Database _instance;
         public static Database Instance

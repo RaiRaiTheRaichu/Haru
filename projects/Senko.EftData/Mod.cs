@@ -5,6 +5,7 @@ using Haru.Models.EFT;
 using Haru.Models.EFT.Handbook;
 using Haru.Models.EFT.Hideout;
 using Haru.Models.EFT.Locale;
+using Haru.Models.EFT.Location;
 using Haru.Models.EFT.Settings;
 
 public class Mod
@@ -30,6 +31,7 @@ public class Mod
         LoadClientSettings();
         LoadTraders();
         LoadHandbookTemplates();
+        LoadWorldMap();
         LoadFiles();
     }
 
@@ -99,6 +101,13 @@ public class Mod
         var json = await ResourceApi.GetText("Database.Templates.handbook.json");
         var body = JsonApi.Deserialize<ResponseModel<TemplatesModel>>(json);
         _database.HandbookTemplates = body.Data;
+    }
+
+    private async static void LoadWorldMap()
+    {
+        var json = await ResourceApi.GetText("Database.Templates.locations.json");
+        var body = JsonApi.Deserialize<ResponseModel<WorldMapModel>>(json);
+        _database.WorldMap = body.Data;
     }
 
     private async static void LoadFiles()

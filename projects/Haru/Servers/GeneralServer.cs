@@ -23,13 +23,17 @@ namespace Haru.Servers
             router.AddController<GameProfileSelectController>();
             router.AddController<GameStartController>();
             router.AddController<GameVersionValidateController>();
+            router.AddController<GetLocalLootController>();
             router.AddController<HandbookBuildsMyListController>();
             router.AddController<HandbookTemplatesController>();
             router.AddController<HideoutProductionScavcaseRecipesController>();
             router.AddController<HideoutSettingsController>();
             router.AddController<LanguagesController>();
             router.AddController<LocaleController>();
+            router.AddController<LocationController>();
             router.AddController<MailDialogListController>();
+            router.AddController<MatchOfflineStartController>();
+            router.AddController<MatchOfflineEndController>();
             router.AddController<MenuLocaleController>();
             router.AddController<NotifierChannelCreateController>();
             router.AddController<ProfileStatusController>();
