@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.33026.149
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haru", "Haru\Haru.csproj", "{362A331C-0888-4775-A2C0-51EF7E5AE318}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haru", "Core\Haru\Haru.csproj", "{362A331C-0888-4775-A2C0-51EF7E5AE318}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Senko.Langpack", "Senko.Langpack\Senko.Langpack.csproj", "{27584A71-CE2F-485A-A005-5D7095C511C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Senko.Langpack", "Mods\Senko.Langpack\Senko.Langpack.csproj", "{27584A71-CE2F-485A-A005-5D7095C511C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haru.ModApi", "Haru.ModApi\Haru.ModApi.csproj", "{A24BE65A-47AD-45D1-94DD-69A72DB4D191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haru.ModApi", "Core\Haru.ModApi\Haru.ModApi.csproj", "{A24BE65A-47AD-45D1-94DD-69A72DB4D191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.EftData", "Senko.EftData\Senko.EftData.csproj", "{39A0F4D5-E96B-4877-BB56-FD08B541781C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Senko.EftData", "Mods\Senko.EftData\Senko.EftData.csproj", "{39A0F4D5-E96B-4877-BB56-FD08B541781C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B3D9CDE2-AAD2-4089-ABE8-913AC3A0498E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mods", "Mods", "{49845725-F3F2-4C5B-901D-701C4226B925}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loaders", "Loaders", "{3769BF15-C5D2-483B-B706-5FA4E498C3C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haru.NLog", "Loaders\Haru.NLog\Haru.NLog.csproj", "{67B9B0A3-AEC8-4669-A6FD-6AFFECA31327}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +41,20 @@ Global
 		{39A0F4D5-E96B-4877-BB56-FD08B541781C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39A0F4D5-E96B-4877-BB56-FD08B541781C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39A0F4D5-E96B-4877-BB56-FD08B541781C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67B9B0A3-AEC8-4669-A6FD-6AFFECA31327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B9B0A3-AEC8-4669-A6FD-6AFFECA31327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B9B0A3-AEC8-4669-A6FD-6AFFECA31327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B9B0A3-AEC8-4669-A6FD-6AFFECA31327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{362A331C-0888-4775-A2C0-51EF7E5AE318} = {B3D9CDE2-AAD2-4089-ABE8-913AC3A0498E}
+		{27584A71-CE2F-485A-A005-5D7095C511C4} = {49845725-F3F2-4C5B-901D-701C4226B925}
+		{A24BE65A-47AD-45D1-94DD-69A72DB4D191} = {B3D9CDE2-AAD2-4089-ABE8-913AC3A0498E}
+		{39A0F4D5-E96B-4877-BB56-FD08B541781C} = {49845725-F3F2-4C5B-901D-701C4226B925}
+		{67B9B0A3-AEC8-4669-A6FD-6AFFECA31327} = {3769BF15-C5D2-483B-B706-5FA4E498C3C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2BCDF79-844E-45D5-BD6B-1A982D6801D1}

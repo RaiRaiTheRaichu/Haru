@@ -4,34 +4,23 @@
 
 using System.Reflection;
 using ComponentAce.Compression.Libs.zlib;
-using HarmonyLib;
 
 namespace Haru.Patches
 {
-    public class ZOutputStreamPatch
+    public class ZOutputCanWritePatch : IPatch
     {
-        public ZOutputStreamPatch()
-        {
-            var harmony = new Harmony("com.haru.patches.zoutputstream");
-            harmony.Patch(GetCanReadMethod(), prefix: GetPatchMethod());
-            harmony.Patch(GetCanWriteMethod(), prefix: GetPatchMethod());
-        }
+        public string Id { get => "com.haru.patches.zoutputcanread"; }
+        public EPatchType Type { get => EPatchType.Prefix; }
 
-        private MethodBase GetCanReadMethod()
-        {
-            return typeof(ZOutputStream).GetProperty("CanRead").GetGetMethod();
-        }
-
-        private MethodBase GetCanWriteMethod()
+        public MethodBase GetOriginalMethod()
         {
             return typeof(ZOutputStream).GetProperty("CanWrite").GetGetMethod();
         }
 
-        private HarmonyMethod GetPatchMethod()
+        public MethodInfo GetPatchMethod()
         {
             var flags = BindingFlags.NonPublic | BindingFlags.Static;
-            var method = GetType().GetMethod("Patch", flags);
-            return new HarmonyMethod(method);
+            return GetType().GetMethod("Patch", flags);
         }
 
         protected static bool Patch(ref bool __result)

@@ -1,21 +1,16 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using HarmonyLib;
 
 namespace Haru.Patches
 {
-    public class BattlEyePatch
+    public class BattlEyePatch : IPatch
     {
+        public string Id { get => "com.haru.patches.battleye"; }
+        public EPatchType Type { get => EPatchType.Prefix; }
         private static PropertyInfo _succeed;
 
-        public BattlEyePatch()
-        {
-            var harmony = new Harmony("com.haru.patches.battleye");
-            harmony.Patch(GetOriginalMethod(), prefix: GetPatchMethod());
-        }
-
-        private MethodBase GetOriginalMethod()
+        public MethodBase GetOriginalMethod()
         {
             var name = "RunValidation";
             var types = typeof(ESideType).Assembly.GetTypes();
@@ -24,11 +19,10 @@ namespace Haru.Patches
             return type.GetMethod(name);
         }
 
-        private HarmonyMethod GetPatchMethod()
+        public MethodInfo GetPatchMethod()
         {
             var flags = BindingFlags.NonPublic | BindingFlags.Static;
-            var method = GetType().GetMethod("Patch", flags);
-            return new HarmonyMethod(method);
+            return GetType().GetMethod(nameof(BattlEyePatch.Patch), flags);
         }
 
         protected static bool Patch(ref Task __result, object __instance)
