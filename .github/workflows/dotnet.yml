@@ -21,16 +21,22 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./projects/Haru/Haru.csproj
 
-    - name: Build Haru ModApi
+    - name: Build Haru.ModApi
       run: dotnet build --no-restore --nologo --configuration Debug ./projects/Core/Haru.ModApi/Haru.ModApi.csproj
 
-    - name: Build Haru Loaders
+    - name: Build Haru.Loader (BepInEx)
       run: dotnet build --no-restore --nologo --configuration "Debug (BepInEx)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
+
+    - name: Build Haru.Loader (Melon)
       run: dotnet build --no-restore --nologo --configuration "Debug (Melon)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
+
+    - name: Build Haru.Loader (NLog)
       run: dotnet build --no-restore --nologo --configuration "Debug (NLog)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
 
-    - name: Build Haru Mods
+    - name: Build Senko.EftData
       run: dotnet build --no-restore --nologo --configuration Debug ./projects/Mods/Senko.EftData/Senko.EftData.csproj
+
+    - name: Build Senko.Langpack
       run: dotnet build --no-restore --nologo --configuration Debug ./projects/Mods/Senko.Langpack/Senko.Langpack.csproj
 
     - name: Upload Haru.ModApi
