@@ -34,6 +34,7 @@
 
   <ItemGroup Condition="'$(Configuration)'=='Debug (MelonLoader)'">
     <Reference PrivateAssets="All" Private="False" Include="MelonLoader" HintPath="References\MelonLoader.dll" />
+    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="HarmonyX" Version="2.9.0" />
   </ItemGroup>
 
   <ItemGroup>
