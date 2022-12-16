@@ -1,16 +1,13 @@
-using System;
+﻿using System;
 using HarmonyLib;
 using Haru.Patches;
 using Haru.Servers;
-using NLog.Targets;
 
-namespace Haru.NLog
+namespace Haru.Loader
 {
-    [Target("Haru")]
-    public sealed class Hook : TargetWithLayout
+    public class HaruInstance
     {
-        // entry point
-        public Hook()
+        public static void Run()
         {
             // patch client
             Patch(new BattlEyePatch());
@@ -24,9 +21,9 @@ namespace Haru.NLog
             ServerManager.NotificationServer.Start();
         }
 
-        public void Patch(IPatch patch)
+        private static void Patch(IPatch patch)
         {
-            var harmony = new Harmony(patch.Id);
+            var harmony = new HarmonyLib.Harmony(patch.Id);
             var method = new HarmonyMethod(patch.GetPatchMethod());
 
             switch (patch.Type)
