@@ -9,18 +9,62 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+
     - name: Restore dependencies
       run: dotnet restore ./projects/Haru/Haru.csproj
-    - name: Build
-      run: dotnet build --no-restore --nologo --configuration Debug ./projects/Haru/Haru.csproj
-    - name: Upload dotnet test results
+
+    - name: Build Haru ModApi
+      run: dotnet build --no-restore --nologo --configuration Debug ./projects/Core/Haru.ModApi/Haru.ModApi.csproj
+
+    - name: Build Haru Loaders
+      run: dotnet build --no-restore --nologo --configuration "Debug (BepInEx)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
+      run: dotnet build --no-restore --nologo --configuration "Debug (Melon)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
+      run: dotnet build --no-restore --nologo --configuration "Debug (NLog)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
+
+    - name: Build Haru Mods
+      run: dotnet build --no-restore --nologo --configuration Debug ./projects/Mods/Senko.EftData/Senko.EftData.csproj
+      run: dotnet build --no-restore --nologo --configuration Debug ./projects/Mods/Senko.Langpack/Senko.Langpack.csproj
+
+    - name: Upload Haru.ModApi
       uses: actions/upload-artifact@v3
       with:
-        name: build
-        path: projects/Haru/bin/Debug/net472
+        name: haru-modapi
+        path: projects/Core/Haru.ModApi/bin/Debug/net472
+
+    - name: Upload Haru.Loader (Bepinex)
+      uses: actions/upload-artifact@v3
+      with:
+        name: haru-bepinex
+        path: projects/Core/Haru.Loader/bin/Debug (BepInEx)/net472
+
+    - name: Upload Haru.Loader (Melon)
+      uses: actions/upload-artifact@v3
+      with:
+        name: haru-bepinex
+        path: projects/Core/Haru.Loader/bin/Debug (Melon)/net472
+
+    - name: Upload Haru.Loader (NLog)
+      uses: actions/upload-artifact@v3
+      with:
+        name: haru-bepinex
+        path: projects/Core/Haru.Loader/bin/Debug (Melon)/net472
+
+    - name: Upload Senko.EftData
+      uses: actions/upload-artifact@v3
+      with:
+        name: senko-eftdata
+        path: projects/Mods/Senko.EftData/bin/Debug/net472
+
+    - name: Upload Senko.Langpack
+      uses: actions/upload-artifact@v3
+      with:
+        name: senko-langpack
+        path: projects/Mods/Senko.Langpack/bin/Debug/net472
