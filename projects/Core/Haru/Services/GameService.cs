@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Haru.Models.EFT.Game;
-using Haru.Http;
 using Haru.Repositories;
+using Haru.Servers;
 
 namespace Haru.Services
 {
@@ -16,7 +16,7 @@ namespace Haru.Services
 
         public ConfigModel GetConfigModel()
         {
-            var url = HttpConfig.GetUrl();
+            var url = GeneralServer.Instance.Server.Address;
 
             // note: dumped EFT server data
             return new ConfigModel()

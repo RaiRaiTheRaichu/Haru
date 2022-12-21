@@ -1,5 +1,4 @@
 using Haru.Models.EFT.Notification;
-using Haru.Http;
 using Haru.Servers;
 
 namespace Haru.Services
@@ -8,15 +7,13 @@ namespace Haru.Services
     {
         public NotifierModel GetNotifier(string sessionId)
         {
-            var httpUrl = HttpConfig.GetUrl();
+            var httpUrl = GeneralServer.Instance.Server.Address;
             var wsUrl = NotificationServer.Instance.Server.Address;
             return new NotifierModel(sessionId, httpUrl, wsUrl);
         }
 
         public ProfileSelectModel SelectProfile(string sessionId)
         {
-            var url = HttpConfig.GetUrl();
-
             // note: dumped EFT server data
             return new ProfileSelectModel()
             {

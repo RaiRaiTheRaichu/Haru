@@ -9,14 +9,16 @@ namespace Haru.Http
         private readonly Log _log;
         private readonly HttpListener _listener;
         public readonly Router Router;
+        public string Address { get; private set; }
         public bool IsRunning { get; private set; }
 
-        public HttpServer()
+        public HttpServer(string address)
         {
             _log = new Log();
             _listener = new HttpListener();
-            _listener.Prefixes.Add(HttpConfig.Uri.ToString());
+            _listener.Prefixes.Add(address);
             Router = new Router();
+            Address = address;
         }
 
         private async Task HandleRequest()
@@ -35,7 +37,7 @@ namespace Haru.Http
         public async void Start()
         {
             IsRunning = true;
-            await _log.Write($"Starting server on {HttpConfig.GetUrl()}");
+            await _log.Write($"Starting server on {Address}");
             await Task.Run(() => HandleRequest());
         }
 
