@@ -15,27 +15,27 @@ jobs:
         artifactpath: [""]
         artifactname: [""]
         include:
-          - buildpath: projects/Core/Haru.ModApi/Haru.ModApi.csproj
+          - buildpath: ./projects/Core/Haru.ModApi/Haru.ModApi.csproj
             buildconf: Debug
             artifactpath: projects/Core/Haru.ModApi/bin/Debug/net472
             artifactname: haru-modapi
-          - buildpath: projects/Core/Haru.Loader/Haru.Loader.csproj
+          - buildpath: ./projects/Core/Haru.Loader/Haru.Loader.csproj
             buildconf: Debug-BepInEx
             artifactpath: projects/Core/Haru.Loader/bin/Debug-BepInEx/net472
             artifactname: haru-bepinex
-          - buildpath: projects/Core/Haru.Loader/Haru.Loader.csproj
+          - buildpath: ./projects/Core/Haru.Loader/Haru.Loader.csproj
             buildconf: Debug-Melon
             artifactpath: projects/Core/Haru.Loader/bin/Debug-Melon/net472
             artifactname: haru-melon
-          - buildpath: projects/Core/Haru.Loader/Haru.Loader.csproj
+          - buildpath: ./projects/Core/Haru.Loader/Haru.Loader.csproj
             buildconf: Debug-NLog
             artifactpath: projects/Core/Haru.Loader/bin/Debug-NLog/net472
             artifactname: haru-nlog
-          - buildpath: projects/Mods/Senko.EftData/Senko.EftData.csproj
+          - buildpath: ./projects/Mods/Senko.EftData/Senko.EftData.csproj
             buildconf: Debug
             artifactpath: projects/Mods/Senko.EftData/bin/Debug/net472
             artifactname: senko-eftdata
-          - buildpath: projects/Mods/Senko.Langpack/Senko.Langpack.csproj
+          - buildpath: ./projects/Mods/Senko.Langpack/Senko.Langpack.csproj
             buildconf: Debug
             artifactpath: projects/Mods/Senko.Langpack/bin/Debug/net472
             artifactname: senko-langpack
@@ -50,7 +50,7 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Build
+    - name: Build projects
       run: dotnet build --nologo --force --configuration ${{ matrix.buildconf }} ${{ matrix.buildpath }}
 
     - name: Upload artifacts
