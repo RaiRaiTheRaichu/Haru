@@ -49,21 +49,17 @@ jobs:
 
     steps:
     - name: Clone repo
-      #if: ${{ matrix.buildconf != '' }}
       uses: actions/checkout@v3
 
     - name: Setup .NET
-      #if: ${{ matrix.buildconf != '' }}
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
 
     - name: Build projects
-      #if: ${{ matrix.buildconf != '' }}
-      run: dotnet build --nologo --force --configuration ${{ matrix.buildconf }} ${{ matrix.buildpath }}
+      run: dotnet build --nologo --configuration ${{ matrix.buildconf }} ${{ matrix.buildpath }}
 
     - name: Upload artifacts
-      #if: ${{ matrix.buildconf != '' }}
       uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.artifactname }}
