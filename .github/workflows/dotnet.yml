@@ -19,22 +19,22 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Build Haru.ModApi
-      run: dotnet build --nologo --configuration Debug ./projects/Core/Haru.ModApi/Haru.ModApi.csproj
+      run: dotnet build --nologo --force --configuration Debug ./projects/Core/Haru.ModApi/Haru.ModApi.csproj
 
     - name: Build Haru.Loader (BepInEx)
-      run: dotnet build --nologo --configuration "Debug (BepInEx)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
+      run: dotnet build --nologo --force --configuration "Debug (BepInEx)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
 
     - name: Build Haru.Loader (Melon)
-      run: dotnet build --nologo --configuration "Debug (Melon)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
+      run: dotnet build --nologo --force --configuration "Debug (Melon)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
 
     - name: Build Haru.Loader (NLog)
-      run: dotnet build --nologo --configuration "Debug (NLog)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
+      run: dotnet build --nologo --force --configuration "Debug (NLog)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
 
     - name: Build Senko.EftData
-      run: dotnet build --nologo --configuration Debug ./projects/Mods/Senko.EftData/Senko.EftData.csproj
+      run: dotnet build --nologo --force --configuration Debug ./projects/Mods/Senko.EftData/Senko.EftData.csproj
 
     - name: Build Senko.Langpack
-      run: dotnet build --nologo --configuration Debug ./projects/Mods/Senko.Langpack/Senko.Langpack.csproj
+      run: dotnet build --nologo --force --configuration Debug ./projects/Mods/Senko.Langpack/Senko.Langpack.csproj
 
     - name: Upload Haru.ModApi
       uses: actions/upload-artifact@v3
