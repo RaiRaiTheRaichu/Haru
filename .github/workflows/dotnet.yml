@@ -51,14 +51,14 @@ jobs:
     - name: Upload Haru.Loader (Melon)
       uses: actions/upload-artifact@v3
       with:
-        name: haru-bepinex
+        name: haru-melon
         path: projects/Core/Haru.Loader/bin/Debug (Melon)/net472
 
     - name: Upload Haru.Loader (NLog)
       uses: actions/upload-artifact@v3
       with:
-        name: haru-bepinex
-        path: projects/Core/Haru.Loader/bin/Debug (Melon)/net472
+        name: haru-nlog
+        path: projects/Core/Haru.Loader/bin/Debug (NLog)/net472
 
     - name: Upload Senko.EftData
       uses: actions/upload-artifact@v3
