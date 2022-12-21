@@ -1,4 +1,4 @@
-using Haru.Helpers;
+using System;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Profile;
 using Haru.Servers;
@@ -23,15 +23,13 @@ namespace Haru.Services
 
         public StatusModel GetProfileStatusModel()
         {
-            var url = GeneralServer.Instance.Server.Address;
-            var host = HttpHelper.GetHost(url);
-            var port = HttpHelper.GetPort(url);
+            var uri = new Uri(GeneralServer.Instance.Server.Address);
 
             // note: dumped EFT server data
             var profiles = new StatusProfileModel[]
             {
-                new StatusProfileModel("5e23714d4a886443e031fe47", host, port),
-                new StatusProfileModel("5e23714d4a886443e031fe46", host, port)
+                new StatusProfileModel("5e23714d4a886443e031fe47", uri.Host, uri.Port),
+                new StatusProfileModel("5e23714d4a886443e031fe46", uri.Host, uri.Port)
             };
 
             return new StatusModel(profiles);

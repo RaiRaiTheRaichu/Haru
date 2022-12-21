@@ -1,4 +1,4 @@
-using Haru.Helpers;
+using System;
 using Haru.Models.EFT;
 using Haru.Servers;
 
@@ -8,14 +8,14 @@ namespace Haru.Services
     {
         public ServerInfoModel[] GetServers()
         {
-            var url = GeneralServer.Instance.Server.Address;
+            var uri = new Uri(GeneralServer.Instance.Server.Address);
 
             return new ServerInfoModel[]
             {
                 new ServerInfoModel()
                 {
-                    Ip = HttpHelper.GetHost(url),
-                    Port = HttpHelper.GetPort(url)
+                    Ip = uri.Host,
+                    Port = uri.Port
                 }
             };
         }
