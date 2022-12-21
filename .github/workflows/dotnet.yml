@@ -39,26 +39,34 @@ jobs:
             buildconf: Debug
             artifactpath: ./projects/Mods/Senko.Langpack/bin/Debug/net472
             artifactname: senko-langpack
+        exclude:
+          - buildpath: ""
+            buildconf: ""
+            artifactpath: ""
+            artifactname: ""
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Clone repo
+      #if: ${{ matrix.buildconf != '' }}
+      uses: actions/checkout@v3
 
     - name: Setup .NET
+      #if: ${{ matrix.buildconf != '' }}
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
 
     - name: Build projects
+      #if: ${{ matrix.buildconf != '' }}
       run: dotnet build --nologo --force --configuration ${{ matrix.buildconf }} ${{ matrix.buildpath }}
-      if: ${{ matrix.buildconf != '' }}
 
     - name: Upload artifacts
+      #if: ${{ matrix.buildconf != '' }}
       uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.artifactname }}
         path: |
           ${{ matrix.artifactpath }}
           !projects/**/*.pdb
-      if: ${{ matrix.buildconf != '' }}
