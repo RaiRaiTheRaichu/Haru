@@ -16,6 +16,20 @@ namespace Haru.Servers
         private readonly Log _log;
         public readonly Server Server;
 
+        private static NotificationServer _instance;
+        public static NotificationServer Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new NotificationServer();
+                }
+
+                return _instance;
+            }
+        }
+
         public NotificationServer()
         {
             _notificationService = new NotificationService();

@@ -7,6 +7,20 @@ namespace Haru.Servers
     {
         public HttpServer Server;
 
+        private static GeneralServer _instance;
+        public static GeneralServer Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new GeneralServer();
+                }
+
+                return _instance;
+            }
+        }
+
         public GeneralServer()
         {
             Server = new HttpServer();

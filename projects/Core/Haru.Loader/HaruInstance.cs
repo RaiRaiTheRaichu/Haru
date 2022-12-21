@@ -17,8 +17,8 @@ namespace Haru.Loader
             Patch(new ZOutputCanWritePatch());
 
             // run servers
-            ServerManager.GeneralServer.Start();
-            ServerManager.NotificationServer.Start();
+            GeneralServer.Instance.Start();
+            NotificationServer.Instance.Start();
         }
 
         private static void Patch(IPatch patch)

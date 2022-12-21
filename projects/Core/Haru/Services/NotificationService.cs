@@ -9,7 +9,7 @@ namespace Haru.Services
         public NotifierModel GetNotifier(string sessionId)
         {
             var httpUrl = HttpConfig.GetUrl();
-            var wsUrl = ServerManager.NotificationServer.Server.Address;
+            var wsUrl = NotificationServer.Instance.Server.Address;
             return new NotifierModel(sessionId, httpUrl, wsUrl);
         }
 
