@@ -8,6 +8,38 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        buildpath: [""]
+        buildconf: [""]
+        artifactpath: [""]
+        artifactname: [""]
+        include:
+          - buildpath: projects/Core/Haru.ModApi/Haru.ModApi.csproj
+            buildconf: Debug
+            artifactpath: projects/Core/Haru.ModApi/bin/Debug/net472
+            artifactname: haru-modapi
+          - buildpath: projects/Core/Haru.Loader/Haru.Loader.csproj
+            buildconf: "Debug (BepInEx)"
+            artifactpath: projects/Core/Haru.Loader/bin/Debug (BepInEx)/net472
+            artifactname: haru-bepinex
+          - buildpath: projects/Core/Haru.Loader/Haru.Loader.csproj
+            buildconf: "Debug (Melon)"
+            artifactpath: projects/Core/Haru.Loader/bin/Debug (Melon)/net472
+            artifactname: haru-melon
+          - buildpath: projects/Core/Haru.Loader/Haru.Loader.csproj
+            buildconf: "Debug (NLog)"
+            artifactpath: projects/Core/Haru.Loader/bin/Debug (NLog)/net472
+            artifactname: haru-nlog
+          - buildpath: projects/Mods/Senko.EftData/Senko.EftData.csproj
+            buildconf: Debug
+            artifactpath: projects/Mods/Senko.EftData/bin/Debug/net472
+            artifactname: senko-eftdata
+          - buildpath: projects/Mods/Senko.Langpack/Senko.Langpack.csproj
+            buildconf: Debug
+            artifactpath: projects/Mods/Senko.Langpack/bin/Debug/net472
+            artifactname: senko-langpack
+
     runs-on: ubuntu-latest
 
     steps:
@@ -18,56 +50,13 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Build Haru.ModApi
-      run: dotnet build --nologo --force --configuration Debug ./projects/Core/Haru.ModApi/Haru.ModApi.csproj
+    - name: Build
+      run: dotnet build --nologo --force --configuration ${{ matrix.buildconf }} ${{ matrix.buildpath }}
 
-    - name: Build Haru.Loader (BepInEx)
-      run: dotnet build --nologo --force --configuration "Debug (BepInEx)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
-
-    - name: Build Haru.Loader (Melon)
-      run: dotnet build --nologo --force --configuration "Debug (Melon)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
-
-    - name: Build Haru.Loader (NLog)
-      run: dotnet build --nologo --force --configuration "Debug (NLog)" ./projects/Core/Haru.Loader/Haru.Loader.csproj
-
-    - name: Build Senko.EftData
-      run: dotnet build --nologo --force --configuration Debug ./projects/Mods/Senko.EftData/Senko.EftData.csproj
-
-    - name: Build Senko.Langpack
-      run: dotnet build --nologo --force --configuration Debug ./projects/Mods/Senko.Langpack/Senko.Langpack.csproj
-
-    - name: Upload Haru.ModApi
+    - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: haru-modapi
-        path: projects/Core/Haru.ModApi/bin/Debug/net472
-
-    - name: Upload Haru.Loader (Bepinex)
-      uses: actions/upload-artifact@v3
-      with:
-        name: haru-bepinex
-        path: projects/Core/Haru.Loader/bin/Debug (BepInEx)/net472
-
-    - name: Upload Haru.Loader (Melon)
-      uses: actions/upload-artifact@v3
-      with:
-        name: haru-melon
-        path: projects/Core/Haru.Loader/bin/Debug (Melon)/net472
-
-    - name: Upload Haru.Loader (NLog)
-      uses: actions/upload-artifact@v3
-      with:
-        name: haru-nlog
-        path: projects/Core/Haru.Loader/bin/Debug (NLog)/net472
-
-    - name: Upload Senko.EftData
-      uses: actions/upload-artifact@v3
-      with:
-        name: senko-eftdata
-        path: projects/Mods/Senko.EftData/bin/Debug/net472
-
-    - name: Upload Senko.Langpack
-      uses: actions/upload-artifact@v3
-      with:
-        name: senko-langpack
-        path: projects/Mods/Senko.Langpack/bin/Debug/net472
+        name: ${{ matrix.artifactname }}
+        path: |
+          ${{ matrix.artifactpath }}
+          !projects/**/*.pdb
