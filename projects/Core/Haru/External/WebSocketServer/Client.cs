@@ -21,42 +21,33 @@ namespace WebSocketServer
 
         private void messageCallback(IAsyncResult asyncResult)
         {
-            try
+            Socket.EndReceive(asyncResult);
+
+            // Read the incomming message 
+            var messageBuffer = new byte[8];
+            var bytesReceived = Socket.Receive(messageBuffer);
+
+            // Resize the byte array to remove whitespaces 
+            if (bytesReceived < messageBuffer.Length)
             {
-                Socket.EndReceive(asyncResult);
-
-                // Read the incomming message 
-                var messageBuffer = new byte[8];
-                var bytesReceived = Socket.Receive(messageBuffer);
-
-                // Resize the byte array to remove whitespaces 
-                if (bytesReceived < messageBuffer.Length)
-                {
-                    Array.Resize<byte>(ref messageBuffer, bytesReceived);
-                }
-
-                // Get the opcode of the frame
-                var opcode = Helpers.GetFrameOpcode(messageBuffer);
-
-                // If the connection was closed
-                if (opcode == EOpcodeType.ClosedConnection)
-                {
-                    Server.ClientDisconnect(this);
-                    return;
-                }
-
-                // Pass the message to the server event to handle the logic
-                Server.ReceiveMessage(this, Helpers.GetDataFromFrame(messageBuffer));
-
-                // Start to receive messages again
-                Socket.BeginReceive(new byte[] { 0 }, 0, 0, SocketFlags.None, messageCallback, null);
+                Array.Resize(ref messageBuffer, bytesReceived);
             }
-            catch
+
+            // Get the opcode of the frame
+            var opcode = Helpers.GetFrameOpcode(messageBuffer);
+
+            // If the connection was closed
+            if (opcode == EOpcodeType.ClosedConnection)
             {
-                Socket.Close();
-                Socket.Dispose();
                 Server.ClientDisconnect(this);
+                return;
             }
+
+            // Pass the message to the server event to handle the logic
+            Server.ReceiveMessage(this, Helpers.GetDataFromFrame(messageBuffer));
+
+            // Start to receive messages again
+            Socket.BeginReceive(new byte[] { 0 }, 0, 0, SocketFlags.None, messageCallback, null);
         }
     }
 }

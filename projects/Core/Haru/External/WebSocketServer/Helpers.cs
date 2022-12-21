@@ -103,14 +103,14 @@ namespace WebSocketServer
             }
             else if (length >= 126 && length <= 65535)
             {
-                frame[1] = (byte)126;
+                frame[1] = 126;
                 frame[2] = (byte)((length >> 8) & 255);
                 frame[3] = (byte)(length & 255);
                 indexStartRawData = 4;
             }
             else
             {
-                frame[1] = (byte)127;
+                frame[1] = 127;
                 frame[2] = (byte)((length >> 56) & 255);
                 frame[3] = (byte)((length >> 48) & 255);
                 frame[4] = (byte)((length >> 40) & 255);
@@ -148,10 +148,12 @@ namespace WebSocketServer
         public static string HashKey(string key)
         {
             var longKey = key + _handshakeKey;
-            var sha1 = SHA1.Create();
-            var hashBytes = sha1.ComputeHash(Encoding.ASCII.GetBytes(longKey));
 
-            return Convert.ToBase64String(hashBytes);
+            using (var sha1 = SHA1.Create())
+            {
+                var hashBytes = sha1.ComputeHash(Encoding.ASCII.GetBytes(longKey));
+                return Convert.ToBase64String(hashBytes);
+            }
         }
 
         public static string GetHandshakeResponse(string key)

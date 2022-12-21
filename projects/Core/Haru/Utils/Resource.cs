@@ -18,7 +18,10 @@ namespace Haru.Utils
 
         public void RegisterAssembly(Assembly asm)
         {
-            _names.Add(asm, asm.GetManifestResourceNames());
+            lock (_names)
+            {
+                _names.Add(asm, asm.GetManifestResourceNames());
+            }
         }
 
         private Stream GetStream(string filepath)

@@ -84,7 +84,6 @@ namespace WebSocketServer
         {
             var clientSocket = Socket.EndAccept(asyncResult);
             var handshakeBuffer = new byte[1024];
-            var handshakeReceived = clientSocket.Receive(handshakeBuffer);
             var requestKey = Helpers.GetHandshakeRequestKey(Encoding.Default.GetString(handshakeBuffer));
             var hanshakeResponse = Helpers.GetHandshakeResponse(Helpers.HashKey(requestKey));
 
