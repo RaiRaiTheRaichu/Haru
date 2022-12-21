@@ -20,15 +20,15 @@ jobs:
             artifactpath: projects/Core/Haru.ModApi/bin/Debug/net472
             artifactname: haru-modapi
           - buildpath: projects/Core/Haru.Loader/Haru.Loader.csproj
-            buildconf: "Debug (BepInEx)"
+            buildconf: \"Debug (BepInEx)\"
             artifactpath: projects/Core/Haru.Loader/bin/Debug (BepInEx)/net472
             artifactname: haru-bepinex
           - buildpath: projects/Core/Haru.Loader/Haru.Loader.csproj
-            buildconf: "Debug (Melon)"
+            buildconf: \"Debug (Melon)\"
             artifactpath: projects/Core/Haru.Loader/bin/Debug (Melon)/net472
             artifactname: haru-melon
           - buildpath: projects/Core/Haru.Loader/Haru.Loader.csproj
-            buildconf: "Debug (NLog)"
+            buildconf: \"Debug (NLog)\"
             artifactpath: projects/Core/Haru.Loader/bin/Debug (NLog)/net472
             artifactname: haru-nlog
           - buildpath: projects/Mods/Senko.EftData/Senko.EftData.csproj
