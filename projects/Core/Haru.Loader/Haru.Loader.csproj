@@ -4,35 +4,35 @@
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>Haru.Loader</RootNamespace>
     <LangVersion>7.3</LangVersion>
-    <Configurations>Debug (NLog);Debug (BepInEx);Debug (Melon)</Configurations>
+    <Configurations>Debug-NLog;Debug-BepInEx;Debug-Melon</Configurations>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (BepInEx)|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-BepInEx|AnyCPU'">
     <DefineConstants>TRACE;LOADER_BEPINEX</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (NLog)|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-NLog|AnyCPU'">
     <AssemblyName>NLog.Haru.Loader</AssemblyName>
     <DefineConstants>TRACE;LOADER_NLOG</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (Melon)|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Melon|AnyCPU'">
     <DefineConstants>TRACE;LOADER_MELON</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(Configuration)'=='Debug (NLog)'">
+  <ItemGroup Condition="'$(Configuration)'=='Debug-NLog'">
     <PackageReference Include="Lib.Harmony" Version="2.2.2" />
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="NLog" Version="4.7.15" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(Configuration)'=='Debug (BepInEx)'">
+  <ItemGroup Condition="'$(Configuration)'=='Debug-BepInEx'">
     <Reference PrivateAssets="All" Private="False" Include="BepInEx" HintPath="References\BepInEx.dll" />
     <Reference PrivateAssets="All" Private="False" Include="UnityEngine" HintPath="References\UnityEngine.dll" />
     <Reference PrivateAssets="All" Private="False" Include="UnityEngine.CoreModule" HintPath="References\UnityEngine.CoreModule.dll" />
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="HarmonyX" Version="2.9.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(Configuration)'=='Debug (Melon)'">
+  <ItemGroup Condition="'$(Configuration)'=='Debug-Melon'">
     <Reference PrivateAssets="All" Private="False" Include="MelonLoader" HintPath="References\MelonLoader.dll" />
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="HarmonyX" Version="2.9.0" />
   </ItemGroup>
