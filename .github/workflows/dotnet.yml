@@ -52,7 +52,7 @@ jobs:
 
     - name: Build projects
       run: dotnet build --nologo --force --configuration ${{ matrix.buildconf }} ${{ matrix.buildpath }}
-      if: ${{ matrix.buildconf != "" }}
+      if: ${{ matrix.buildconf != '' }}
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
@@ -61,4 +61,4 @@ jobs:
         path: |
           ${{ matrix.artifactpath }}
           !projects/**/*.pdb
-      if: ${{ matrix.buildconf != "" }}
+      if: ${{ matrix.buildconf != '' }}
