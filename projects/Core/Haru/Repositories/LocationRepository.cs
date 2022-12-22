@@ -1,3 +1,4 @@
+using System.Linq;
 using Haru.Models.EFT.Location;
 using Haru.Databases;
 
@@ -19,28 +20,12 @@ namespace Haru.Repositories
 
         public bool HasLocation(string locationId)
         {
-            foreach (var location in _database.WorldMap.Locations.Values)
-            {
-                if (location.Id == locationId)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return _database.WorldMap.Locations.Values.Any(x => x.Id == locationId);
         }
 
         public LocationModel GetLocation(string locationId)
         {
-            foreach (var location in _database.WorldMap.Locations.Values)
-            {
-                if (location.Id == locationId)
-                {
-                    return location;
-                }
-            }
-
-            return default;
+            return _database.WorldMap.Locations.Values.FirstOrDefault(x => x.Id == locationId);
         }
     }
 }

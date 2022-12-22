@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
 namespace WebSocketServer
 {
@@ -37,28 +38,12 @@ namespace WebSocketServer
 
         public Client GetConnectedClient(string guid)
         {
-            foreach (var client in _clients)
-            {
-                if (client.Guid == guid)
-                {
-                    return client;
-                }
-            }
-
-            return null;
+            return _clients.FirstOrDefault(x => x.Guid == guid);
         }
 
         public Client GetConnectedClient(Socket socket)
         {
-            foreach (var client in _clients)
-            {
-                if (client.Socket == socket)
-                {
-                    return client;
-                }
-            }
-
-            return null;
+            return _clients.FirstOrDefault(x => x.Socket == socket);
         }
 
         public int GetConnectedClientCount()

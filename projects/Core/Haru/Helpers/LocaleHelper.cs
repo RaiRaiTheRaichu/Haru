@@ -1,3 +1,4 @@
+using System.Linq;
 using Haru.Models;
 using Haru.Services;
 
@@ -19,15 +20,15 @@ namespace Haru.Helpers
             var url = _requestHelper.GetPath(context.Request);
             var languages = _localeService.GetLanguages();
 
-            foreach (var language in languages)
+            try
             {
-                if (url == string.Format(format, language.ShortName))
-                {
-                    return language.ShortName;
-                }
+                var language = languages.First(x => url == string.Format(format, x.ShortName));
+                return language.ShortName;
             }
-
-            return null;
+            catch
+            {
+                return null;
+            }
         }
     }
 }

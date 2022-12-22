@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Haru.Extensions;
@@ -23,17 +24,16 @@ namespace Haru.Http
 
         public bool GetController<T>(out T controller) where T : Controller, new()
         {
-            foreach (var item in _controllers)
+            try
             {
-                if (item.GetType() == typeof(T))
-                {
-                    controller = (T)item;
-                    return true;
-                }
+                controller = (T)_controllers.First(x => x.GetType() == typeof(T));
+                return true;
             }
-
-            controller = null;
-            return false;
+            catch
+            {
+                controller = null;
+                return false;
+            }
         }
 
         public void AddController<T>() where T : Controller, new()
@@ -62,7 +62,6 @@ namespace Haru.Http
 
         public async Task Run(HttpListenerRequest request, HttpListenerResponse response)
         {
-            Controller target = null;
             var path = _requestHelper.GetPath(request);
             var context = new RouterContext()
             {
@@ -72,20 +71,12 @@ namespace Haru.Http
 
             await _log.Write(path);
 
-            foreach (var controller in _controllers)
+            try
             {
-                if (controller.IsMatch(context))
-                {
-                    target = controller;
-                    break;
-                }
+                var controller = _controllers.First(x => x.IsMatch(context));
+                await controller.Run(context);
             }
-
-            if (target != null)
-            {
-                await target.Run(context);
-            }
-            else
+            catch
             {
                 response.Close();
                 throw new UrlPathNotFoundException(context.Request.Url);
