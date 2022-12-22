@@ -8,6 +8,7 @@ namespace WebSocketServer
 {
     public partial class Server
     {
+        private readonly Helper _helper;
         private readonly List<Client> _clients;
         public Socket Socket { get; private set; }
         public string Address { get; private set; }
@@ -18,6 +19,7 @@ namespace WebSocketServer
 
         public Server(string address)
         {
+            _helper = new Helper();
             _clients = new List<Client>();
             Address = address;
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -84,8 +86,8 @@ namespace WebSocketServer
         {
             var clientSocket = Socket.EndAccept(asyncResult);
             var handshakeBuffer = new byte[1024];
-            var requestKey = Helpers.GetHandshakeRequestKey(Encoding.Default.GetString(handshakeBuffer));
-            var hanshakeResponse = Helpers.GetHandshakeResponse(Helpers.HashKey(requestKey));
+            var requestKey = _helper.GetHandshakeRequestKey(Encoding.Default.GetString(handshakeBuffer));
+            var hanshakeResponse = _helper.GetHandshakeResponse(_helper.HashKey(requestKey));
 
             clientSocket.Send(Encoding.Default.GetBytes(hanshakeResponse));
 
@@ -126,7 +128,7 @@ namespace WebSocketServer
 
         public void SendMessage(Client client, string data)
         {
-            var frameMessage = Helpers.GetFrameFromString(data);
+            var frameMessage = _helper.GetFrameFromString(data);
 
             client.Socket.Send(frameMessage);
 

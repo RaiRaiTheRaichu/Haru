@@ -4,13 +4,13 @@ using System.Security.Cryptography;
 
 namespace WebSocketServer
 {
-    public static class Helpers
+    public class Helper
     {
         private const string _handshakeKey = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
         private const string _ids = "0123456789abcdefghijklmnopqrstuvwxyz";
         private const string _handshakeResponse = "HTTP/1.1 101 Switching Protocols\nUpgrade: WebSocket\nConnection: Upgrade\nSec-WebSocket-Accept: {0}\r\n\r\n";
 
-        public static SFrameMaskData GetFrameData(byte[] data)
+        public SFrameMaskData GetFrameData(byte[] data)
         {
             // Get the opcode from the frame
             var opcode = data[0] - 128;
@@ -50,12 +50,12 @@ namespace WebSocketServer
             return new SFrameMaskData(0, 0, 0, 0);
         }
 
-        public static EOpcodeType GetFrameOpcode(byte[] frame)
+        public EOpcodeType GetFrameOpcode(byte[] frame)
         {
             return (EOpcodeType)frame[0] - 128;
         }
 
-        public static string GetDataFromFrame(byte[] data)
+        public string GetDataFromFrame(byte[] data)
         {
             var frameData = GetFrameData(data);
 
@@ -81,12 +81,12 @@ namespace WebSocketServer
             return Encoding.Default.GetString(data, dataIndex, frameData.DataLength);
         }
 
-        public static bool GetIsBufferValid(ref byte[] buffer)
+        public bool GetIsBufferValid(ref byte[] buffer)
         {
             return (buffer != null && buffer.Length > 0);
         }
 
-        public static byte[] GetFrameFromString(string message, EOpcodeType opcode = EOpcodeType.Text)
+        public byte[] GetFrameFromString(string message, EOpcodeType opcode = EOpcodeType.Text)
         {
             byte[] response;
             var bytesRaw = Encoding.Default.GetBytes(message);
@@ -145,7 +145,7 @@ namespace WebSocketServer
             return response;
         }
 
-        public static string HashKey(string key)
+        public string HashKey(string key)
         {
             var longKey = key + _handshakeKey;
 
@@ -156,43 +156,37 @@ namespace WebSocketServer
             }
         }
 
-        public static string GetHandshakeResponse(string key)
+        public string GetHandshakeResponse(string key)
         {
             return string.Format(_handshakeResponse, key);
         }
 
-        public static string GetHandshakeRequestKey(string HttpRequest)
+        public string GetHandshakeRequestKey(string httpRequest)
         {
-            var keyStart = HttpRequest.IndexOf("Sec-WebSocket-Key: ") + 19;
-            var key = string.Empty;
+            var sb = new StringBuilder();
+            var key = httpRequest.IndexOf("Sec-WebSocket-Key: ") + 19;
 
-            for (var i = keyStart; i < (keyStart + 24); i++)
+            for (var i = key; i < (key + 24); i++)
             {
-                key += HttpRequest[i];
+                sb.Append(httpRequest[i]);
             }
 
-            return key;
+            return sb.ToString();
         }
 
-        public static string CreateGuid(string prefix, int length = 16)
+        public string CreateGuid(string prefix, int length = 16)
         {
-            var final = string.Empty;
+            var sb = new StringBuilder();
             var random = new Random();
 
             // Loop and get a random index in the ids and append to id 
             for (var i = 0; i < length; i++)
             {
-                final += _ids[random.Next(0, _ids.Length)];
+                sb.Append(_ids[random.Next(0, _ids.Length)]);
             }
 
-            // Return the guid without a prefix
-            if (prefix == null)
-            {
-                return final;
-            }
-
-            // Return the guid with a prefix
-            return $"{prefix}-{final}";
+            // Return the guid
+            return (prefix == null) ? sb.ToString() : $"{prefix}-{sb.ToString()}";
         }
     }
 }

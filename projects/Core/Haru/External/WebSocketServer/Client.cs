@@ -5,15 +5,17 @@ namespace WebSocketServer
 {
     public partial class Client
     {
+        private readonly Helper _helper;
         public Socket Socket { get; private set; }
         public string Guid { get; private set; }
         public Server Server { get; private set; }
 
         public Client(Server server, Socket socket)
         {
+            _helper = new Helper();
             Server = server;
             Socket = socket;
-            Guid = Helpers.CreateGuid("client");
+            Guid = _helper.CreateGuid("client");
 
             // Start to detect incomming messages 
             Socket.BeginReceive(new byte[] { 0 }, 0, 0, SocketFlags.None, messageCallback, null);
@@ -34,7 +36,7 @@ namespace WebSocketServer
             }
 
             // Get the opcode of the frame
-            var opcode = Helpers.GetFrameOpcode(messageBuffer);
+            var opcode = _helper.GetFrameOpcode(messageBuffer);
 
             // If the connection was closed
             if (opcode == EOpcodeType.ClosedConnection)
@@ -44,7 +46,7 @@ namespace WebSocketServer
             }
 
             // Pass the message to the server event to handle the logic
-            Server.ReceiveMessage(this, Helpers.GetDataFromFrame(messageBuffer));
+            Server.ReceiveMessage(this, _helper.GetDataFromFrame(messageBuffer));
 
             // Start to receive messages again
             Socket.BeginReceive(new byte[] { 0 }, 0, 0, SocketFlags.None, messageCallback, null);
