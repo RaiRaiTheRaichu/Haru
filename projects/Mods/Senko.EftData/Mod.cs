@@ -24,8 +24,6 @@ public class Mod
         ResourceApi.EnableResourceLoading(typeof(Mod).Assembly);
 
         LoadLanguages();
-        LoadGlobals();
-        LoadMenus();
         LoadHideoutSettings();
         LoadScavcases();
         LoadClientSettings();
@@ -42,30 +40,27 @@ public class Mod
 
         foreach (var kvp in names)
         {
+            // add language name
             _database.Names.Add(kvp.Key, kvp.Value);
+
+            // add language data
+            LoadGlobalLocale(kvp.Key);
+            LoadMenuLocale(kvp.Key);
         }
     }
 
-    private async static void LoadGlobals()
+    private static async void LoadGlobalLocale(string lang)
     {
-        foreach (var kvp in _database.Names)
-        {
-            var lang = kvp.Key;
-            var json = await ResourceApi.GetText($"Database.Locales.all-{lang}.json");
-            var body = JsonApi.Deserialize<ResponseModel<GlobalModel>>(json);
-            _database.Globals.Add(lang, body.Data);
-        }
+        var json = await ResourceApi.GetText($"Database.Locales.all-{lang}.json");
+        var body = JsonApi.Deserialize<ResponseModel<GlobalModel>>(json);
+        _database.Globals.Add(lang, body.Data);
     }
 
-    private async static void LoadMenus()
+    private async static void LoadMenuLocale(string lang)
     {
-        foreach (var kvp in _database.Names)
-        {
-            var lang = kvp.Key;
-            var json = await ResourceApi.GetText($"Database.Locales.menu-{lang}.json");
-            var body = JsonApi.Deserialize<ResponseModel<MenuModel>>(json);
-            _database.Menus.Add(lang, body.Data);
-        }
+        var json = await ResourceApi.GetText($"Database.Locales.menu-{lang}.json");
+        var body = JsonApi.Deserialize<ResponseModel<MenuModel>>(json);
+        _database.Menus.Add(lang, body.Data);
     }
 
     private async static void LoadHideoutSettings()
