@@ -186,7 +186,7 @@ namespace WebSocketServer
             }
 
             // Return the guid
-            return (prefix == null) ? sb.ToString() : $"{prefix}-{sb.ToString()}";
+            return (prefix == null) ? sb.ToString() : $"{prefix}-{sb}";
         }
     }
 }
