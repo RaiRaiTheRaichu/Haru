@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Haru.Models;
 using Haru.Services;
@@ -25,7 +26,7 @@ namespace Haru.Helpers
                 var language = languages.First(x => url == string.Format(format, x.ShortName));
                 return language.ShortName;
             }
-            catch
+            catch (InvalidOperationException)
             {
                 return null;
             }

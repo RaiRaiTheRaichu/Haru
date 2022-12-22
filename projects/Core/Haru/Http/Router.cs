@@ -6,6 +6,7 @@ using Haru.Extensions;
 using Haru.Models;
 using Haru.Helpers;
 using Haru.Utils;
+using System;
 
 namespace Haru.Http
 {
@@ -29,7 +30,7 @@ namespace Haru.Http
                 controller = (T)_controllers.First(x => x.GetType() == typeof(T));
                 return true;
             }
-            catch
+            catch (InvalidOperationException)
             {
                 controller = null;
                 return false;
@@ -76,7 +77,7 @@ namespace Haru.Http
                 var controller = _controllers.First(x => x.IsMatch(context));
                 await controller.Run(context);
             }
-            catch
+            catch (InvalidOperationException)
             {
                 response.Close();
                 throw new UrlPathNotFoundException(context.Request.Url);
