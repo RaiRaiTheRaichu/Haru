@@ -1,5 +1,6 @@
 ﻿#if LOADER_BEPINEX
 using BepInEx;
+using Haru.Framework.DI;
 
 namespace Haru.Loader
 {
@@ -8,7 +9,8 @@ namespace Haru.Loader
     {
         private void Awake()
         {
-            HaruInstance.Run();
+            var haru = new HaruInstance();
+            haru.Run();
         }
     }
 }

@@ -1,5 +1,6 @@
 #if LOADER_NLOG
 using NLog.Targets;
+using Haru.Framework.DI;
 
 namespace Haru.Loader
 {
@@ -8,7 +9,8 @@ namespace Haru.Loader
     {
         public Target()
         {
-            HaruInstance.Run();
+            var haru = new HaruInstance();
+            haru.Run();
         }
     }
 }

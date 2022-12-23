@@ -1,5 +1,6 @@
 ﻿#if LOADER_MELON
 using MelonLoader;
+using Haru.Framework.DI;
 
 [assembly: MelonGame("BATTLESTATE GAMES LIMITED", "Escape From Tarkov")]
 [assembly: MelonInfo(typeof(Haru.Loader.Mod),HaruInfo.Name, HaruInfo.Version, HaruInfo.Author, HaruInfo.Origin)]
@@ -10,7 +11,8 @@ namespace Haru.Loader
     {
         public override void OnInitializeMelon()
         {
-            HaruInstance.Run();
+            var haru = new HaruInstance();
+            haru.Run();
         }
     }
 }
