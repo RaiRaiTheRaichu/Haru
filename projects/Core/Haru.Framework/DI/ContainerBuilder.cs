@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
+using Haru.Framework.Attributes;
+using Haru.Framework.Models;
 
 namespace Haru.Framework.DI
 {
@@ -42,53 +44,46 @@ namespace Haru.Framework.DI
 
             // Load all whitelisted assemblies
             var assemblies = new List<Assembly>();
+
             foreach (var asm in _assemblies)
             {
                 assemblies.Add(Assembly.Load(asm));
             }
-
-
+            
             // Bind all types containing the Register attribute
             // Omit singleton scope at first to bind all types
             // Resolve singletons afterwards to be sure to have the whole 
             // dep graph
             // (Note the second time is faster due to skips in the binding)
             var singletonTasks = new List<Task>();
+
             foreach (Assembly asm in assemblies)
             {
                 var asmTypes = asm.GetTypes();
+
                 foreach (Type currType in asmTypes)
                 {
                     var attribs = currType.GetCustomAttributes(typeof(Register), true);
 
                     // Filter out if the type does not have the Register attribute
-                    if (attribs.Length <= 0) continue;
-
-                    var register = ((Register)attribs[0]);
-                    var scope = register.scope;
-
-                    // Add it to register the singleton later on
-                    if (scope == InjectionScope.Singleton)
+                    if (attribs.Length <= 0)
                     {
-                        singletonTasks.Add(new Task(async () =>
-                        {
-                            var bindingSource = register.binding;
-                            string bindingId = register.id ?? currType.ToString();
-
-                            await _container.Bind(currType, bindingSource, bindingId);
-                        }));
                         continue;
                     }
 
-                    // Register the type right now
-                    var task = Task.Run(async () =>
+                    var register = ((Register)attribs[0]);
+                    var scope = register.scope;
+                    
+                    if (scope == InjectionScope.Singleton)
                     {
-                        var bindingSource = register.binding;
-                        string bindingId = register.id ?? currType.ToString();
-
-                        await _container.Bind(currType, bindingSource, bindingId, InjectionScope.Transient);
-                    });
-                    task.Wait();
+                        // Add it to register the singleton later on
+                        singletonTasks.Add(Register(register, currType));
+                    }
+                    else
+                    {
+                        // Register the type right now
+                        await Register(register, currType, InjectionScope.Transient);
+                    }
                 }
             }
 
@@ -99,6 +94,13 @@ namespace Haru.Framework.DI
             }
 
             return _container;
+        }
+
+        private async Task Register(Register register, Type type, InjectionScope scope = InjectionScope.Singleton)
+        {
+            var bindingSource = register.binding;
+            var bindingId = register.id ?? type.ToString();
+            await _container.Bind(type, bindingSource, bindingId, scope);
         }
     }
 }

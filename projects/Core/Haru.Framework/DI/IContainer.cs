@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Haru.Framework.Models;
 
 namespace Haru.Framework.DI
 {

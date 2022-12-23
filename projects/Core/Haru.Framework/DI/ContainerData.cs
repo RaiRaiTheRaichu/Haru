@@ -39,8 +39,7 @@ namespace Haru.Framework.DI
                 return _mappings.ContainsKey(abstraction);
             }
 
-            return _mappings.ContainsKey(abstraction)
-                && _mappings[abstraction].ContainsKey(id);
+            return _mappings.ContainsKey(abstraction) && _mappings[abstraction].ContainsKey(id);
         }
 
         private Type ResolveMappingType(Type abstraction, string id = null)
@@ -50,9 +49,7 @@ namespace Haru.Framework.DI
                 return null;
             }
 
-            return id == null
-                ? _mappings[abstraction].First().Value
-                : _mappings[abstraction][id];
+            return id == null ? _mappings[abstraction].First().Value : _mappings[abstraction][id];
         }
 
         internal void AddMapping(Type implem, Type abstraction, string id = null)
@@ -64,9 +61,8 @@ namespace Haru.Framework.DI
             }
 
             var internalId = id ?? implem.ToString();
-            Dictionary<string, Type> newMap;
 
-            if (_mappings.TryGetValue(abstraction, out newMap))
+            if (_mappings.TryGetValue(abstraction, out Dictionary<string, Type> newMap))
             {
                 newMap.Add(internalId, implem);
                 return;
@@ -76,6 +72,7 @@ namespace Haru.Framework.DI
             {
                 { internalId, implem }
             };
+
             _mappings.Add(abstraction, newMap);
         }
 

@@ -1,6 +1,7 @@
 using System;
+using Haru.Framework.Models;
 
-namespace Haru.Framework.DI
+namespace Haru.Framework.Attributes
 {
     /// <summary>
     ///     Use on class to register (bind) a concrete class for injection

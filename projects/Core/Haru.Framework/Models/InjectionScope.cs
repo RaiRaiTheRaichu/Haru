@@ -1,4 +1,4 @@
-namespace Haru.Framework.DI
+namespace Haru.Framework.Models
 {
     public enum InjectionScope
     {

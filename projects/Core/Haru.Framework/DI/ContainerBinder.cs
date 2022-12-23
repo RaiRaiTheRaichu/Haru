@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Haru.Framework.Models;
 
 namespace Haru.Framework.DI
 {
@@ -20,12 +21,14 @@ namespace Haru.Framework.DI
         internal Task Bind(object instance, Type abstraction, string id = null, InjectionScope scope = InjectionScope.Singleton)
         {
             var internalId = id ?? instance.GetType().ToString();
+
             if (_data.MappingContains(abstraction, internalId))
             {
                 throw new Exception($"Type {abstraction} already registered to {instance} using id \"{internalId}\"");
             }
 
             var instType = instance.GetType();
+
             _data.AddMapping(instType, abstraction, internalId);
 
             if (scope == InjectionScope.Singleton)
@@ -46,6 +49,7 @@ namespace Haru.Framework.DI
             }
 
             var instance = await _factory.Get(abstraction);
+
             _data.AddSingleton(instance, abstraction);
         }
     }

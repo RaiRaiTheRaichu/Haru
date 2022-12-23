@@ -25,12 +25,14 @@ namespace Haru.Framework.DI
         private async Task<object[]> GetAll(Type type)
         {
             var targets = await _data.ResolveTypes(type);
-
             var instances = new object[targets.Length];
 
-            for (int targetIdx = 0; targetIdx < targets.Length; targetIdx++)
+            for (var targetIdx = 0; targetIdx < targets.Length; targetIdx++)
             {
-                if (targets[targetIdx] == null) continue;
+                if (targets[targetIdx] == null)
+                {
+                    continue;
+                }
 
                 instances[targetIdx] = await InstantiateConcreteClass(targets[targetIdx]);
             }
@@ -46,7 +48,8 @@ namespace Haru.Framework.DI
         private async Task<object> InstantiateAbstraction(Type type, string id = null)
         {
             // Return the singleton if it exists
-            object instance = await GetSingleton(type);
+            var instance = await GetSingleton(type);
+
             if (instance != null)
             {
                 return instance;
@@ -65,11 +68,9 @@ namespace Haru.Framework.DI
         private async Task<object> Instantiate(Type type)
         {
             // Instantiate otherwise
-            var constructor = type.GetConstructors().FirstOrDefault()
-                              ?? type.GetConstructor(Type.EmptyTypes);
+            var constructor = type.GetConstructors().FirstOrDefault() ?? type.GetConstructor(Type.EmptyTypes);
             var parameters = constructor?.GetParameters();
             var resolvedParameters = await GetParamInstances(parameters);
-
             return constructor.Invoke(resolvedParameters.ToArray());
         }
 
@@ -83,7 +84,7 @@ namespace Haru.Framework.DI
             var resolvedParameters = new object[parameters.Length];
 
             // Use recursive reflection to get an instance of each parameter
-            for (int paramIdx = 0; paramIdx < parameters.Length; paramIdx++)
+            for (var paramIdx = 0; paramIdx < parameters.Length; paramIdx++)
             {
                 var parameter = parameters[paramIdx];
                 var type = parameter.ParameterType;
