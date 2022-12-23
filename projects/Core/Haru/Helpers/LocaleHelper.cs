@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
-using Haru.Models;
+using Haru.Framework.Helpers;
+using Haru.Framework.Models;
 using Haru.Services;
 
 namespace Haru.Helpers

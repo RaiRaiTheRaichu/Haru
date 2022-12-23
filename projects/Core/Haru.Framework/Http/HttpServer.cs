@@ -1,8 +1,8 @@
 using System.Net;
 using System.Threading.Tasks;
-using Haru.Utils;
+using Haru.Framework.Utils;
 
-namespace Haru.Http
+namespace Haru.Framework.Http
 {
     public class HttpServer
     {

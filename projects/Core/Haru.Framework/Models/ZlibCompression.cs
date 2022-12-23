@@ -1,4 +1,4 @@
-namespace Haru.Models
+namespace Haru.Framework.Models
 {
     public enum ZlibCompression
     {

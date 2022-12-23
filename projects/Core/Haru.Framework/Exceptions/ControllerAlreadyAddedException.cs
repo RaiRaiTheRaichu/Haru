@@ -1,6 +1,6 @@
 using System;
 
-namespace Haru.Extensions
+namespace Haru.Framework.Exceptions
 {
     public class ControllerAlreadyAddedException : Exception
     {

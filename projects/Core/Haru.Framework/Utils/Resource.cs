@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using Haru.Extensions;
+using Haru.Framework.Exceptions;
 
-namespace Haru.Utils
+namespace Haru.Framework.Utils
 {
     public class Resource
     {
@@ -32,7 +32,7 @@ namespace Haru.Utils
                 var name = kvp.Key.GetName().Name;
 
                 // hack: Remove "NLog." to match assembly root namespace
-                name = name.ReplaceFirst("NLog.", "");
+                name = name.Replace("NLog.", "");
 
                 // find assembly resource
                 var resx = $"{name}.Resources.{filepath}";

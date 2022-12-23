@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Haru.Utils
+namespace Haru.Framework.Utils
 {
     public class Json
     {

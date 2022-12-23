@@ -1,18 +1,21 @@
 ﻿using System.Threading.Tasks;
-using Haru.Models;
+using Haru.Framework.Models;
+using Haru.Framework.Helpers;
+using Haru.Framework.Http;
+using Haru.Framework.Utils;
 using Haru.Helpers;
-using Haru.Http;
-using Haru.Utils;
 
 namespace Haru.Controllers
 {
     public class HandbookBuildsMyListController : Controller
     {
+        private readonly ControllerHelper _controllerHelper;
         private readonly RequestHelper _requestHelper;
         private readonly Json _json;
 
         public HandbookBuildsMyListController()
         {
+            _controllerHelper = new ControllerHelper();
             _requestHelper = new RequestHelper();
             _json = new Json();
         }
@@ -24,7 +27,7 @@ namespace Haru.Controllers
 
         public override async Task Run(RouterContext context)
         {
-            var body = _requestHelper.GetEmptyArrayResponse();
+            var body = _controllerHelper.GetEmptyArrayResponse();
             var json = _json.Serialize(body);
             await SendJson(context, json);
         }

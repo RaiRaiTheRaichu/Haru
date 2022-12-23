@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
-using Haru.Models;
+using Haru.Framework.Models;
+using Haru.Helpers;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Locale;
-using Haru.Helpers;
-using Haru.Http;
+using Haru.Framework.Helpers;
+using Haru.Framework.Http;
 using Haru.Services;
-using Haru.Utils;
+using Haru.Framework.Utils;
 
 namespace Haru.Controllers
 {

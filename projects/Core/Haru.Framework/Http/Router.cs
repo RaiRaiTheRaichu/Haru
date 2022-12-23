@@ -1,14 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Haru.Extensions;
-using Haru.Models;
-using Haru.Helpers;
-using Haru.Utils;
-using System;
+using Haru.Framework.Exceptions;
+using Haru.Framework.Models;
+using Haru.Framework.Helpers;
+using Haru.Framework.Utils;
 
-namespace Haru.Http
+namespace Haru.Framework.Http
 {
     public class Router
     {

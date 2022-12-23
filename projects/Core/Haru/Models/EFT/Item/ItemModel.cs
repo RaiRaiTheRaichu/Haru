@@ -11,10 +11,10 @@ namespace Haru.Models.EFT.Item
         public string TemplateId;
 
         [JsonProperty("parentId")]
-        public string? ParentId;
+        public string ParentId;
 
         [JsonProperty("slotId")]
-        public string? SlotId;
+        public string SlotId;
 
         [JsonProperty("location")]
         public LocationModel? Location;

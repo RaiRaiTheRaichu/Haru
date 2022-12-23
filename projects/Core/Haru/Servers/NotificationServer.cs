@@ -5,7 +5,7 @@ using WebSocketServer;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Notification;
 using Haru.Services;
-using Haru.Utils;
+using Haru.Framework.Utils;
 
 namespace Haru.Servers
 {

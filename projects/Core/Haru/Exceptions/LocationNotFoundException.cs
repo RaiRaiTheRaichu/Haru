@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Haru.Extensions
+namespace Haru.Exceptions
 {
     public class LocationNotFoundException : Exception
     {

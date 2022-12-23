@@ -1,5 +1,5 @@
 using Haru.Controllers;
-using Haru.Http;
+using Haru.Framework.Http;
 
 namespace Haru.Servers
 {

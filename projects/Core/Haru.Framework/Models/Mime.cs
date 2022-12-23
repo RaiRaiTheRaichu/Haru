@@ -1,4 +1,4 @@
-namespace Haru.Http
+namespace Haru.Framework.Models
 {
     public class Mime
     {

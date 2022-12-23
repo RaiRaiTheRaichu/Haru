@@ -1,19 +1,22 @@
 using System.Threading.Tasks;
-using Haru.Models;
+using Haru.Framework.Models;
 using Haru.Models.EFT.Request;
+using Haru.Framework.Helpers;
+using Haru.Framework.Http;
+using Haru.Framework.Utils;
 using Haru.Helpers;
-using Haru.Http;
-using Haru.Utils;
 
 namespace Haru.Controllers
 {
     public class GameVersionValidateController : Controller
     {
+        private readonly ControllerHelper _controllerHelper;
         private readonly RequestHelper _requestHelper;
         private readonly Json _json;
 
         public GameVersionValidateController()
         {
+            _controllerHelper = new ControllerHelper();
             _requestHelper = new RequestHelper();
             _json = new Json();
         }
@@ -27,7 +30,7 @@ namespace Haru.Controllers
         {
             var request = await _requestHelper.GetBody(context.Request);
             var info = _json.Deserialize<VersionValidateModel>(request);
-            var body = _requestHelper.GetEmptyResponse();
+            var body = _controllerHelper.GetEmptyResponse();
             
             if (info.Version.Major != "0.12.12.32.20243")
             {

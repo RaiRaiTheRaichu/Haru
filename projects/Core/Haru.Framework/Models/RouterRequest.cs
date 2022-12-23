@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Haru.Models
+namespace Haru.Framework.Models
 {
     public class RouterContext
     {

@@ -1,7 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Haru.Utils
+namespace Haru.Framework.Utils
 {
     public class VFS
     {

@@ -1,9 +1,9 @@
 using System.Text;
 using System.Threading.Tasks;
-using Haru.Models;
-using Haru.Utils;
+using Haru.Framework.Models;
+using Haru.Framework.Utils;
 
-namespace Haru.Http
+namespace Haru.Framework.Http
 {
     public abstract class Controller
     {

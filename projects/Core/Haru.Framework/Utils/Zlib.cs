@@ -1,9 +1,9 @@
 using System.IO;
 using System.Threading.Tasks;
 using ComponentAce.Compression.Libs.zlib;
-using Haru.Models;
+using Haru.Framework.Models;
 
-namespace Haru.Utils
+namespace Haru.Framework.Utils
 {
     public class Zlib
     {
