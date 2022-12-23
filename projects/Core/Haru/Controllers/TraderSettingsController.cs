@@ -2,23 +2,17 @@
 using Haru.Framework.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Trader;
-using Haru.Framework.Helpers;
 using Haru.Framework.Http;
 using Haru.Services;
-using Haru.Framework.Utils;
 
 namespace Haru.Controllers
 {
     public class TraderSettingsController : Controller
     {
-        private readonly RequestHelper _requestHelper;
-        private readonly Json _json;
         private readonly TraderService _traderService;
 
         public TraderSettingsController()
         {
-            _requestHelper = new RequestHelper();
-            _json = new Json();
             _traderService = new TraderService();
         }
 

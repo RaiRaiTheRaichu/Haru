@@ -2,10 +2,8 @@ using System.Threading.Tasks;
 using Haru.Framework.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Notification;
-using Haru.Framework.Helpers;
 using Haru.Framework.Http;
 using Haru.Services;
-using Haru.Framework.Utils;
 using Haru.Helpers;
 
 namespace Haru.Controllers
@@ -13,15 +11,11 @@ namespace Haru.Controllers
     public class NotifierChannelCreateController : Controller
     {
         private readonly ControllerHelper _controllerHelper;
-        private readonly RequestHelper _requestHelper;
-        private readonly Json _json;
         private readonly NotificationService _notificationService;
 
         public NotifierChannelCreateController()
         {
             _controllerHelper = new ControllerHelper();
-            _requestHelper = new RequestHelper();
-            _json = new Json();
             _notificationService = new NotificationService();
         }
 

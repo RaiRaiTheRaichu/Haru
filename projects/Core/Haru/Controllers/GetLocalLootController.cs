@@ -4,23 +4,17 @@ using Haru.Framework.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Request;
 using Haru.Models.EFT.Location;
-using Haru.Framework.Helpers;
 using Haru.Framework.Http;
 using Haru.Services;
-using Haru.Framework.Utils;
 
 namespace Haru.Controllers
 {
     public class GetLocalLootController : Controller
     {
-        private readonly RequestHelper _requestHelper;
-        private readonly Json _json;
         private readonly LocationService _locationService;
 
         public GetLocalLootController()
         {
-            _requestHelper = new RequestHelper();
-            _json = new Json();
             _locationService = new LocationService();
         }
 

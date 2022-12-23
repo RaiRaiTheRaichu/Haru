@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Haru.Framework.Models;
-using Haru.Framework.Helpers;
 using Haru.Framework.Http;
 using Haru.Services;
 using Haru.Framework.Utils;
@@ -9,15 +8,11 @@ namespace Haru.Controllers
 {
     public class ResourceController : Controller
     {
-        private readonly RequestHelper _requestHelper;
-        private readonly Json _json;
         private readonly Resource _resource;
         private readonly ResourceService _resourceService;
 
         public ResourceController()
         {
-            _requestHelper = new RequestHelper();
-            _json = new Json();
             _resource = new Resource();
             _resourceService = new ResourceService();
         }

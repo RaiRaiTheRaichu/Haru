@@ -2,23 +2,17 @@
 using Haru.Framework.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Friend;
-using Haru.Framework.Helpers;
 using Haru.Framework.Http;
 using Haru.Services;
-using Haru.Framework.Utils;
 
 namespace Haru.Controllers
 {
     public class FriendListController : Controller
     {
-        private readonly RequestHelper _requestHelper;
-        private readonly Json _json;
         private readonly FriendService _friendService;
 
         public FriendListController()
         {
-            _requestHelper = new RequestHelper();
-            _json = new Json();
             _friendService = new FriendService();
         }
 

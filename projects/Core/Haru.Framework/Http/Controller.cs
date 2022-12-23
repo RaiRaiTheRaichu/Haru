@@ -1,5 +1,6 @@
 using System.Text;
 using System.Threading.Tasks;
+using Haru.Framework.Helpers;
 using Haru.Framework.Models;
 using Haru.Framework.Utils;
 
@@ -7,10 +8,14 @@ namespace Haru.Framework.Http
 {
     public abstract class Controller
     {
+        protected readonly RequestHelper _requestHelper;
+        protected readonly Json _json;
         private readonly Zlib _zlib;
 
         public Controller()
         {
+            _requestHelper = new RequestHelper();
+            _json = new Json();
             _zlib = new Zlib();
         }
 

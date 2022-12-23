@@ -1,23 +1,17 @@
 using System.Threading.Tasks;
 using Haru.Framework.Models;
 using Haru.Models.EFT;
-using Haru.Framework.Helpers;
 using Haru.Framework.Http;
 using Haru.Services;
-using Haru.Framework.Utils;
 
 namespace Haru.Controllers
 {
     public class CustomizationStorageController : Controller
     {
-        private readonly RequestHelper _requestHelper;
-        private readonly Json _json;
         private readonly ProfileService _profileService;
 
         public CustomizationStorageController()
         {
-            _requestHelper = new RequestHelper();
-            _json = new Json();
             _profileService = new ProfileService();
         }
 

@@ -1,23 +1,17 @@
 using System.Threading.Tasks;
 using Haru.Framework.Models;
 using Haru.Models.EFT;
-using Haru.Framework.Helpers;
 using Haru.Framework.Http;
 using Haru.Services;
-using Haru.Framework.Utils;
 
 namespace Haru.Controllers
 {
     public class ServerListController : Controller
     {
-        private readonly RequestHelper _requestHelper;
-        private readonly Json _json;
         private readonly ServerService _serverService;
 
         public ServerListController()
         {
-            _requestHelper = new RequestHelper();
-            _json = new Json();
             _serverService = new ServerService();
         }
 

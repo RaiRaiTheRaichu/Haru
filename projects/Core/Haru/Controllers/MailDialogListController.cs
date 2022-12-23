@@ -2,23 +2,17 @@
 using Haru.Framework.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Mail;
-using Haru.Framework.Helpers;
 using Haru.Framework.Http;
 using Haru.Services;
-using Haru.Framework.Utils;
 
 namespace Haru.Controllers
 {
     public class MailDialogListController : Controller
     {
-        private readonly RequestHelper _requestHelper;
-        private readonly Json _json;
         private readonly MailService _mailService;
 
         public MailDialogListController()
         {
-            _requestHelper = new RequestHelper();
-            _json = new Json();
             _mailService = new MailService();
         }
 
