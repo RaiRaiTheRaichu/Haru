@@ -30,9 +30,8 @@ namespace Haru.Framework.Events
         public Task Subscribe<T>(object instance, Func<T, Task> callback) where T : Event
         {
             var eventType = typeof(T);
-            List<EventListener> listeners = null;
 
-            if (!_listeners.TryGetValue(eventType, out listeners))
+            if (!_listeners.TryGetValue(eventType, out List<EventListener> listeners))
             {
                 _listeners.Add(eventType, new List<EventListener>());
             }
@@ -49,9 +48,8 @@ namespace Haru.Framework.Events
         public Task UnSubscribe<T>(object instance, Func<T, Task> callback) where T : Event
         {
             var eventType = typeof(T);
-            List<EventListener> listeners = null;
 
-            if (!_listeners.TryGetValue(eventType, out listeners))
+            if (!_listeners.TryGetValue(eventType, out List<EventListener> listeners))
             {
                 return Task.CompletedTask;
             }
@@ -69,9 +67,8 @@ namespace Haru.Framework.Events
         public async Task Invoke<T>(T eventData = null) where T : Event
         {
             var eventType = typeof(T);
-            List<EventListener> listeners = null;
 
-            if (!_listeners.TryGetValue(eventType, out listeners))
+            if (!_listeners.TryGetValue(eventType, out List<EventListener> listeners))
             {
                 return;
             }
