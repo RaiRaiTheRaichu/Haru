@@ -148,20 +148,19 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("maxItemCountInLocation")]
         public ItemLimitModel[] MaxItemCount;
 
-        [JsonProperty("_id")]
-        public string LocationId;
+        [JsonProperty("BossLocationSpawn")]
+        public BossLocationSpawnModel[] BossLocationSpawn;
 
         [JsonProperty("Id")]
         public string Id;
+
+        [JsonProperty("_id")]
+        public string LocationId;
         
         [JsonProperty("Loot")]
         public LootModel[] Loot;
 
         [JsonProperty("Banners")]
         public BannerModel[] Banners;
-
-        // todo
-        [JsonProperty("BossLocationSpawn")]
-        public object[] BossLocationSpawn;
     }
 }
