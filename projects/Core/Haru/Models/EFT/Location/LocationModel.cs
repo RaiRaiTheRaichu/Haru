@@ -145,8 +145,6 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("DisabledForScav")]
         public bool DisabledForScav;
 
-        // wooopwooooop
-
         [JsonProperty("maxItemCountInLocation")]
         public ItemLimitModel[] MaxItemCount;
 
@@ -155,10 +153,9 @@ namespace Haru.Models.EFT.Location
 
         [JsonProperty("Id")]
         public string Id;
-
-        // todo
+        
         [JsonProperty("Loot")]
-        public object[] Loot;
+        public LootModel[] Loot;
 
         [JsonProperty("Banners")]
         public BannerModel[] Banners;
