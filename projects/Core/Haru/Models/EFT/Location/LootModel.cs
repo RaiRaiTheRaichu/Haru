@@ -6,7 +6,7 @@ namespace Haru.Models.EFT.Location
 {
     public struct LootModel
     {
-        [JsonProperty("id")]
+        [JsonProperty("Id")]
         public string LootId;
 
         [JsonProperty("IsStatic")]
