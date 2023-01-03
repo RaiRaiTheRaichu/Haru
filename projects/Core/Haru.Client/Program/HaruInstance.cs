@@ -30,8 +30,8 @@ namespace Haru.Client.Program
             var patchHelper = new PatchHelper();
 
             new BattlEyePatch(patchHelper).Enable();
-            new ConsistencyGeneralPatch(patchHelper).Enable();
-            new ConsistencyBundlesPatch(patchHelper).Enable();
+            // new ConsistencyGeneralPatch(patchHelper).Enable();
+            // new ConsistencyBundlesPatch(patchHelper).Enable();
             new SslCertificatePatch(patchHelper).Enable();
             new ZOutputCanReadPatch().Enable();
             new ZOutputCanWritePatch().Enable();
