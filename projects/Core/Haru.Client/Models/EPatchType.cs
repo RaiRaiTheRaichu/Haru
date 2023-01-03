@@ -2,6 +2,7 @@
 {
     public enum EPatchType
     {
-        Prefix = 0
+        Prefix = 0,
+        Postfix
     }
 }

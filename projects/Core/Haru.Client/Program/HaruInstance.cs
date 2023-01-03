@@ -29,6 +29,8 @@ namespace Haru.Client.Program
             new BattlEyePatch().Enable();
             new ConsistencyMultiPatch().Enable();
             new ConsistencySinglePatch().Enable();
+            new SslCertificateGeneralPatch().Enable();
+            new SslCertificateTexturePatch().Enable();
             new ZOutputCanReadPatch().Enable();
             new ZOutputCanWritePatch().Enable();
 

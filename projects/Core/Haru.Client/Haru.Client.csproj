@@ -26,9 +26,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)'=='Debug-BepInEx'">
-    <Reference PrivateAssets="All" Private="False" Include="BepInEx" HintPath="..\..\References\BepInEx.dll" />
-    <Reference PrivateAssets="All" Private="False" Include="UnityEngine" HintPath="..\..\References\UnityEngine.dll" />
-    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.CoreModule" HintPath="..\..\References\UnityEngine.CoreModule.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="BepInEx" HintPath="..\..\References\BepInEx.dll" />    
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)'=='Debug-BepInEx'">
@@ -49,6 +47,10 @@
     <Reference PrivateAssets="All" Private="False" Include="FilesChecker" HintPath="..\..\References\FilesChecker.dll" />
     <Reference PrivateAssets="All" Private="False" Include="Microsoft.Extensions.ObjectPool" HintPath="..\..\References\bsg.microsoft.extensions.objectpool.dll" />
     <Reference PrivateAssets="All" Private="False" Include="System.Buffers" HintPath="..\..\References\System.Buffers.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="UnityEngine" HintPath="..\..\References\UnityEngine.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.CoreModule" HintPath="..\..\References\UnityEngine.CoreModule.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.UnityWebRequestModule" HintPath="..\..\References\UnityEngine.UnityWebRequestModule.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.UnityWebRequestTextureModule" HintPath="..\..\References\UnityEngine.UnityWebRequestTextureModule.dll" />
   </ItemGroup>
 
   <ItemGroup>

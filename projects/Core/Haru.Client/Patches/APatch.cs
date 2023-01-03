@@ -29,6 +29,10 @@ namespace Haru.Client.Patches
                     harmony.Patch(GetOriginalMethod(), prefix: GetPatchMethod());
                     return;
 
+                case EPatchType.Postfix:
+                    harmony.Patch(GetOriginalMethod(), postfix: GetPatchMethod());
+                    return;
+
                 default:
                     throw new NotImplementedException("Patch type");
             }
