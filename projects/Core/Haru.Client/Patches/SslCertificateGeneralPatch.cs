@@ -1,5 +1,6 @@
 // In order to allow usage of self-signed certificates
 
+using System.Linq;
 using System.Reflection;
 using UnityEngine.Networking;
 using Haru.Client.Models;
