@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using HarmonyLib;
+using Haru.Client.Helpers;
 using Haru.Client.Patches;
 using Haru.Servers;
 using Haru.Framework.DI;
@@ -26,11 +27,12 @@ namespace Haru.Client.Program
             await _container.Bind<IEventBus, EventBus>();
 
             // patch client
-            new BattlEyePatch().Enable();
-            new ConsistencyGeneralPatch().Enable();
-            new ConsistencyBundlesPatch().Enable();
-            new SslCertificateGeneralPatch().Enable();
-            new SslCertificateTexturePatch().Enable();
+            var patchHelper = new PatchHelper();
+
+            new BattlEyePatch(patchHelper).Enable();
+            new ConsistencyGeneralPatch(patchHelper).Enable();
+            new ConsistencyBundlesPatch(patchHelper).Enable();
+            new SslCertificatePatch(patchHelper).Enable();
             new ZOutputCanReadPatch().Enable();
             new ZOutputCanWritePatch().Enable();
 

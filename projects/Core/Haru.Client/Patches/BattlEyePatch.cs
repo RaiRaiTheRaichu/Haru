@@ -1,29 +1,34 @@
-// BE closes the game due to injected assemblies, so it needs to be patched out
+// Prevent BE from detecting injected assemblies.
 
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Haru.Client.Models;
-using Haru.Client.Utils;
+using Haru.Client.Helpers;
 
 namespace Haru.Client.Patches
 {
     public class BattlEyePatch : APatch
     {
+        private PatchHelper _patchHelper;
         private static PropertyInfo _succeed;
 
-        public BattlEyePatch()
+        public BattlEyePatch(PatchHelper patchHelper)
         {
             Id = "com.haru.client.battleye";
             Type = EPatchType.Prefix;
+            _patchHelper = patchHelper;
         }
 
         protected override MethodBase GetOriginalMethod()
         {
             var name = "RunValidation";
-            var types = PatchConstants.Instance.EftTypes;
-            var type = types.Single(x => x?.GetMethod(name) != null);
+            var type = _patchHelper.EftTypes.Single(x => x?.GetMethod(name) != null);
+
+            // find succeed property
             _succeed = type.GetProperties().Single(x => x.Name == "Succeed");
+
+            // find method
             return type.GetMethod(name);
         }
 
