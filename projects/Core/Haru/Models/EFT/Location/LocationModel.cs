@@ -8,12 +8,25 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("Enabled")]
         public bool Enabled;
 
+        [JsonProperty("EnabledCoop")]
+        public bool EnabledCoop;
+
         [JsonProperty("Locked")]
         public bool Locked;
+
+        [JsonProperty("Insurance")]
+        public bool Insurance;
+
+        [JsonProperty("SafeLocation")]
+        public bool SafeLocation;
 
         [JsonProperty("Name")]
         public string Name;
 
+        [JsonProperty("Description")]
+        public string Description;
+
+        // todo, contains props "path" (string) and "rcid" (string)
         [JsonProperty("Scene")]
         public ResourceModel Scene;
 
@@ -23,17 +36,43 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("RequiredPlayerLevel")]
         public int RequiredPlayerLevel;
 
+        [JsonProperty("PmcMaxPlayersInGroup")]
+        public int PmcMaxPlayersInGroup;
+
+        [JsonProperty("ScavMaxPlayersInGroup")]
+        public int ScavMaxPlayersInGroup;
+
         [JsonProperty("MinPlayers")]
         public int MinPlayers;
 
+        [JsonProperty("MaxCoopGroup")]
+        public int MaxCoopGroup;
+
         [JsonProperty("MaxPlayers")]
         public int MaxPlayers;
+
+        [JsonProperty("exit_count")]
+        public int exit_count;
+
+        [JsonProperty("exit_access_time")]
+        public int exit_access_time;
+
+        [JsonProperty("exit_time")]
+        public int exit_time;
+
+        // todo, contains props "path" (string) and "rcid" (string)
+        [JsonProperty("Preview")]
+        public ResourceModel Preview;
 
         [JsonProperty("IconX")]
         public int IconX;
 
         [JsonProperty("IconY")]
         public int IconY;
+
+        // todo, unknown, always an empty array in all locations
+        [JsonProperty("filter_ex")]
+        public object[] filter_ex;
 
         [JsonProperty("waves")]
         public WaveModel[] Waves;
@@ -51,6 +90,9 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("escape_time_limit")]
         public int EscapeTimeLimit;
 
+        [JsonProperty("EscapeTimeLimitCoop")]
+        public int EscapeTimeLimitCoop;
+
         [JsonProperty("Rules")]
         public string Rules;
 
@@ -60,6 +102,13 @@ namespace Haru.Models.EFT.Location
         // todo
         [JsonProperty("doors")]
         public object[] Doors;
+
+        // todo, unknown value
+        [JsonProperty("tmp_location_field_remove_me")]
+        public int tmp_location_field_remove_me;
+
+        [JsonProperty("MinDistToExitPoint")]
+        public int MinDistToExitPoint;
 
         [JsonProperty("MaxDistToFreePoint")]
         public int MaxDistToFreePoint;
@@ -76,6 +125,9 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("OcculsionCullingEnabled")]
         public bool OcculsionCullingEnabled;
 
+        [JsonProperty("GlobalLootChanceModifier")]
+        public float GlobalLootChanceModifier;
+
         [JsonProperty("OldSpawn")]
         public bool OldSpawn;
 
@@ -91,6 +143,9 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("BotStop")]
         public int BotStop;
 
+        [JsonProperty("BotMaxTimePlayer")]
+        public int BotMaxTimePlayer;
+
         [JsonProperty("BotSpawnTimeOnMin")]
         public int BotSpawnTimeOnMin;
 
@@ -102,6 +157,9 @@ namespace Haru.Models.EFT.Location
 
         [JsonProperty("BotSpawnTimeOffMax")]
         public int BotSpawnTimeOffMax;
+
+        [JsonProperty("BotMaxPlayer")]
+        public int BotMaxPlayer;
 
         [JsonProperty("BotEasy")]
         public int BotEasy;
@@ -131,6 +189,24 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("UnixDateTime")]
         public long UnixDateTime;
 
+        [JsonProperty("users_gather_seconds")]
+        public int users_gather_seconds;
+
+        [JsonProperty("users_spawn_seconds_n")]
+        public int users_spawn_seconds_n;
+
+        [JsonProperty("users_spawn_seconds_n2")]
+        public int users_spawn_seconds_n2;
+
+        [JsonProperty("users_summon_seconds")]
+        public int users_summon_seconds;
+
+        [JsonProperty("sav_summon_seconds")]
+        public int sav_summon_seconds;
+
+        [JsonProperty("matching_min_seconds")]
+        public int matching_min_seconds;
+
         // todo
         [JsonProperty("MinMaxBots")]
         public object[] MinMaxBots;
@@ -145,16 +221,20 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("DisabledForScav")]
         public bool DisabledForScav;
 
-        [JsonProperty("maxItemCountInLocation")]
-        public ItemLimitModel[] MaxItemCount;
-
         [JsonProperty("BossLocationSpawn")]
         public BossLocationSpawnModel[] BossLocationSpawn;
+
+        // todo
+        [JsonProperty("SpawnPointParams")]
+        public SpawnPointParamsModel[] SpawnPointParams;
+
+        [JsonProperty("maxItemCountInLocation")]
+        public ItemLimitModel[] MaxItemCount;
 
         [JsonProperty("Id")]
         public string Id;
 
-        [JsonProperty("_id")]
+        [JsonProperty("_Id")]
         public string LocationId;
         
         [JsonProperty("Loot")]
@@ -162,5 +242,12 @@ namespace Haru.Models.EFT.Location
 
         [JsonProperty("Banners")]
         public BannerModel[] Banners;
+
+        [JsonProperty("GenerateLocalLootCache")]
+        public bool GenerateLocalLootCache;
+
+        // todo
+        [JsonProperty("AirdropParameters")]
+        public AirdropParametersModel[] AirdropParameters;
     }
 }
