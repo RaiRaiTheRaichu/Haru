@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Haru.Client.Models;
+using Haru.Client.Utils;
 
 namespace Haru.Client.Patches
 {
@@ -20,7 +21,7 @@ namespace Haru.Client.Patches
         protected override MethodBase GetOriginalMethod()
         {
             var name = "RunValidation";
-            var types = typeof(ESideType).Assembly.GetTypes();
+            var types = PatchConstants.Instance.EftTypes;
             var type = types.Single(x => x?.GetMethod(name) != null);
             _succeed = type.GetProperties().Single(x => x.Name == "Succeed");
             return type.GetMethod(name);

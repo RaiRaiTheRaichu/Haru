@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine.Networking;
 using Haru.Client.Models;
+using Haru.Client.Utils;
 
 namespace Haru.Client.Patches
 {
@@ -17,8 +18,8 @@ namespace Haru.Client.Patches
 
         protected override MethodBase GetOriginalMethod()
         {
-            var flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
-            var types = typeof(ESideType).Assembly.GetTypes();
+            var flags = PatchConstants.Instance.FlagsPrivateInstance;
+            var types = PatchConstants.Instance.EftTypes;
             var type = types.Single(x => x.BaseType == typeof(CertificateHandler));
             return type.GetMethod("ValidateCertificate", flags);
         }
