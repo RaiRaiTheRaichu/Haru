@@ -1,4 +1,4 @@
-﻿namespace Haru.Client.Patches
+﻿namespace Haru.Client.Models
 {
     public enum EPatchType
     {

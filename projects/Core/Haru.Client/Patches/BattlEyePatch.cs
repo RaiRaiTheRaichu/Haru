@@ -5,13 +5,17 @@ using Haru.Client.Models;
 
 namespace Haru.Client.Patches
 {
-    public class BattlEyePatch : IPatch
+    public class BattlEyePatch : APatch
     {
-        public string Id { get => "com.Haru.Client.Patches.battleye"; }
-        public EPatchType Type { get => EPatchType.Prefix; }
         private static PropertyInfo _succeed;
 
-        public MethodBase GetOriginalMethod()
+        public BattlEyePatch()
+        {
+            Id = "com.haru.client.battleye";
+            Type = EPatchType.Prefix;
+        }
+
+        protected override MethodBase GetOriginalMethod()
         {
             var name = "RunValidation";
             var types = typeof(ESideType).Assembly.GetTypes();

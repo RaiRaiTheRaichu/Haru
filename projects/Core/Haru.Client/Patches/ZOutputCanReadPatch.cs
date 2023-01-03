@@ -8,12 +8,15 @@ using Haru.Client.Models;
 
 namespace Haru.Client.Patches
 {
-    public class ZOutputCanReadPatch : IPatch
+    public class ZOutputCanReadPatch : APatch
     {
-        public string Id { get => "com.Haru.Client.Patches.zoutputcanread"; }
-        public EPatchType Type { get => EPatchType.Prefix; }
+        public ZOutputCanReadPatch()
+        {
+            Id = "com.haru.client.zoutputcanread";
+            Type = EPatchType.Prefix;
+        }
 
-        public MethodBase GetOriginalMethod()
+        protected override MethodBase GetOriginalMethod()
         {
             return typeof(ZOutputStream).GetProperty("CanRead").GetGetMethod();
         }

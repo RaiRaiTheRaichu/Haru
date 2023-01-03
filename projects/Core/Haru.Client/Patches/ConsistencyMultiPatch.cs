@@ -6,12 +6,15 @@ using Haru.Client.Models;
 
 namespace Haru.Client.Patches
 {
-    public class ConsistencyMultiPatch : IPatch
+    public class ConsistencyMultiPatch : APatch
     {
-        public string Id { get => "com.Haru.Client.Patches.consistencymulti"; }
-        public EPatchType Type { get => EPatchType.Prefix; }
+        public ConsistencyMultiPatch()
+        {
+            Id = "com.haru.client.consistencymulti";
+            Type = EPatchType.Prefix;
+        }
 
-        public MethodBase GetOriginalMethod()
+        protected override MethodBase GetOriginalMethod()
         {
             var types = typeof(ICheckResult).Assembly.GetTypes();
             var type = types.Single(x => x.Name == "ConsistencyController");

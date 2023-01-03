@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using HarmonyLib;
-using Haru.Client.Models;
 using Haru.Client.Patches;
 using Haru.Servers;
 using Haru.Framework.DI;
@@ -27,11 +26,11 @@ namespace Haru.Client.Program
             await _container.Bind<IEventBus, EventBus>();
 
             // patch client
-            Patch(new BattlEyePatch());
-            Patch(new ConsistencyMultiPatch());
-            Patch(new ConsistencySinglePatch());
-            Patch(new ZOutputCanReadPatch());
-            Patch(new ZOutputCanWritePatch());
+            new BattlEyePatch().Enable();
+            new ConsistencyMultiPatch().Enable();
+            new ConsistencySinglePatch().Enable();
+            new ZOutputCanReadPatch().Enable();
+            new ZOutputCanWritePatch().Enable();
 
             // run servers
             GeneralServer.Instance.Start();
@@ -52,24 +51,6 @@ namespace Haru.Client.Program
             }
 
             return _containerBuilder.BuildInjection();
-        }
-
-        private void Patch(IPatch patch)
-        {
-            var harmony = new HarmonyLib.Harmony(patch.Id);
-            var flags = BindingFlags.NonPublic | BindingFlags.Static;
-            var mi = patch.GetType().GetMethod("Patch", flags);
-            var method = new HarmonyMethod(mi);
-
-            switch (patch.Type)
-            {
-                case EPatchType.Prefix:
-                    harmony.Patch(patch.GetOriginalMethod(), prefix: method);
-                    return;
-
-                default:
-                    throw new NotImplementedException("Patch type");
-            }
         }
     }
 }
