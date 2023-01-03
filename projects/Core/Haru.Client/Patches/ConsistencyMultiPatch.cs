@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿// To allow modders to modify existing EFT files
+
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using FilesChecker;

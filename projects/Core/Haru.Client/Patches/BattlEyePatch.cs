@@ -1,3 +1,5 @@
+// BE closes the game due to injected assemblies, so it needs to be patched out
+
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
