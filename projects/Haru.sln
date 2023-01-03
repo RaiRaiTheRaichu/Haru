@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B3D9CDE2-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mods", "Mods", "{49845725-F3F2-4C5B-901D-701C4226B925}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haru.Loader", "Core\Haru.Loader\Haru.Loader.csproj", "{67B9B0A3-AEC8-4669-A6FD-6AFFECA31327}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haru.Client", "Core\Haru.Client\Haru.Client.csproj", "{67B9B0A3-AEC8-4669-A6FD-6AFFECA31327}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haru.Framework", "Core\Haru.Framework\Haru.Framework.csproj", "{75B29DAD-C59E-4C3C-B40F-81032FBFE680}"
 EndProject

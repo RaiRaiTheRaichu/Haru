@@ -1,10 +1,11 @@
 ﻿#if LOADER_BEPINEX
 using BepInEx;
 using Haru.Framework.DI;
+using Haru.Client.Program;
 
-namespace Haru.Loader
+namespace Haru.Client
 {
-    [BepInPlugin("com.haru.loader", HaruInfo.Name, HaruInfo.Version)]
+    [BepInPlugin("com.Haru.Client", HaruInfo.Name, HaruInfo.Version)]
     public class Plugin : BaseUnityPlugin
     {
         private void Awake()

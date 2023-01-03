@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using HarmonyLib;
-using Haru.Patches;
+using Haru.Client.Models;
+using Haru.Client.Patches;
 using Haru.Servers;
 using Haru.Framework.DI;
 using Haru.Framework.Events;
 
-namespace Haru.Loader
+namespace Haru.Client.Program
 {
     public class HaruInstance
     {
@@ -56,7 +57,9 @@ namespace Haru.Loader
         private void Patch(IPatch patch)
         {
             var harmony = new HarmonyLib.Harmony(patch.Id);
-            var method = new HarmonyMethod(patch.GetPatchMethod());
+            var flags = BindingFlags.NonPublic | BindingFlags.Static;
+            var mi = patch.GetType().GetMethod("Patch", flags);
+            var method = new HarmonyMethod(mi);
 
             switch (patch.Type)
             {

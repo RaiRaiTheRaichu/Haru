@@ -1,7 +1,7 @@
 ﻿using System;
 using FilesChecker;
 
-namespace Haru.Patches
+namespace Haru.Client.Models
 {
     public class FakeFileCheckerResult : ICheckResult
     {

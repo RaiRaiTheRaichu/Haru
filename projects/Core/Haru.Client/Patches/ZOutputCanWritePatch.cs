@@ -4,23 +4,18 @@
 
 using System.Reflection;
 using ComponentAce.Compression.Libs.zlib;
+using Haru.Client.Models;
 
-namespace Haru.Patches
+namespace Haru.Client.Patches
 {
-    public class ZOutputCanReadPatch : IPatch
+    public class ZOutputCanWritePatch : IPatch
     {
-        public string Id { get => "com.haru.patches.zoutputcanread"; }
+        public string Id { get => "com.Haru.Client.Patches.zoutputcanread"; }
         public EPatchType Type { get => EPatchType.Prefix; }
 
         public MethodBase GetOriginalMethod()
         {
-            return typeof(ZOutputStream).GetProperty("CanRead").GetGetMethod();
-        }
-
-        public MethodInfo GetPatchMethod()
-        {
-            var flags = BindingFlags.NonPublic | BindingFlags.Static;
-            return GetType().GetMethod("Patch", flags);
+            return typeof(ZOutputStream).GetProperty("CanWrite").GetGetMethod();
         }
 
         protected static bool Patch(ref bool __result)

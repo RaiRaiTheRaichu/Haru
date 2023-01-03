@@ -2,12 +2,13 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using FilesChecker;
+using Haru.Client.Models;
 
-namespace Haru.Patches
+namespace Haru.Client.Patches
 {
     public class ConsistencySinglePatch : IPatch
     {
-        public string Id { get => "com.haru.patches.consistencysingle"; }
+        public string Id { get => "com.Haru.Client.Patches.consistencysingle"; }
         public EPatchType Type { get => EPatchType.Prefix; }
 
         public MethodBase GetOriginalMethod()
@@ -17,12 +18,6 @@ namespace Haru.Patches
             return type.GetMethods().Single(
                 x => x.Name == "EnsureConsistencySingle" &&
                 x.ReturnType == typeof(Task<ICheckResult>));
-        }
-
-        public MethodInfo GetPatchMethod()
-        {
-            var flags = BindingFlags.NonPublic | BindingFlags.Static;
-            return GetType().GetMethod("Patch", flags);
         }
 
         protected static bool Patch(ref Task __result)

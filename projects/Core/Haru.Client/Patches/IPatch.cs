@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Haru.Patches
+namespace Haru.Client.Models
 {
     public interface IPatch
     {
@@ -8,6 +8,5 @@ namespace Haru.Patches
         string Id { get; }
 
         MethodBase GetOriginalMethod();
-        MethodInfo GetPatchMethod();
     }
 }
