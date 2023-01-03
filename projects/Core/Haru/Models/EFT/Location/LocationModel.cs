@@ -70,14 +70,14 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("IconY")]
         public int IconY;
 
-        // todo, unknown, always an empty array in all locations
+        // todo, always empty array
         [JsonProperty("filter_ex")]
         public object[] filter_ex;
 
         [JsonProperty("waves")]
         public WaveModel[] Waves;
 
-        // todo
+        // todo, always empty array
         [JsonProperty("limits")]
         public object[] Limits;
 
@@ -99,7 +99,7 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("IsSecret")]
         public bool IsSecret;
 
-        // todo
+        // todo, always empty array
         [JsonProperty("doors")]
         public object[] Doors;
 
@@ -182,9 +182,8 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("DisabledScavExits")]
         public string DisabledScavExits;
 
-        // todo
         [JsonProperty("AccessKeys")]
-        public object[] AccessKeys;
+        public string[] AccessKeys;
 
         [JsonProperty("UnixDateTime")]
         public long UnixDateTime;
@@ -207,16 +206,14 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("matching_min_seconds")]
         public int matching_min_seconds;
 
-        // todo
         [JsonProperty("MinMaxBots")]
-        public object[] MinMaxBots;
+        public BotLimitModel[] MinMaxBots;
 
         [JsonProperty("BotLocationModifier")]
         public BotModifierModel BotLocationModifier;
 
-        // todo
         [JsonProperty("exits")]
-        public object[] Exits;
+        public ExitsModel[] Exits;
 
         [JsonProperty("DisabledForScav")]
         public bool DisabledForScav;
@@ -224,7 +221,6 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("BossLocationSpawn")]
         public BossLocationSpawnModel[] BossLocationSpawn;
 
-        // todo
         [JsonProperty("SpawnPointParams")]
         public SpawnPointParamsModel[] SpawnPointParams;
 
@@ -246,7 +242,6 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("GenerateLocalLootCache")]
         public bool GenerateLocalLootCache;
 
-        // todo
         [JsonProperty("AirdropParameters")]
         public AirdropParametersModel[] AirdropParameters;
     }
