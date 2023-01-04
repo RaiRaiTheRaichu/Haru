@@ -8,7 +8,7 @@ namespace Haru.Models.EFT.Location
         [JsonProperty("Center")]
         public Vector3<float> Center;
 
-        [JsonProperty("Center")]
+        [JsonProperty("Radius")]
         public int Radius;
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using HarmonyLib;
 using Haru.Client.Helpers;
 using Haru.Client.Patches;
 using Haru.Servers;
@@ -32,7 +30,7 @@ namespace Haru.Client.Program
             new BattlEyePatch(patchHelper).Enable();
             // new ConsistencyGeneralPatch(patchHelper).Enable();
             // new ConsistencyBundlesPatch(patchHelper).Enable();
-            new SslCertificatePatch(patchHelper).Enable();
+            // new SslCertificatePatch(patchHelper).Enable();
             new ZOutputCanReadPatch().Enable();
             new ZOutputCanWritePatch().Enable();
 
