@@ -11,6 +11,16 @@ namespace Haru.Client.Patches
     public class HttpProtocolPatch : APatch
     {
         private PatchHelper _patchHelper;
+        private static readonly Dictionary<ETransportProtocolType, string> _protocols;
+
+        static HttpProtocolPatch()
+        {
+            _protocols = new Dictionary<ETransportProtocolType, string>()
+            {
+                { ETransportProtocolType.HTTPS, "http://" },
+                { ETransportProtocolType.WSS, "ws://" }
+            };
+        }
 
         public HttpProtocolPatch(PatchHelper patchHelper)
         {
@@ -28,12 +38,7 @@ namespace Haru.Client.Patches
 
         protected static bool Patch(ref Dictionary<ETransportProtocolType, string> __result)
         {
-            __result = new Dictionary<ETransportProtocolType, string>()
-            {
-                { ETransportProtocolType.HTTPS, "http://" },
-                { ETransportProtocolType.WSS, "ws://" }
-            };
-
+            __result = _protocols;
             return false;
         }
     }
