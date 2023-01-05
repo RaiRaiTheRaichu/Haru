@@ -1,6 +1,7 @@
 ﻿// To allow modders to modify existing EFT files.
 // This one is for all other EFT files.
 
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Haru.Client.Models;
@@ -21,7 +22,10 @@ namespace Haru.Client.Patches
 
         protected override MethodBase GetOriginalMethod()
         {
-            return _patchHelper.FindMethod("RunFilesChecking", true);
+            var name = "RunFilesChecking";
+            var flags = PatchHelper.PrivateFlags;
+            return _patchHelper.EftTypes.Single(x => x?.GetMethod(name, flags) != null)
+                .GetMethod(name, flags);
         }
 
         protected static bool Patch(ref Task __result)
