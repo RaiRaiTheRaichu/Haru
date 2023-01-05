@@ -33,6 +33,10 @@ namespace Haru.Client.Patches
                     harmony.Patch(GetOriginalMethod(), postfix: GetPatchMethod());
                     return;
 
+                case EPatchType.Transpile:
+                    harmony.Patch(GetOriginalMethod(), transpiler: GetPatchMethod());
+                    return;
+
                 default:
                     throw new NotImplementedException("Patch type");
             }
