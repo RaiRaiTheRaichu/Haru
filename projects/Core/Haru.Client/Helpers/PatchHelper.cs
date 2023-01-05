@@ -1,6 +1,6 @@
 using System;
-using System.Linq;
 using System.Reflection;
+using EFT;
 
 namespace Haru.Client.Helpers
 {
@@ -12,7 +12,7 @@ namespace Haru.Client.Helpers
 
         public PatchHelper()
         {
-            EftTypes = typeof(ESideType).Assembly.GetTypes();
+            EftTypes = typeof(TarkovApplication).Assembly.GetTypes();
         }
     }
 }
