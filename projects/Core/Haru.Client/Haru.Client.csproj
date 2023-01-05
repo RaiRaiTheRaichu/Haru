@@ -26,18 +26,12 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)'=='Debug-BepInEx'">
-    <Reference PrivateAssets="All" Private="False" Include="BepInEx" HintPath="..\..\References\BepInEx.dll" />    
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(Configuration)'=='Debug-BepInEx'">
+    <Reference PrivateAssets="All" Private="False" Include="BepInEx" HintPath="..\..\References\BepInEx.dll" />
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="HarmonyX" Version="2.9.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)'=='Debug-Melon'">
     <Reference PrivateAssets="All" Private="False" Include="MelonLoader" HintPath="..\..\References\MelonLoader.dll" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(Configuration)'=='Debug-Melon'">
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="HarmonyX" Version="2.9.0" />
   </ItemGroup>
 
@@ -49,7 +43,6 @@
     <Reference PrivateAssets="All" Private="False" Include="UnityEngine" HintPath="..\..\References\UnityEngine.dll" />
     <Reference PrivateAssets="All" Private="False" Include="UnityEngine.CoreModule" HintPath="..\..\References\UnityEngine.CoreModule.dll" />
     <Reference PrivateAssets="All" Private="False" Include="UnityEngine.UnityWebRequestModule" HintPath="..\..\References\UnityEngine.UnityWebRequestModule.dll" />
-    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.UnityWebRequestTextureModule" HintPath="..\..\References\UnityEngine.UnityWebRequestTextureModule.dll" />
   </ItemGroup>
 
   <ItemGroup>
