@@ -1,6 +1,5 @@
 #if LOADER_NLOG
 using NLog.Targets;
-using Haru.Framework.DI;
 using Haru.Client.Program;
 
 namespace Haru.Client
