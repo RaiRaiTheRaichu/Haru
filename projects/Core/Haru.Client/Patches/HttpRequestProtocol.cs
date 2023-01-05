@@ -14,7 +14,6 @@ namespace Haru.Client.Patches
     public class HttpRequestPatch : APatch
     {
         private readonly PatchHelper _patchHelper;
-        private static PropertyInfo _protocols;
 
         public HttpRequestPatch(PatchHelper patchHelper)
         {
