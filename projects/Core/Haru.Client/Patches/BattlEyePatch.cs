@@ -13,7 +13,7 @@ namespace Haru.Client.Patches
         private PatchHelper _patchHelper;
         private static PropertyInfo _succeed;
 
-        public BattlEyePatch(PatchHelper patchHelper)
+        public BattlEyePatch(PatchHelper patchHelper) : base()
         {
             Id = "com.haru.client.battleye";
             Type = EPatchType.Prefix;

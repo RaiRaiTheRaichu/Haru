@@ -12,7 +12,7 @@ namespace Haru.Client.Patches
     {
         private PatchHelper _patchHelper;
 
-        public SslCertificatePatch(PatchHelper patchHelper)
+        public SslCertificatePatch(PatchHelper patchHelper) : base()
         {
             Id = "com.haru.client.sslcertificate";
             Type = EPatchType.Prefix;

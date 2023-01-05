@@ -11,7 +11,7 @@ namespace Haru.Client.Patches
     {
         private PatchHelper _patchHelper;
 
-        public HttpUrlPatch(PatchHelper patchHelper)
+        public HttpUrlPatch(PatchHelper patchHelper) : base()
         {
             Id = "com.haru.client.httpurl";
             Type = EPatchType.Prefix;

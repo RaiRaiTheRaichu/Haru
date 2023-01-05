@@ -15,7 +15,7 @@ namespace Haru.Client.Patches
     {
         private readonly PatchHelper _patchHelper;
 
-        public HttpRequestPatch(PatchHelper patchHelper)
+        public HttpRequestPatch(PatchHelper patchHelper) : base()
         {
             Id = "com.haru.client.httprequest";
             Type = EPatchType.Transpile;

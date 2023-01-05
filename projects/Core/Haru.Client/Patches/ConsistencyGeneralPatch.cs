@@ -13,7 +13,7 @@ namespace Haru.Client.Patches
     {
         private PatchHelper _patchHelper;
 
-        public ConsistencyGeneralPatch(PatchHelper patchHelper)
+        public ConsistencyGeneralPatch(PatchHelper patchHelper) : base()
         {
             Id = "com.haru.client.consistencygeneral";
             Type = EPatchType.Prefix;

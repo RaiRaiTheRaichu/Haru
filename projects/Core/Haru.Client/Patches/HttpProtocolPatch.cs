@@ -22,7 +22,7 @@ namespace Haru.Client.Patches
             };
         }
 
-        public HttpProtocolPatch(PatchHelper patchHelper)
+        public HttpProtocolPatch(PatchHelper patchHelper) : base()
         {
             Id = "com.haru.client.httpprotocol";
             Type = EPatchType.Prefix;

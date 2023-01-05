@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using HarmonyLib;
+using Haru.Framework.Utils;
 using Haru.Client.Models;
 
 namespace Haru.Client.Patches
@@ -9,6 +10,12 @@ namespace Haru.Client.Patches
     {
         public EPatchType Type { get; protected set; }
         public string Id { get; protected set; }
+        private readonly Log _log;
+
+        public APatch()
+        {
+            _log = new Log();
+        }
 
         protected abstract MethodBase GetOriginalMethod();
 
@@ -19,8 +26,10 @@ namespace Haru.Client.Patches
             return new HarmonyMethod(mi);
         }
 
-        public void Enable()
+        public async void Enable()
         {
+            await _log.Write($"Running patch {Id}");
+
             var harmony = new HarmonyLib.Harmony(Id);
 
             switch (Type)

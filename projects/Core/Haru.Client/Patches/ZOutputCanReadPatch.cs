@@ -10,7 +10,7 @@ namespace Haru.Client.Patches
 {
     public class ZOutputCanReadPatch : APatch
     {
-        public ZOutputCanReadPatch()
+        public ZOutputCanReadPatch() : base()
         {
             Id = "com.haru.client.zoutputcanread";
             Type = EPatchType.Prefix;
