@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)'=='Debug-NLog'">
-    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+    <PackageReference Include="HarmonyX" Version="2.9.0" />
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="NLog" Version="4.7.15" />
   </ItemGroup>
 

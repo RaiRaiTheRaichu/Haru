@@ -31,12 +31,11 @@ namespace Haru.Client.Patches
             // so we gotta use reflection to get the property.
             var obj = __args[0];
             var type = __originalMethod.GetParameters()[0].GetType();
-            var properties = type.GetProperties();
-            var url = properties.Single(x => x.Name == "Url");
-            var value = (string)url.GetValue(obj);
+            var url = type.GetProperties().Single(x => x.Name == "Url");
 
             // strip protocols
-            url.SetValue(obj, value.Replace("https://", "").Replace("http://", ""));
+            var val = (string)url.GetValue(obj);
+            url.SetValue(obj, val.Replace("https://", "").Replace("http://", ""));
 
             // run HttpProtocolPatch
             return true;
