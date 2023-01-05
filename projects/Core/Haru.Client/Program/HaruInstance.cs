@@ -31,6 +31,7 @@ namespace Haru.Client.Program
             new ConsistencyGeneralPatch(patchHelper).Enable();
             new ConsistencyBundlesPatch(patchHelper).Enable();
             new SslCertificatePatch(patchHelper).Enable();
+            new HttpUrlPatch(patchHelper).Enable();
             new HttpProtocolPatch(patchHelper).Enable();
             new HttpRequestPatch(patchHelper).Enable();
             new ZOutputCanReadPatch().Enable();

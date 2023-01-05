@@ -32,6 +32,7 @@ namespace Haru.Client.Patches
         protected static IEnumerable<CodeInstruction> Patch(ILGenerator generator, IEnumerable<CodeInstruction> instructions)
         {
             // opcode to find
+            // note: for some reason EFT concats https:// at the beginning of the string
             var searchCode = new CodeInstruction(OpCodes.Ldstr, "https://");
 
             // find instruction
