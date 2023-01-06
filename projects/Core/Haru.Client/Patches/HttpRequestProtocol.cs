@@ -1,5 +1,6 @@
 ﻿// Change request protocol from HTTPS to HTTP.
 // Ported from SPT-Aki, originally written by Terkoiz.
+// Thanks to Bepis for helping me port this.
 
 using System.Collections.Generic;
 using System.Linq;
@@ -31,31 +32,46 @@ namespace Haru.Client.Patches
 
         protected static IEnumerable<CodeInstruction> Patch(ILGenerator generator, IEnumerable<CodeInstruction> instructions)
         {
-            // opcode to find
-            // note: for some reason EFT concats https:// at the beginning of the string
-            var searchCode = new CodeInstruction(OpCodes.Ldstr, "https://");
-
-            // find instruction
-            var codes = new List<CodeInstruction>(instructions);
-            var searchIndex = -1;
-
-            for (var i = 0; i < codes.Count; i++)
-            {
-                if (codes[i].opcode == searchCode.opcode && codes[i].operand == searchCode.operand)
-                {
-                    searchIndex = i;
-                    break;
-                }
-            }
-
-            if (searchIndex == -1)
-            {
-                // error: cannot find reference code.
-                return instructions;
-            }
+            /* 
+             * ```
+             * Token: 0x06002012 RID: 8210 RVA: 0x000AFDAC File Offset: 0x000ADFAC
+             * public static \uE2C2.CreateFromLegacyParams(\uE2C3 legacyParams)
+             * {
+             *     ldarg.0 NULL
+             *     ldfld string ::Url
+             *     ldc.i4 11698
+             *     call static string ::(int )
+             *     ldstr ""
+             *     callvirt string string::Replace(string oldValue, string newValue)
+             *     ldc.i4.1 NULL
+             *     ...
+             * }
+             * ```
+             * Our target is the 4th instruction.
+             * ```
+             * ldc.i4 11698
+             * call static string ::(int )
+             * ```
+             * This is an obfuscated string, the real instruction is:
+             * ```
+             * ldstr "https://"
+             * ```
+             * We want to replace this with the following:
+             * ```
+             * ldstr "http://"
+             * ```
+             * Problem is that the original instruction consumes i4 from the stack (ldc.i4 11698).
+             * To handle this, we simply have to patch it out:
+             * ```
+             * nop
+             * ldstr "http://"
+             * ```
+             */
 
             // change opcode
-            codes[searchIndex] = new CodeInstruction(OpCodes.Ldstr, "http://");
+            var codes = new List<CodeInstruction>(instructions);
+            codes[2] = new CodeInstruction(OpCodes.Nop);
+            codes[3] = new CodeInstruction(OpCodes.Ldstr, "http://");
 
             // apply changes
             return codes.AsEnumerable();
