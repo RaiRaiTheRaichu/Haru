@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyName>NLog.Senko.Langpack</AssemblyName>
     <RootNamespace>Senko.Langpack</RootNamespace>
     <LangVersion>7.3</LangVersion>
     <Configurations>Debug</Configurations>
@@ -36,8 +35,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference PrivateAssets="All" Private="False" Include="UnityEngine" HintPath="..\..\References\UnityEngine.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.CoreModule" HintPath="..\..\References\UnityEngine.CoreModule.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
-    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="NLog" Version="4.7.15" />
   </ItemGroup>
 
   <ItemGroup>

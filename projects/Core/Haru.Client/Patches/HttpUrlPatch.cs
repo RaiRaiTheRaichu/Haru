@@ -25,13 +25,13 @@ namespace Haru.Client.Patches
                 .GetMethod(name);
         }
 
-        protected static bool Patch(ref object[] __args, MethodBase __originalMethod)
+        protected static bool Patch(object[] __args, MethodBase __originalMethod)
         {
             // we're dealing here with an obfuscated object (GStruct22 legacyParams),
             // so we gotta use reflection to get the property.
             var obj = __args[0];
-            var type = __originalMethod.GetParameters()[0].GetType();
-            var url = type.GetProperties().Single(x => x.Name == "Url");
+            var type = __originalMethod.GetParameters()[0].ParameterType;
+            var url = type.GetField("Url");
 
             // strip protocols
             var val = (string)url.GetValue(obj);

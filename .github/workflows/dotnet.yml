@@ -15,22 +15,22 @@ jobs:
         artifactpath: [ "" ]
         artifactname: [ "" ]
         include:
+          - buildpath: ./projects/Core/Haru.Framework/Haru.Framework.csproj
+            buildconf: Debug
+            artifactpath: ./projects/Core/Haru.Framework/bin/Debug/net472
+            artifactname: haru-framework
+          - buildpath: ./projects/Core/Haru/Haru.csproj
+            buildconf: Debug
+            artifactpath: ./projects/Core/Haru/bin/Debug/net472
+            artifactname: haru
           - buildpath: ./projects/Core/Haru.ModApi/Haru.ModApi.csproj
             buildconf: Debug
             artifactpath: ./projects/Core/Haru.ModApi/bin/Debug/net472
             artifactname: haru-modapi
           - buildpath: ./projects/Core/Haru.Client/Haru.Client.csproj
-            buildconf: Debug-BepInEx
-            artifactpath: ./projects/Core/Haru.Client/bin/Debug-BepInEx/net472
-            artifactname: haru-bepinex
-          - buildpath: ./projects/Core/Haru.Client/Haru.Client.csproj
-            buildconf: Debug-Melon
-            artifactpath: ./projects/Core/Haru.Client/bin/Debug-Melon/net472
-            artifactname: haru-melon
-          - buildpath: ./projects/Core/Haru.Client/Haru.Client.csproj
-            buildconf: Debug-NLog
-            artifactpath: ./projects/Core/Haru.Client/bin/Debug-NLog/net472
-            artifactname: haru-nlog
+            buildconf: Debug
+            artifactpath: ./projects/Core/Haru.Client/bin/Debug/net472
+            artifactname: haru-client
           - buildpath: ./projects/Mods/Senko.EftData/Senko.EftData.csproj
             buildconf: Debug
             artifactpath: ./projects/Mods/Senko.EftData/bin/Debug/net472

@@ -1,18 +1,16 @@
-﻿#if LOADER_BEPINEX
-using BepInEx;
-using Haru.Framework.DI;
-using Haru.Client.Program;
+﻿using BepInEx;
 
 namespace Haru.Client
 {
-    [BepInPlugin("com.Haru.Client", HaruInfo.Name, HaruInfo.Version)]
+    [BepInPlugin("com.haru.client", "Haru", "1.0.0")]
     public class Plugin : BaseUnityPlugin
     {
-        private void Awake()
+        public Plugin()
         {
-            var haru = new HaruInstance();
-            haru.Run();
+            var program = new Program();
+            //program.SetupDI();
+            program.SetupPatches();
+            program.SetupServers();
         }
     }
 }
-#endif
