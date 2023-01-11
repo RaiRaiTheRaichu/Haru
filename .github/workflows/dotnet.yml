@@ -10,40 +10,24 @@ jobs:
   build:
     strategy:
       matrix:
-        buildpath: [ "" ]
-        buildconf: [ "" ]
-        artifactpath: [ "" ]
         artifactname: [ "" ]
+        artifactpath: [ "" ]
         include:
-          - buildpath: ./projects/Core/Haru.Framework/Haru.Framework.csproj
-            buildconf: Debug
+          - artifactname: haru-framework
             artifactpath: ./projects/Core/Haru.Framework/bin/Debug/net472
-            artifactname: haru-framework
-          - buildpath: ./projects/Core/Haru/Haru.csproj
-            buildconf: Debug
+          - artifactname: haru
             artifactpath: ./projects/Core/Haru/bin/Debug/net472
-            artifactname: haru
-          - buildpath: ./projects/Core/Haru.ModApi/Haru.ModApi.csproj
-            buildconf: Debug
+          - artifactname: haru-modapi
             artifactpath: ./projects/Core/Haru.ModApi/bin/Debug/net472
-            artifactname: haru-modapi
-          - buildpath: ./projects/Core/Haru.Client/Haru.Client.csproj
-            buildconf: Debug
+          - artifactname: haru-client
             artifactpath: ./projects/Core/Haru.Client/bin/Debug/net472
-            artifactname: haru-client
-          - buildpath: ./projects/Mods/Senko.EftData/Senko.EftData.csproj
-            buildconf: Debug
+          - artifactname: senko-eftdata
             artifactpath: ./projects/Mods/Senko.EftData/bin/Debug/net472
-            artifactname: senko-eftdata
-          - buildpath: ./projects/Mods/Senko.Langpack/Senko.Langpack.csproj
-            buildconf: Debug
+          - artifactname: senko-langpack
             artifactpath: ./projects/Mods/Senko.Langpack/bin/Debug/net472
-            artifactname: senko-langpack
         exclude:
-          - buildpath: ""
-            buildconf: ""
+          - artifactname: ""
             artifactpath: ""
-            artifactname: ""
 
     runs-on: ubuntu-latest
 
@@ -56,8 +40,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
+    - name: Restore projects
+      run: dotnet restore --configfile ./projects/Nuget.config ./projects/Haru.sln
+
     - name: Build projects
-      run: dotnet build --nologo --configuration ${{ matrix.buildconf }} ${{ matrix.buildpath }}
+      run: dotnet build --nologo --no-restore ./projects/Haru.sln
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
