@@ -15,18 +15,14 @@
 			{
 				"label": "NuGet: Restore",
 				"type": "shell",
-				"command": "dotnet restore"
+				"command": "dotnet restore --nologo --configfile Nuget.config"
 			},
 			{
 				"label": "Build: Debug",
 				"type": "shell",
-				"command": "dotnet build --no-restore --nologo --configuration Debug",
-				"group": "build"
-			},
-			{
-				"label": "Build: Release",
-				"type": "shell",
-				"command": "dotnet build --no-restore --nologo --configuration Release",
+				"command": "dotnet build --nologo --no-restore",
+				"dependsOn": [ "NuGet: Restore" ],
+				"dependsOrder": "sequence",
 				"group": "build"
 			}
 		]
