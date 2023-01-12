@@ -17,11 +17,11 @@
 
 1. vscode > terminal > run build task...
 2. copy-paste the following to `<gamedir>/EscapeFromTarkov_Data/Managed`:
-    - `Core/Haru.Client/bin/Debug/net472/Newtonsoft.Json.dll`
-    - `Core/Haru.Client/bin/Debug/net472/Haru.dll`
-    - `Core/Haru.Client/bin/Debug/net472/Haru.ModApi.dll`
-    - `Core/Haru.Client/bin/Debug/net472/Haru.Server.exe`
-    - `Core/Haru.Client/bin/Debug/net472/Senko.EftData.dll`
+    - `Core/Haru.Server/bin/Debug/net472/Newtonsoft.Json.dll`
+    - `Core/Haru.Server/bin/Debug/net472/Haru.dll`
+    - `Core/Haru.Server/bin/Debug/net472/Haru.ModApi.dll`
+    - `Core/Haru.Server/bin/Debug/net472/Haru.Server.exe`
+    - `Core/Haru.Server/bin/Debug/net472/Senko.EftData.dll`
 3. copy-paste the following to `<gamedir>/BepInEx/plugins`:
     - `Core/Haru.Client/bin/Debug/net472/Haru.Client.dll`
 
