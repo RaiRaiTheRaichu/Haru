@@ -1,4 +1,9 @@
-﻿using BepInEx;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using BepInEx;
+using Haru.Client.Helpers;
+using Haru.Client.Patches;
 
 namespace Haru.Client
 {
@@ -7,8 +12,35 @@ namespace Haru.Client
     {
         public Plugin()
         {
-            var program = new Program();
-            program.SetupPatches();
+            RunPatcher();
+            RunServer();
+        }
+
+        public void RunServer()
+        {
+            var filename = Path.Combine(Environment.CurrentDirectory, "EscapeFromTarkov_Data/Managed/Haru.Server.exe");
+            var processInfo = new ProcessStartInfo()
+            {
+                FileName = filename,
+                UseShellExecute = false,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
+            
+            var process = new Process();
+            process.StartInfo = processInfo;
+            process.Start();
+        }
+
+        public void RunPatcher()
+        {
+            var patchHelper = new PatchHelper();
+
+            new BattlEyePatch(patchHelper).Enable();
+            new ConsistencyGeneralPatch(patchHelper).Enable();
+            new ConsistencyBundlesPatch(patchHelper).Enable();
+            new SslCertificatePatch(patchHelper).Enable();
+            new ZOutputCanReadPatch().Enable();
+            new ZOutputCanWritePatch().Enable();
         }
     }
 }

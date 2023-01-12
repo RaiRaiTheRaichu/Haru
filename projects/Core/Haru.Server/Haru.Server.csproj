@@ -16,7 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Haru\Haru.csproj" />
     <ProjectReference Include="..\..\Mods\Senko.EftData\Senko.EftData.csproj" />
-    <ProjectReference Include="..\..\Mods\Senko.Langpack\Senko.Langpack.csproj" />
   </ItemGroup>
 
 </Project>

@@ -65,6 +65,7 @@ namespace Haru.Utils
             await _log.Write($"Certificate thumbprint: {cert.Thumbprint}");
         }
 
+        // NET::ERR_CERT_AUTHORITY_INVALID
         private X509Certificate2 GenerateSelfSigned(string name, DateTime start, DateTime end)
         {
             using (RSA rsa = RSA.Create(2048))
