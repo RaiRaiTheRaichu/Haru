@@ -33,7 +33,7 @@ option. For code injection, you're required to use an external framework like
 BepInEx. 
 
 In addition, deobfuscation is required since you have to patch this method to
-comminucate over HTTP without SSL:
+communicate over HTTP without SSL:
 
 ```cs
 // Token: 0x06002012 RID: 8210 RVA: 0x001BF6DC File Offset: 0x001BD8DC
