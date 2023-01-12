@@ -151,13 +151,6 @@ Contains optional languages from EFT (live).
 
 ## Resources
 
-### Game version
-
-**Name**           | **Version**
------------------- | ----------------
-Escape From Tarkov | 0.12.12.32.20243
-Unity Engine       | 2019.4.39f1
-
 ### EFT map data locations
 
 `Senko.EftData` always uses the first entry (example: `bigmap1`).
