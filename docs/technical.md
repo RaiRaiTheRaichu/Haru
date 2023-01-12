@@ -1,13 +1,12 @@
 # Technical
 
-## EFT implementation details
+## EFT details
 
 ### Security mechanisms
 
 EFT implements BattlEye as it's anti-cheat solution. It is capable of detecting
 newly-injected assemblies into the game as long as the namespace doesn't match
-with one already in EFT (BettlEye's namespace scanning is case-insensitive,
-which can be taken advantage of). 
+with one already in EFT.
 
 In addtion, EFT implements a custom integrity validator (`FilesChecker.dll`).
 It's not capable of detecting newly added files.
@@ -19,27 +18,54 @@ missing). Payload for HTTP and WS is compressed with ZLib (RFC1950). Using
 `deflate` in the HTTP header will cause unity to attempt at automatic
 decompression which will fail and softlock the game.
 
-Optional measures implemented in EFT is support for HTTPS/WSS and AES-256
-encryption for HTTP payloads. These are not required for the server and are
-left unimplemented.
+Most of EFT's comminucation is over HTTPS protocol, synchronization events are
+usually over WSS protocol.
 
 ## Haru implementation details
 
 ### Defeating security mechanisms
 
-BattlEye has a glaring security risk: it's reliance on `NLog.dll`. The problem
-with Nlog is code injection as it contains an automated module loading
-mechanism (`NLog targets`). After NLog and all other dependencies have been
-resolved, BattlEye initializes.
+EFT 0.12.12.32.20243 and older allowed for abusing NLog targets by making your
+own dll a NLog target without implementing any logging targets, then drop
+`NLog.dll.nlog` inside `<gamedir>/EscapeFromTarkov_Data/Managed/` which
+contained a reference to your dll. Since EFT 0.13.0.x this is no longer an
+option. For code injection, you're required to use an external framework like
+BepInEx. 
 
-This gives Haru two things:
+In addition, deobfuscation is required since you have to patch this method to
+comminucate over HTTP without SSL:
 
-1. A way of automated code injection (Register custom target in
-   `NLog.dll.nlog`)
-2. Timing to defeat BattlEye (patch BattlEye's validator class in EFT)
+```cs
+// Token: 0x06002012 RID: 8210 RVA: 0x001BF6DC File Offset: 0x001BD8DC
+public static \uE2c2 CreateFromLegacyParams(\uE2C3 legacyParams)
+{
+    string[] array = legacyParams.Url.Replace(\uED30.\uE000(11698), "").Split(new char[]
+    {
+        '/'
+    }, 2);
+    string backendName = array[0];
+    string backendMethod = \uED30.\uE000(31052) + array[1];
+    return new \uE2c2
+    {
+        // code stripped
+    };
+}
+```
 
-Unlike Aki, Haru doesn't use deobfuscation to work, thus it doesn't have to
-deal with the integrity validator.
+The problem here is that names like `\uE2C3` are parsed as `` in instructions.
+This means that harmony(x) cannot parse it properly, resulting in invalid
+instructions:
+
+```
+[Error  : Unity Log] InvalidProgramException:
+Invalid IL code in DMD<CreateFromLegacyParams>?1322007296:_::CreateFromLegacyParams ():
+IL_0040: call      0x0a000004
+```
+
+Using deobfuscation means that `ConsistencyInfo`'s hash would be invalid. In
+order to bypass this, you either change `ConsistencyInfo`'s hash for
+`Assembly-CSharp.dll` or patch the methods running `FileChecker.dll` code. This
+project does the latter by patching `TarkovApplication`'s base type.
 
 ### Deobfuscation
 
