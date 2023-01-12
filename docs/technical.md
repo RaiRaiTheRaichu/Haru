@@ -41,6 +41,18 @@ This gives Haru two things:
 Unlike Aki, Haru doesn't use deobfuscation to work, thus it doesn't have to
 deal with the integrity validator.
 
+### Deobfuscation
+
+1. Deobfuscate using `de4dot` (set strtok to the token of the deobfuscation function)
+
+```
+de4dot-x64.exe Assembly-CSharp.dll
+de4dot-x64.exe --un-name "!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\$<>.*$&^[a-zA-Z_<{$][a-zA-Z_0-9<>{}$.`-]*$" "Assembly-CSharp-cleaned.dll" --strtyp delegate --strtok 0x0600F6FF
+```
+
+2. Copy-paste `Assembly-CSharp-cleaned-cleaned.dll` into `<gamedir>/EscapeFromTarkov_Data/Managed/`
+3. Open DnSpy > Open `Assembly-CSharp-cleaned-cleaned.dll` > Save Module
+
 ### Server implementation
 
 - Server: gets incoming requests
