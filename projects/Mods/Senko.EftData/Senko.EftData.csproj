@@ -35,12 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference PrivateAssets="All" Private="False" Include="UnityEngine" HintPath="..\..\References\UnityEngine.dll" />
-    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.CoreModule" HintPath="..\..\References\UnityEngine.CoreModule.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
   </ItemGroup>
 

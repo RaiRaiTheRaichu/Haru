@@ -1,4 +1,4 @@
-﻿using Haru.Framework.Utils;
+﻿using Haru.Utils;
 
 namespace Haru.ModApi
 {

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>Haru.Server</RootNamespace>
+    <LangVersion>7.3</LangVersion>
+    <Configurations>Debug</Configurations>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Haru\Haru.csproj" />
+    <ProjectReference Include="..\..\Mods\Senko.EftData\Senko.EftData.csproj" />
+    <ProjectReference Include="..\..\Mods\Senko.Langpack\Senko.Langpack.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -5,18 +5,18 @@ namespace Haru.Models.EFT.Location
     public struct BotModifierModel
     {
         [JsonProperty("AccuracySpeed")]
-        public int AccuracySpeed;
+        public float AccuracySpeed;
 
         [JsonProperty("Scattering")]
-        public int Scattering;
+        public float Scattering;
 
         [JsonProperty("GainSight")]
-        public int GainSight;
+        public float GainSight;
 
         [JsonProperty("MarksmanAccuratyCoef")]
         public int MarksmanAccuratyCoef;
 
         [JsonProperty("VisibleDistance")]
-        public int VisibleDistance;
+        public float VisibleDistance;
     }
 }

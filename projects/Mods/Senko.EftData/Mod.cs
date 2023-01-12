@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Haru.Databases;
 using Haru.ModApi;
+using Haru.Databases;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Handbook;
 using Haru.Models.EFT.Hideout;

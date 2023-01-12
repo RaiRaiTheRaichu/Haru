@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Haru.Framework.Models;
-using Haru.Framework.Http;
+using Haru.Models;
+using Haru.Http;
 using Haru.Helpers;
 
 namespace Haru.Controllers

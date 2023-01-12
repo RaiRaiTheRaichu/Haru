@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Haru.Framework.Models;
+using Haru.Models;
 using Haru.Models.EFT.Request;
-using Haru.Framework.Http;
+using Haru.Http;
 using Haru.Helpers;
 
 namespace Haru.Controllers

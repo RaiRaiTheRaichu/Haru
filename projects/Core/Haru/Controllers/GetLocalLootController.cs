@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using Haru.Exceptions;
-using Haru.Framework.Models;
+using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Request;
 using Haru.Models.EFT.Location;
-using Haru.Framework.Http;
+using Haru.Http;
 using Haru.Services;
 
 namespace Haru.Controllers

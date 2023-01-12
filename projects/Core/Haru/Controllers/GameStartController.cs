@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using Haru.Framework.Models;
+using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Game;
-using Haru.Framework.Http;
+using Haru.Http;
 using Haru.Services;
 
 namespace Haru.Controllers

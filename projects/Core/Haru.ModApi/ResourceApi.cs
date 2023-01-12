@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Threading.Tasks;
-using Haru.Framework.Utils;
+using Haru.Utils;
 
 namespace Haru.ModApi
 {

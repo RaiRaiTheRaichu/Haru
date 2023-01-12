@@ -1,5 +1,5 @@
 using Haru.Controllers;
-using Haru.Framework.Http;
+using Haru.Http;
 
 namespace Haru.Servers
 {
@@ -23,7 +23,7 @@ namespace Haru.Servers
 
         public GeneralServer()
         {
-            Server = new Server("http://127.0.0.1:8000/");
+            Server = new Server("https://127.0.0.1:8000/");
 
             var router = Server.Router;
 

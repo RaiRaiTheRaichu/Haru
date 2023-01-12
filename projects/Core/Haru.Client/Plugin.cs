@@ -8,9 +8,7 @@ namespace Haru.Client
         public Plugin()
         {
             var program = new Program();
-            //program.SetupDI();
             program.SetupPatches();
-            program.SetupServers();
         }
     }
 }

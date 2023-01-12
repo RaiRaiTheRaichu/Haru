@@ -31,7 +31,7 @@ namespace Haru.Models.EFT.Location
         public ResourceModel Scene;
 
         [JsonProperty("Area")]
-        public int Area;
+        public float Area;
 
         [JsonProperty("RequiredPlayerLevel")]
         public int RequiredPlayerLevel;

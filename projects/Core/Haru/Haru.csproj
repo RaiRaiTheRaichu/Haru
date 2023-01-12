@@ -19,8 +19,4 @@
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Haru.Framework\Haru.Framework.csproj" />
-  </ItemGroup>
-
 </Project>
