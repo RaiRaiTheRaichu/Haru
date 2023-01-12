@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
+using WebSocketSharp.Net;
 using Haru.Framework.Exceptions;
 using Haru.Framework.Models;
 using Haru.Framework.Helpers;

@@ -5,7 +5,7 @@ namespace Haru.Servers
 {
     public class GeneralServer
     {
-        public HttpServer Server;
+        public Server Server;
 
         private static GeneralServer _instance;
         public static GeneralServer Instance
@@ -23,7 +23,7 @@ namespace Haru.Servers
 
         public GeneralServer()
         {
-            Server = new HttpServer("http://127.0.0.1:8000/");
+            Server = new Server("http://127.0.0.1:8000/");
 
             var router = Server.Router;
 

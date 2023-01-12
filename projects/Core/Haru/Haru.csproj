@@ -11,6 +11,7 @@
     <Reference PrivateAssets="All" Private="False" Include="ComponentAce.Compression.Libs.zlib" HintPath="..\..\References\bsg.componentace.compression.libs.zlib.dll" />
     <Reference PrivateAssets="All" Private="False" Include="Microsoft.Extensions.ObjectPool" HintPath="..\..\References\bsg.microsoft.extensions.objectpool.dll" />
     <Reference PrivateAssets="All" Private="False" Include="System.Buffers" HintPath="..\..\References\System.Buffers.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="websocket-sharp" HintPath="..\..\References\websocket-sharp.dll" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-using System.Net;
+using WebSocketSharp.Net;
 
 namespace Haru.Framework.Models
 {

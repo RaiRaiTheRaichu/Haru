@@ -1,7 +1,7 @@
 using System.IO;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using WebSocketSharp.Net;
 using Haru.Framework.Utils;
 
 namespace Haru.Framework.Helpers
