@@ -13,12 +13,12 @@ jobs:
         artifactname: [ "" ]
         artifactpath: [ "" ]
         include:
-          - artifactname: haru-framework
-            artifactpath: ./projects/Core/Haru.Framework/bin/Debug/net472
           - artifactname: haru
             artifactpath: ./projects/Core/Haru/bin/Debug/net472
           - artifactname: haru-modapi
             artifactpath: ./projects/Core/Haru.ModApi/bin/Debug/net472
+          - artifactname: haru-server
+            artifactpath: ./projects/Core/Haru.Server/bin/Debug/net472
           - artifactname: haru-client
             artifactpath: ./projects/Core/Haru.Client/bin/Debug/net472
           - artifactname: senko-eftdata
