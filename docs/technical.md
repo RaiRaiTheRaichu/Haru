@@ -72,12 +72,35 @@ with one already in EFT.
 Both Aki and Haru patches the battleye validation method used across most
 places to always return successfully.
 
-### Server implementation
+### Zlib compression
 
 A HTTP packet from EFT does not include proper headers (compression headers are
 missing). Payload for HTTP and WS is compressed with ZLib (RFC1950). Using
 `deflate` in the HTTP header will cause unity to attempt at automatic
 decompression which will fail and softlock the game.
+
+Haru doesn't rely on EFT's `SimpleZlib` for (de/in)flation, instead opts for
+using `ZOutputStream` directly because EFT's implementation is flawed. The
+ArrayPool's buffer is rented before returning, causing overlap, which results
+in corrupted data.
+
+### Embedding the server into EFT
+
+I tried this, but it ended up being too much of a hassle.
+
+Unity's `System.Security.Cryptography.X509Certificates` doesn't implement
+`CertificateRequest` (code stripping? dotnet 462?). It also doesn't support COM
+so `CertEnroll` from managed space is not an option. I haven't tried p/invoke
+yet with a custom-written C assembly for enrolling certificates. Bundling
+openssl is too much of a hassle.
+
+In addition, even with a proper generated certificate the HTTP server didn't
+want to bind to it. This resulted in failure of establishing SSL connection.
+
+Another obvious problem is the inability to test the server outside of the
+game. Testing suffered a lot more from it than I hoped.
+
+### Server architecture
 
 - Server: gets incoming requests
 - Router: assigns a Controller to handle a request
@@ -85,13 +108,6 @@ decompression which will fail and softlock the game.
 - Service: generates data for a response
 - Repository: database access
 - Database: stores data
-
-### FAQ
-
-> Why doesn't Haru use SimpleZlib for (de)compression?
-
-EFT's implementation is flawed for async operations. The ArrayPool's buffer is
-rented before returning, causing overlap, which results in corrupted data.
 
 ## Mod Info
 
