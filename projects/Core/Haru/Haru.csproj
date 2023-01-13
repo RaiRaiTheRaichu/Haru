@@ -10,13 +10,13 @@
   <ItemGroup>
     <Reference PrivateAssets="All" Private="False" Include="ComponentAce.Compression.Libs.zlib" HintPath="..\..\References\bsg.componentace.compression.libs.zlib.dll" />
     <Reference PrivateAssets="All" Private="False" Include="Microsoft.Extensions.ObjectPool" HintPath="..\..\References\bsg.microsoft.extensions.objectpool.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="Newtonsoft.Json" HintPath="..\..\References\Newtonsoft.Json.dll" />
     <Reference PrivateAssets="All" Private="False" Include="System.Buffers" HintPath="..\..\References\System.Buffers.dll" />
     <Reference PrivateAssets="All" Private="False" Include="websocket-sharp" HintPath="..\..\References\websocket-sharp.dll" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
