@@ -6,6 +6,7 @@
     <LangVersion>7.3</LangVersion>
     <Configurations>Debug</Configurations>
     <OutputType>Exe</OutputType>
+    <StartupObject>Haru.Server.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
