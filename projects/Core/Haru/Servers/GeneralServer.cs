@@ -51,6 +51,7 @@ namespace Haru.Servers
             router.AddController<MenuLocaleController>();
             router.AddController<NotifierChannelCreateController>();
             router.AddController<ProfileStatusController>();
+            router.AddController<RaidConfigurationController>();
             router.AddController<ResourceController>();
             router.AddController<ServerListController>();
             router.AddController<SettingsController>();

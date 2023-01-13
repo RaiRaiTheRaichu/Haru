@@ -29,6 +29,7 @@
     <EmbeddedResource Include="Resources\client.globals.json" />
     <EmbeddedResource Include="Resources\client.hideout.areas.json" />
     <EmbeddedResource Include="Resources\client.hideout.production.recipes.json" />
+    <EmbeddedResource Include="Resources\client.hideout.qte.list.json" />
     <EmbeddedResource Include="Resources\client.items.json" />
     <EmbeddedResource Include="Resources\client.quest.list.json" />
     <EmbeddedResource Include="Resources\client.repeatalbequests.activityperiods.json" />
