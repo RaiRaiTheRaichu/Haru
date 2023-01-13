@@ -63,24 +63,18 @@ namespace Haru.Http
 
         public async Task Run(HttpListenerRequest request, HttpListenerResponse response)
         {
+            // log path
             var path = _requestHelper.GetPath(request);
+            await _log.Write(path);
+
+            // run controller
             var context = new RouterContext()
             {
                 Request = request,
                 Response = response
             };
-
-            try
-            {
-                var controller = _controllers.First(x => x.IsMatch(context));
-                await _log.Write(path);
-                await controller.Run(context);
-            }
-            catch (InvalidOperationException)
-            {
-                response.Close();
-                await _log.Write($"Path has no controller: {path}");
-            }
+            var controller = _controllers.First(x => x.IsMatch(context));
+            await controller.Run(context);
         }
     }
 }
