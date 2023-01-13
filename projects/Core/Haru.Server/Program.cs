@@ -18,7 +18,6 @@ namespace Haru.Server
         {
             // load mods
             Senko.EftData.Mod.Run();
-            //Senko.LangPack.Mod.Run();
 
             // load certificate
             var cert = new Cert();
