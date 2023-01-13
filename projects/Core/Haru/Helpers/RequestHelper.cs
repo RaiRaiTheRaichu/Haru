@@ -39,7 +39,7 @@ namespace Haru.Helpers
             {
                 await request.InputStream.CopyToAsync(ms);
                 var zlibbed = ms.ToArray();
-                var bytes = await _zlib.Decompress(zlibbed);
+                var bytes = _zlib.Decompress(zlibbed);
                 return Encoding.UTF8.GetString(bytes);
             }
         }

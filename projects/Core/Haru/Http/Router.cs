@@ -70,17 +70,16 @@ namespace Haru.Http
                 Response = response
             };
 
-            await _log.Write(path);
-
             try
             {
                 var controller = _controllers.First(x => x.IsMatch(context));
+                await _log.Write(path);
                 await controller.Run(context);
             }
             catch (InvalidOperationException)
             {
                 response.Close();
-                throw new UrlPathNotFoundException(context.Request.Url);
+                await _log.Write($"Path has no controller: {path}");
             }
         }
     }

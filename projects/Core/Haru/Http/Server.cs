@@ -1,7 +1,6 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
 using Haru.Utils;
-using WebSocketSharp;
 using WebSocketSharp.Server;
 
 namespace Haru.Http
@@ -21,7 +20,6 @@ namespace Haru.Http
 
             var uri = new Uri(address);
             _httpsv = new HttpServer(uri.Port, true);
-            _httpsv.Log.Level = LogLevel.Trace;
             
             Router = new Router();
             Address = address;
