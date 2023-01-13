@@ -8,6 +8,7 @@ namespace Haru.Controllers
 {
     public class GameVersionValidateController : Controller
     {
+        private const string _gameVersion = "0.13.0.1.21531";
         private readonly ControllerHelper _controllerHelper;
 
         public GameVersionValidateController()
@@ -26,7 +27,7 @@ namespace Haru.Controllers
             var info = _json.Deserialize<VersionValidateModel>(request);
             var body = _controllerHelper.GetEmptyResponse();
             
-            if (info.Version.Major != "0.12.12.32.20243")
+            if (info.Version.Major != _gameVersion)
             {
                 // error message taken from "/client/menu/locale/en"
                 body.ErrorCode = 1;
