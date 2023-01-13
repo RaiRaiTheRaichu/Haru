@@ -23,7 +23,7 @@ namespace Haru.Repositories
             return _database.Names;
         }
 
-        public GlobalModel GetGlobal(string id)
+        public Dictionary<string, string> GetGlobal(string id)
         {
             return _database.Globals[id];
         }

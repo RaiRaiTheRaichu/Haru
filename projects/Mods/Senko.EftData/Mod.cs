@@ -54,7 +54,7 @@ namespace Senko.EftData
         private static async void LoadGlobalLocale(string lang)
         {
             var json = await ResourceApi.GetText($"Database.Locales.all-{lang}.json");
-            var body = JsonApi.Deserialize<ResponseModel<GlobalModel>>(json);
+            var body = JsonApi.Deserialize<ResponseModel<Dictionary<string, string>>>(json);
             _database.Globals.Add(lang, body.Data);
         }
 

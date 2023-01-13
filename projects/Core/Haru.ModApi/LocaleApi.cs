@@ -26,7 +26,7 @@ namespace Haru.ModApi
             return _localeRepository.GetNames();
         }
 
-        public static GlobalModel GetGlobal(string id)
+        public static Dictionary<string, string> GetGlobal(string id)
         {
             return _localeRepository.GetGlobal(id);
         }
@@ -41,7 +41,7 @@ namespace Haru.ModApi
             _database.Names.Add(id, value);
         }
 
-        public static void AddGlobal(string id, GlobalModel value)
+        public static void AddGlobal(string id, Dictionary<string, string> value)
         {
             _database.Globals.Add(id, value);
         }

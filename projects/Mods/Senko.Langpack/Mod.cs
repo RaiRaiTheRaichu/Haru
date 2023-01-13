@@ -43,7 +43,7 @@ namespace Senko.LangPack
 
                 // add global locale
                 var globalJson = await ResourceApi.GetText($"Database.Locales.all-{langId}.json");
-                var globalBody = JsonApi.Deserialize<ResponseModel<GlobalModel>>(globalJson);
+                var globalBody = JsonApi.Deserialize<ResponseModel<Dictionary<string, string>>>(globalJson);
                 LocaleApi.AddGlobal(langId, globalBody.Data);
 
                 // add menu locale

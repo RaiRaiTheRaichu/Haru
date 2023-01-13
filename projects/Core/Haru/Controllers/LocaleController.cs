@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Helpers;
@@ -29,7 +30,7 @@ namespace Haru.Controllers
         {
             var locale = _localeHelper.FindLocale(context, _format);
             var data = _localeService.GetGlobal(locale);
-            var body = new ResponseModel<GlobalModel>(data);
+            var body = new ResponseModel<Dictionary<string, string>>(data);
             var json = _json.Serialize(body);
             await SendJson(context, json);
         }
