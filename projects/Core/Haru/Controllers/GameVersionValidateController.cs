@@ -8,6 +8,13 @@ namespace Haru.Controllers
 {
     public class GameVersionValidateController : Controller
     {
+        private readonly ControllerHelper _controllerHelper;
+
+        public GameVersionValidateController()
+        {
+            _controllerHelper = new ControllerHelper();
+        }
+
         public override bool IsMatch(RouterContext context)
         {
             return _requestHelper.GetPath(context.Request) == "/client/game/version/validate";
