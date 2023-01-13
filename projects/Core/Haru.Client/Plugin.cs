@@ -19,15 +19,18 @@ namespace Haru.Client
         public void RunServer()
         {
             var filename = Path.Combine(Environment.CurrentDirectory, "EscapeFromTarkov_Data/Managed/Haru.Server.exe");
+
             var processInfo = new ProcessStartInfo()
             {
                 FileName = filename,
-                UseShellExecute = false,
                 WorkingDirectory = Environment.CurrentDirectory
             };
-            
-            var process = new Process();
-            process.StartInfo = processInfo;
+
+            var process = new Process
+            {
+                StartInfo = processInfo
+            };
+
             process.Start();
         }
 
@@ -39,8 +42,6 @@ namespace Haru.Client
             new ConsistencyGeneralPatch(patchHelper).Enable();
             new ConsistencyBundlesPatch(patchHelper).Enable();
             new SslCertificatePatch(patchHelper).Enable();
-            new ZOutputCanReadPatch().Enable();
-            new ZOutputCanWritePatch().Enable();
         }
     }
 }

@@ -1,5 +1,4 @@
 using System.IO;
-using System.Threading.Tasks;
 using ComponentAce.Compression.Libs.zlib;
 using Haru.Models;
 
@@ -7,7 +6,7 @@ namespace Haru.Utils
 {
     public class Zlib
     {
-        private async Task<byte[]> Run(byte[] data, bool compress, ZlibCompression level = ZlibCompression.Store)
+        private byte[] Run(byte[] data, bool compress, ZlibCompression level = ZlibCompression.Store)
         {
             using (var ms = new MemoryStream())
             {
@@ -18,21 +17,21 @@ namespace Haru.Utils
 
                 using (var zs = (compress) ? new ZOutputStream(ms, (int)level) : new ZOutputStream(ms))
                 {
-                    await zs.WriteAsync(data, 0, data.Length);
+                    zs.Write(data, 0, data.Length);
                 }
 
                 return ms.ToArray();
             }
         }
 
-        public async Task<byte[]> Compress(byte[] data, ZlibCompression level)
+        public byte[] Compress(byte[] data, ZlibCompression level)
         {
-            return await Run(data, true, level);
+            return Run(data, true, level);
         }
 
-        public async Task<byte[]> Decompress(byte[] data)
+        public byte[] Decompress(byte[] data)
         {
-            return await Run(data, false);
+            return Run(data, false);
         }
     }
 }
