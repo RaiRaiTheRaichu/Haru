@@ -1,39 +1,23 @@
 # Technical
 
-## EFT details
-
-### Security mechanisms
-
-EFT implements BattlEye as it's anti-cheat solution. It is capable of detecting
-newly-injected assemblies into the game as long as the namespace doesn't match
-with one already in EFT.
-
-In addtion, EFT implements a custom integrity validator (`FilesChecker.dll`).
-It's not capable of detecting newly added files.
-
-### Request handling
-
-A HTTP packet from EFT does not include proper headers (compression headers are
-missing). Payload for HTTP and WS is compressed with ZLib (RFC1950). Using
-`deflate` in the HTTP header will cause unity to attempt at automatic
-decompression which will fail and softlock the game.
-
-Most of EFT's comminucation is over HTTPS protocol, synchronization events are
-usually over WSS protocol.
-
 ## Haru implementation details
 
-### Defeating security mechanisms
+### NLog exploit
 
 EFT 0.12.12.32.20243 and older allowed for abusing NLog targets by making your
 own dll a NLog target without implementing any logging targets, then drop
 `NLog.dll.nlog` inside `<gamedir>/EscapeFromTarkov_Data/Managed/` which
 contained a reference to your dll. Since EFT 0.13.0.x this is no longer an
 option. For code injection, you're required to use an external framework like
-BepInEx. 
+BepInEx.
 
-In addition, deobfuscation is required since you have to patch this method to
-communicate over HTTP without SSL:
+### HTTP communication
+
+Most of EFT's comminucation is over HTTPS protocol, synchronization events are
+usually over WSS protocol.
+
+Aki wants to comminucate using HTTP without SSL, so it relies on deobfuscation
+which enables them to patch this method:
 
 ```cs
 // Token: 0x06002012 RID: 8210 RVA: 0x001BF6DC File Offset: 0x001BD8DC
@@ -62,24 +46,38 @@ Invalid IL code in DMD<CreateFromLegacyParams>?1322007296:_::CreateFromLegacy
 IL_0040: call      0x0a000004
 ```
 
-Using deobfuscation means that `ConsistencyInfo`'s hash would be invalid. In
-order to bypass this, you either change `ConsistencyInfo`'s hash for
-`Assembly-CSharp.dll` or patch the methods running `FileChecker.dll` code. This
-project does the latter by patching `TarkovApplication`'s base type.
+Since Haru uses HTTPS instead, there is no need for this patch, thus no
+hard-requirement for deobfuscation.
 
-### Deobfuscation
+### FilesChecker
 
-1. Deobfuscate using `de4dot` (set strtok to the token of the deobfuscation function)
+EFT implements a custom integrity validator (`FilesChecker.dll`). It's not
+capable of detecting newly added files, only existing ones included with EFT.
 
-```
-de4dot-x64.exe Assembly-CSharp.dll
-de4dot-x64.exe --un-name "!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\$<>.*$&^[a-zA-Z_<{$][a-zA-Z_0-9<>{}$.`-]*$" "Assembly-CSharp-cleaned.dll" --strtyp delegate --strtok 0x0600F6FF
-```
+Using deobfuscation or modifying an existing bundle means that
+`ConsistencyInfo`'s hash would be invalid. In order to bypass this, you either
+change `ConsistencyInfo`'s hash for `Assembly-CSharp.dll` or patch the methods
+running `FileChecker.dll` code.
 
-2. Copy-paste `Assembly-CSharp-cleaned-cleaned.dll` into `<gamedir>/EscapeFromTarkov_Data/Managed/`
-3. Open DnSpy > Open `Assembly-CSharp-cleaned-cleaned.dll` > Save Module
+Aki does this by patching `FilesChecker.dll` calls directly, Haru does this by
+patching `TarkovApplication`'s base type. The latter has the benefit of not
+depending on the `FilesChecker.dll`.
+
+### Anti-cheat
+
+EFT implements BattlEye as it's anti-cheat solution. It is capable of detecting
+newly-injected assemblies into the game as long as the namespace doesn't match
+with one already in EFT.
+
+Both Aki and Haru patches the battleye validation method used across most
+places to always return successfully.
 
 ### Server implementation
+
+A HTTP packet from EFT does not include proper headers (compression headers are
+missing). Payload for HTTP and WS is compressed with ZLib (RFC1950). Using
+`deflate` in the HTTP header will cause unity to attempt at automatic
+decompression which will fail and softlock the game.
 
 - Server: gets incoming requests
 - Router: assigns a Controller to handle a request
