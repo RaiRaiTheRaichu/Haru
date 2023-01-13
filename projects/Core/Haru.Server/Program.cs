@@ -12,6 +12,7 @@ namespace Haru.Server
         {
             _log = new Log();
             AppDomain.CurrentDomain.UnhandledException += HandleException;
+            Console.Title = "Haru.Server";
         }
 
         static void Main(string[] args)
