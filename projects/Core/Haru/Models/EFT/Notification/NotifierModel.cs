@@ -19,13 +19,13 @@ namespace Haru.Models.EFT.Notification
         [JsonProperty("ws")]
         public string WebSocketUrl;
 
-        public NotifierModel(string sessionId, string httpUrl, string wsUrl)
+        public NotifierModel(string sessionId, string host)
         {
-            Server = wsUrl;
+            Server = host;
             ChannelId = sessionId;
             Url = string.Empty;
-            HttpUrl = $"{httpUrl}/push/notifier/get/{sessionId}";
-            WebSocketUrl = $"{wsUrl}push/notifier/getwebsocket/{sessionId}";
+            HttpUrl = $"https://{host}/push/notifier/get/{sessionId}";
+            WebSocketUrl = $"wss://{host}push/notifier/getwebsocket/{sessionId}";
         }
     }
 }

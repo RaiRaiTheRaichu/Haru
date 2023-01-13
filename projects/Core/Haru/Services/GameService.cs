@@ -29,6 +29,7 @@ namespace Haru.Services
                 ProfileId = "5e23714d4a886443e031fe47",
                 Backends = new Dictionary<string, string>()
                 {
+                    { "Lobby",     url },
                     { "Trading",   url },
                     { "Messaging", url },
                     { "Main",      url },

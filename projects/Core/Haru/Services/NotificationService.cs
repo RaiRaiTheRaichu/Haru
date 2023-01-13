@@ -7,9 +7,11 @@ namespace Haru.Services
     {
         public NotifierModel GetNotifier(string sessionId)
         {
-            var httpUrl = GeneralServer.Instance.Server.Address;
-            var wsUrl = NotificationServer.Instance.Server.Address;
-            return new NotifierModel(sessionId, httpUrl, wsUrl);
+            var host = GeneralServer.Instance.Server.Address
+                .Replace("https://", string.Empty)
+                .Replace("/", string.Empty);
+
+            return new NotifierModel(sessionId, host);
         }
 
         public ProfileSelectModel SelectProfile(string sessionId)
@@ -18,7 +20,8 @@ namespace Haru.Services
             return new ProfileSelectModel()
             {
                 Status = "ok",
-                NotificationServer = GetNotifier(sessionId)
+                NotificationServer = GetNotifier(sessionId),
+                Unused = string.Empty
             };
         }
 

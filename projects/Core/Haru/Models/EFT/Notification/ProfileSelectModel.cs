@@ -9,5 +9,8 @@ namespace Haru.Models.EFT.Notification
 
         [JsonProperty("notifier")]
         public NotifierModel NotificationServer;
+
+        [JsonProperty("notifierServer")]
+        public string Unused;
     }
 }

@@ -8,7 +8,7 @@ namespace Haru.Models.EFT.Location
         public string BossName;
 
         [JsonProperty("BossChance")]
-        public int BossChance;
+        public float BossChance;
 
         [JsonProperty("BossZone")]
         public string BossZone;

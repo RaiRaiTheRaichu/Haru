@@ -21,6 +21,8 @@ namespace Haru.Controllers
 
         public override async Task Run(RouterContext context)
         {
+            // todo: fix this
+            // {"err":0,"errmsg":null,"data":{"status":"ok"}}
             var body = _controllerHelper.GetEmptyResponse();
             var json = _json.Serialize(body);
             await SendJson(context, json);
