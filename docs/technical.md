@@ -2,22 +2,28 @@
 
 ## Haru implementation details
 
+There is a rich development history behind writing EFT server emulators, as
+well as many differences in the implementation of Aki and Haru. These are
+highlighted in this section as well. It's not meant as an as-vs-them, but to
+show the various challenges and different solutions to the same problem.
+
 ### NLog exploit
 
 EFT 0.12.12.32.20243 and older allowed for abusing NLog targets by making your
 own dll a NLog target without implementing any logging targets, then drop
 `NLog.dll.nlog` inside `<gamedir>/EscapeFromTarkov_Data/Managed/` which
-contained a reference to your dll. Since EFT 0.13.0.x this is no longer an
-option. For code injection, you're required to use an external framework like
+contained a reference to your dll.
+
+Now this is no longer an viable because `NLog.dll.nlog` is ignored and
+`NLog.config` doesn't see the target. Writing a "proper" target means missing
+timing. For code injection, you're required to use an external framework like
 BepInEx.
 
 ### HTTP communication
 
 Most of EFT's comminucation is over HTTPS protocol, synchronization events are
-usually over WSS protocol.
-
-Aki wants to comminucate using HTTP without SSL, so it relies on deobfuscation
-which enables them to patch this method:
+usually over WSS protocol. Aki wants to comminucate using HTTP without SSL, so
+it has to patch this method:
 
 ```cs
 // Token: 0x06002012 RID: 8210 RVA: 0x001BF6DC File Offset: 0x001BD8DC
@@ -46,8 +52,8 @@ Invalid IL code in DMD<CreateFromLegacyParams>?1322007296:_::CreateFromLegacy
 IL_0040: call      0x0a000004
 ```
 
-Since Haru uses HTTPS instead, there is no need for this patch, thus no
-hard-requirement for deobfuscation.
+In order to resolve this, Aki uses deobfuscation on `Assebly-CSharp.dll`. Since
+Haru uses HTTPS instead, there is no need for this patch.
 
 ### FilesChecker
 
@@ -59,9 +65,10 @@ Using deobfuscation or modifying an existing bundle means that
 change `ConsistencyInfo`'s hash for `Assembly-CSharp.dll` or patch the methods
 running `FileChecker.dll` code.
 
-Aki does this by patching `FilesChecker.dll` calls directly, Haru does this by
-patching `TarkovApplication`'s base type. The latter has the benefit of not
-depending on the `FilesChecker.dll`.
+Aki does this by patching `FilesChecker.dll` calls directly, which has the
+benefit of working on both 0.12.x and 0.13.x versions. Haru patches
+`TarkovApplication`'s base type, which has the benefit of not depending on
+`FilesChecker.dll` and completes patching faster but it only works on 0.13.x.
 
 ### Anti-cheat
 
@@ -79,10 +86,10 @@ missing). Payload for HTTP and WS is compressed with ZLib (RFC1950). Using
 `deflate` in the HTTP header will cause unity to attempt at automatic
 decompression which will fail and softlock the game.
 
-Haru doesn't rely on EFT's `SimpleZlib` for (de/in)flation, instead opts for
-using `ZOutputStream` directly because EFT's implementation is flawed. The
-ArrayPool's buffer is rented before returning, causing overlap, which results
-in corrupted data.
+Haru doesn't rely on EFT's `SimpleZlib` for (de/in)flation like Aki does, it
+instead opts for using `ZOutputStream` directly because EFT's implementation is
+flawed. The ArrayPool's buffer is sometimes rented before returning when ran in
+async, causing overlap, which results in corrupted data.
 
 ### Embedding the server into EFT
 
