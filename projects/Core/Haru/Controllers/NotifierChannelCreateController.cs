@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Notification;
@@ -24,13 +23,13 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/notifier/channel/create";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var sessionId = _controllerHelper.GetSessionId(context.Request);
             var data = _notificationService.GetNotifier(sessionId);
             var body = new ResponseModel<NotifierModel>(data);
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

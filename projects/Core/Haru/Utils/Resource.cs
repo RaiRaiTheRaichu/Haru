@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Threading.Tasks;
 using Haru.Exceptions;
 
 namespace Haru.Utils
@@ -46,24 +45,24 @@ namespace Haru.Utils
             throw new ResourceNotFoundException($"Cannot find resource {filepath}");
         }
 
-        public async Task<string> GetText(string filepath)
+        public string GetText(string filepath)
         {
             using (var resource = GetStream(filepath))
             {
                 using (var sr = new StreamReader(resource))
                 {
-                    return await sr.ReadToEndAsync();
+                    return sr.ReadToEnd();
                 }
             }
         }
 
-        public async Task<byte[]> GetData(string filepath)
+        public byte[] GetData(string filepath)
         {
             using (var resource = GetStream(filepath))
             {
                 using (var ms = new MemoryStream())
                 {
-                    await resource.CopyToAsync(ms);
+                    resource.CopyTo(ms);
                     return ms.ToArray();
                 }
             }

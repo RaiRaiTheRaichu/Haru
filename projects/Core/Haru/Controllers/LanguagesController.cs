@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Locale;
@@ -21,12 +20,12 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/languages";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var data = _localeService.GetLanguages();
             var body = new ResponseModel<NameModel[]>(data);
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

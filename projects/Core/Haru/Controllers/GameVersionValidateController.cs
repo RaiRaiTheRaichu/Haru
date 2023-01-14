@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Models.EFT.Request;
 using Haru.Http;
@@ -20,11 +19,11 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/game/version/validate";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var body = _controllerHelper.GetEmptyResponse();
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

@@ -35,9 +35,9 @@ namespace Senko.EftData
             LoadFiles();
         }
 
-        private async static void LoadLanguages()
+        private static void LoadLanguages()
         {
-            var json = await ResourceApi.GetText("Database.Locales.languages.json");
+            var json = ResourceApi.GetText("Database.Locales.languages.json");
             var names = JsonApi.Deserialize<Dictionary<string, string>>(json);
 
             foreach (var kvp in names)
@@ -51,65 +51,65 @@ namespace Senko.EftData
             }
         }
 
-        private static async void LoadGlobalLocale(string lang)
+        private static void LoadGlobalLocale(string lang)
         {
-            var json = await ResourceApi.GetText($"Database.Locales.all-{lang}.json");
+            var json = ResourceApi.GetText($"Database.Locales.all-{lang}.json");
             var body = JsonApi.Deserialize<ResponseModel<Dictionary<string, string>>>(json);
             _database.Globals.Add(lang, body.Data);
         }
 
-        private async static void LoadMenuLocale(string lang)
+        private static void LoadMenuLocale(string lang)
         {
-            var json = await ResourceApi.GetText($"Database.Locales.menu-{lang}.json");
+            var json = ResourceApi.GetText($"Database.Locales.menu-{lang}.json");
             var body = JsonApi.Deserialize<ResponseModel<MenuModel>>(json);
             _database.Menus.Add(lang, body.Data);
         }
 
-        private async static void LoadHideoutSettings()
+        private static void LoadHideoutSettings()
         {
-            var json = await ResourceApi.GetText("Database.Settings.hideout.json");
+            var json = ResourceApi.GetText("Database.Settings.hideout.json");
             var body = JsonApi.Deserialize<ResponseModel<SettingsModel>>(json);
             _database.HideoutSettings = body.Data;
         }
 
-        private async static void LoadScavcases()
+        private static void LoadScavcases()
         {
-            var json = await ResourceApi.GetText("Database.Templates.scavcases.json");
+            var json = ResourceApi.GetText("Database.Templates.scavcases.json");
             var body = JsonApi.Deserialize<ResponseModel<ScavcaseModel[]>>(json);
             _database.Scavcases.AddRange(body.Data);
         }
 
-        private async static void LoadClientSettings()
+        private static void LoadClientSettings()
         {
-            var json = await ResourceApi.GetText("Database.Settings.client.json");
+            var json = ResourceApi.GetText("Database.Settings.client.json");
             var body = JsonApi.Deserialize<ResponseModel<ClientModel>>(json);
             _database.ClientSettings = body.Data;
         }
 
-        private async static void LoadTraders()
+        private static void LoadTraders()
         {
-            var json = await ResourceApi.GetText("Database.Templates.traders.json");
+            var json = ResourceApi.GetText("Database.Templates.traders.json");
             var body = JsonApi.Deserialize<ResponseModel<Haru.Models.EFT.Trader.TraderModel[]>>(json);
             _database.Traders.AddRange(body.Data);
         }
 
-        private async static void LoadHandbookTemplates()
+        private static void LoadHandbookTemplates()
         {
-            var json = await ResourceApi.GetText("Database.Templates.handbook.json");
+            var json = ResourceApi.GetText("Database.Templates.handbook.json");
             var body = JsonApi.Deserialize<ResponseModel<TemplatesModel>>(json);
             _database.HandbookTemplates = body.Data;
         }
 
-        private async static void LoadWorldMap()
+        private static void LoadWorldMap()
         {
-            var json = await ResourceApi.GetText("Database.Templates.locations.json");
+            var json = ResourceApi.GetText("Database.Templates.locations.json");
             var body = JsonApi.Deserialize<ResponseModel<WorldMapModel>>(json);
             _database.WorldMap = body.Data;
         }
 
-        private async static void LoadFiles()
+        private static void LoadFiles()
         {
-            var json = await ResourceApi.GetText("Database.resxdb.json");
+            var json = ResourceApi.GetText("Database.resxdb.json");
             var files = JsonApi.Deserialize<Dictionary<string, string>>(json);
 
             foreach (var kvp in files)

@@ -17,14 +17,14 @@ namespace Haru.Utils
             _vfs = new VFS();
         }
 
-        public async void Load(string subject, string password)
+        public void Load(string subject, string password)
         {
             var isValid = true;
             X509Certificate2 cert = null;
 
             if (_vfs.Exists(_path))
             {
-                var bytes = await _vfs.ReadBytes(_path);
+                var bytes = _vfs.ReadBytes(_path);
 
                 try
                 {
@@ -32,13 +32,13 @@ namespace Haru.Utils
                 }
                 catch (CryptographicException ex)
                 {
-                    await _log.Write(ex.ToString());
+                    _log.Write(ex.ToString());
                 }
 
                 if (cert.NotAfter < DateTime.Now.AddDays(1))
                 {
                     // certificate expired
-                    await _log.Write("Certificate expired, marked to regenerate");
+                    _log.Write("Certificate expired, marked to regenerate");
                     isValid = false;
                 }
             }
@@ -50,7 +50,7 @@ namespace Haru.Utils
 
             if (!isValid)
             {
-                await _log.Write("Generating new certificate...");
+                _log.Write("Generating new certificate...");
                 var start = DateTime.UtcNow.AddDays(-1);
                 var end = DateTime.UtcNow.AddMonths(1);
 
@@ -59,10 +59,10 @@ namespace Haru.Utils
 
                 // export to file
                 var bytes = cert.Export(X509ContentType.Pfx);
-                await _vfs.WriteBytes(_path, bytes);
+                _vfs.WriteBytes(_path, bytes);
             }
 
-            await _log.Write($"Certificate thumbprint: {cert.Thumbprint}");
+            _log.Write($"Certificate thumbprint: {cert.Thumbprint}");
         }
 
         // NET::ERR_CERT_AUTHORITY_INVALID

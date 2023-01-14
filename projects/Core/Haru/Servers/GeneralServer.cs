@@ -25,38 +25,38 @@ namespace Haru.Servers
         {
             Server = new Server("https://127.0.0.1:8000/");
 
-            var router = Server.Router;
+            var controllers = Server.Router.Controllers;
 
-            router.AddController<CheckVersionController>();
-            router.AddController<CustomizationStorageController>();
-            router.AddController<FriendListController>();
-            router.AddController<FriendRequestListInboxController>();
-            router.AddController<FriendRequestListOutboxController>();
-            router.AddController<GameConfigController>();
-            router.AddController<GameLogoutController>();
-            router.AddController<GameProfileSelectController>();
-            router.AddController<GameStartController>();
-            router.AddController<GameVersionValidateController>();
-            router.AddController<GetLocalLootController>();
-            router.AddController<HandbookBuildsMyListController>();
-            router.AddController<HandbookTemplatesController>();
-            router.AddController<HideoutProductionScavcaseRecipesController>();
-            router.AddController<HideoutSettingsController>();
-            router.AddController<LanguagesController>();
-            router.AddController<LocaleController>();
-            router.AddController<LocationController>();
-            router.AddController<MailDialogListController>();
-            router.AddController<MatchOfflineStartController>();
-            router.AddController<MatchOfflineEndController>();
-            router.AddController<MenuLocaleController>();
-            router.AddController<NotifierChannelCreateController>();
-            router.AddController<ProfileStatusController>();
-            router.AddController<RaidConfigurationController>();
-            router.AddController<ResourceController>();
-            router.AddController<ServerListController>();
-            router.AddController<SettingsController>();
-            router.AddController<TraderSettingsController>();
-            router.AddController<WeatherController>();
+            controllers.Add(new CheckVersionController());
+            controllers.Add(new CustomizationStorageController());
+            controllers.Add(new FriendListController());
+            controllers.Add(new FriendRequestListInboxController());
+            controllers.Add(new FriendRequestListOutboxController());
+            controllers.Add(new GameConfigController());
+            controllers.Add(new GameLogoutController());
+            controllers.Add(new GameProfileSelectController());
+            controllers.Add(new GameStartController());
+            controllers.Add(new GameVersionValidateController());
+            controllers.Add(new GetLocalLootController());
+            controllers.Add(new HandbookBuildsMyListController());
+            controllers.Add(new HandbookTemplatesController());
+            controllers.Add(new HideoutProductionScavcaseRecipesController());
+            controllers.Add(new HideoutSettingsController());
+            controllers.Add(new LanguagesController());
+            controllers.Add(new LocaleController());
+            controllers.Add(new LocationController());
+            controllers.Add(new MailDialogListController());
+            controllers.Add(new MatchOfflineStartController());
+            controllers.Add(new MatchOfflineEndController());
+            controllers.Add(new MenuLocaleController());
+            controllers.Add(new NotifierChannelCreateController());
+            controllers.Add(new ProfileStatusController());
+            controllers.Add(new RaidConfigurationController());
+            controllers.Add(new ResourceController());
+            controllers.Add(new ServerListController());
+            controllers.Add(new SettingsController());
+            controllers.Add(new TraderSettingsController());
+            controllers.Add(new WeatherController());
         }
 
         public void Start()

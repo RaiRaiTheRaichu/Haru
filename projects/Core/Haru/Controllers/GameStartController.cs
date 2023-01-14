@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Game;
@@ -21,12 +20,12 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/game/start";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var data = _gameService.StartGame();
             var body = new ResponseModel<StartModel>(data);
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

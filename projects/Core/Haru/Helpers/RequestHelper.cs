@@ -1,6 +1,5 @@
 using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using WebSocketSharp.Net;
 using Haru.Utils;
 
@@ -28,7 +27,7 @@ namespace Haru.Helpers
             return path;
         }
 
-        public async Task<string> GetBody(HttpListenerRequest request)
+        public string GetBody(HttpListenerRequest request)
         {
             if (!request.HasEntityBody)
             {
@@ -37,7 +36,7 @@ namespace Haru.Helpers
 
             using (var ms = new MemoryStream())
             {
-                await request.InputStream.CopyToAsync(ms);
+                request.InputStream.CopyTo(ms);
                 var zlibbed = ms.ToArray();
                 var bytes = _zlib.Decompress(zlibbed);
                 return Encoding.UTF8.GetString(bytes);

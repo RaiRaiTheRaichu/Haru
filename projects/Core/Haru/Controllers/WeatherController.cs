@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Haru.Models;
+﻿using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Weather;
 using Haru.Http;
@@ -21,12 +20,12 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/weather";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var data = _weatherService.GetWeather();
             var body = new ResponseModel<WeatherModel>(data);
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

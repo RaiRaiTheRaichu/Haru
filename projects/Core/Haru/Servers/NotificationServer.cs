@@ -48,7 +48,7 @@ namespace Haru.Servers
             Server.Start();
         }
 
-        private async void PingClient(Client client, TimeSpan interval, CancellationToken cancellationToken)
+        private async Task PingClient(Client client, TimeSpan interval, CancellationToken cancellationToken)
         {
             while (true)
             {
@@ -61,23 +61,23 @@ namespace Haru.Servers
 
         private async void OnClientConnected(object sender, OnClientConnectedEvent e)
         {
-            await _log.Write($"Client with GUID: {e.Client.Guid} Connected!");
-            await Task.Run(() => PingClient(e.Client, TimeSpan.FromSeconds(90), default));
+            _log.Write($"Client with GUID: {e.Client.Guid} Connected!");
+            await PingClient(e.Client, TimeSpan.FromSeconds(90), default);
         }
 
-        private async void OnClientDisconnected(object sender, OnClientDisconnectedEvent e)
+        private void OnClientDisconnected(object sender, OnClientDisconnectedEvent e)
         {
-            await _log.Write($"Client {e.Client.Guid} Disconnected");
+            _log.Write($"Client {e.Client.Guid} Disconnected");
         }
 
-        private async void OnMessageReceived(object sender, OnMessageReceivedEvent e)
+        private void OnMessageReceived(object sender, OnMessageReceivedEvent e)
         {
-            await _log.Write($"Received Message: 'e.Client.Guid' from client: {e.Message}");
+            _log.Write($"Received Message: 'e.Client.Guid' from client: {e.Message}");
         }
 
-        private async void OnSendMessage(object sender, OnSendMessageEvent e)
+        private void OnSendMessage(object sender, OnSendMessageEvent e)
         {
-            await _log.Write($"Sent message: '{e.Message}' to client {e.Client.Guid}");
+            _log.Write($"Sent message: '{e.Message}' to client {e.Client.Guid}");
         }
     }
 }

@@ -32,10 +32,10 @@ namespace Haru.Server
             while (true) ;
         }
 
-        static async void HandleException(object sender, UnhandledExceptionEventArgs e)
+        static void HandleException(object sender, UnhandledExceptionEventArgs e)
         {
             var ex = (Exception)e.ExceptionObject;
-            await _log.Write(ex.Message);
+            _log.Write(ex.Message);
         }
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 
 namespace Haru.Utils
 {
@@ -28,12 +27,12 @@ namespace Haru.Utils
             Filepath = $"./Logs/Haru/Haru_{DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss")}.log";
         }
 
-        public async Task Write(string text)
+        public void Write(string text)
         {
             var datetime = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
             var formatted = $"[{datetime}]: {text}";
             Console.WriteLine(formatted);
-            await _vfs.WriteText(Filepath, formatted, true);
+            _vfs.WriteText(Filepath, formatted, true);
         }
     }
 }

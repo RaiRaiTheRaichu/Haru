@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Haru.Models;
+﻿using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Trader;
 using Haru.Http;
@@ -21,12 +20,12 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/trading/api/traderSettings";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var data = _traderService.GetTraders();
             var body = new ResponseModel<TraderModel[]>(data);
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

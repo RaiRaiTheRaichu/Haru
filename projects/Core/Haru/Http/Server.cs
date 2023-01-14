@@ -25,16 +25,15 @@ namespace Haru.Http
             Address = address;
         }
 
-        public async void OnRequest(object sender, HttpRequestEventArgs e)
+        public void OnRequest(object sender, HttpRequestEventArgs e)
         {
-            await Router.Run(e.Request, e.Response);
+            Router.Run(e.Request, e.Response);
         }
 
-        public async void Start()
+        public void Start()
         {
             // load certificate
             var filepath = "./Haru/certs/cert.pfx";
-
             _httpsv.SslConfiguration.ServerCertificate = new X509Certificate2(filepath);
 
             // set request handlers
@@ -43,7 +42,7 @@ namespace Haru.Http
 
             // start the server
             _httpsv.Start();
-            await _log.Write($"Starting server on {Address}");
+            _log.Write($"Starting server on {Address}");
         }
     }
 }

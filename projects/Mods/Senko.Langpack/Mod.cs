@@ -7,7 +7,7 @@ namespace Senko.LangPack
 {
     public class Mod
     {
-        public static async void Run()
+        public static void Run()
         {
             LogApi.Write("Loading Senko.Langpack");
 
@@ -42,12 +42,12 @@ namespace Senko.LangPack
                 LocaleApi.AddName(langId, langName);
 
                 // add global locale
-                var globalJson = await ResourceApi.GetText($"Database.Locales.all-{langId}.json");
+                var globalJson = ResourceApi.GetText($"Database.Locales.all-{langId}.json");
                 var globalBody = JsonApi.Deserialize<ResponseModel<Dictionary<string, string>>>(globalJson);
                 LocaleApi.AddGlobal(langId, globalBody.Data);
 
                 // add menu locale
-                var menuJson = await ResourceApi.GetText($"Database.Locales.menu-{langId}.json");
+                var menuJson = ResourceApi.GetText($"Database.Locales.menu-{langId}.json");
                 var menuBody = JsonApi.Deserialize<ResponseModel<MenuModel>>(menuJson);
                 LocaleApi.AddMenu(langId, menuBody.Data);
             }
