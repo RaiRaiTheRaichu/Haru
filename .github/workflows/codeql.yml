@@ -32,8 +32,11 @@ jobs:
         languages: ${{ matrix.language }}
         config-file: ./.github/codeql/config.yml
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
+    - name: Restore projects
+      run: dotnet restore --configfile ./projects/Nuget.config ./projects/Haru.sln
+
+    - name: Build projects
+      run: dotnet build --nologo --no-restore ./projects/Haru.sln
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
