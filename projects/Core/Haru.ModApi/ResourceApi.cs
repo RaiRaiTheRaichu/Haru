@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
-using System.Threading.Tasks;
-using Haru.Framework.Utils;
+using Haru.Utils;
 
 namespace Haru.ModApi
 {
@@ -18,14 +17,14 @@ namespace Haru.ModApi
             _resource.RegisterAssembly(assembly);
         }
 
-        public static async Task<string> GetText(string key)
+        public static string GetText(string key)
         {
-            return await _resource.GetText(key);
+            return _resource.GetText(key);
         }
 
-        public static async Task<byte[]> GetData(string key)
+        public static byte[] GetData(string key)
         {
-            return await _resource.GetData(key);
+            return _resource.GetData(key);
         }
     }
 }

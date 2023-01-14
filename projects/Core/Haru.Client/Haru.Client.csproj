@@ -4,42 +4,8 @@
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>Haru.Client</RootNamespace>
     <LangVersion>7.3</LangVersion>
-    <Configurations>Debug-NLog;Debug-BepInEx;Debug-Melon</Configurations>
+    <Configurations>Debug</Configurations>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-BepInEx|AnyCPU'">
-    <DefineConstants>TRACE;LOADER_BEPINEX</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-NLog|AnyCPU'">
-    <AssemblyName>NLog.Haru.Client</AssemblyName>
-    <DefineConstants>TRACE;LOADER_NLOG</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Melon|AnyCPU'">
-    <DefineConstants>TRACE;LOADER_MELON</DefineConstants>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(Configuration)'=='Debug-NLog'">
-    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
-    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="NLog" Version="4.7.15" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(Configuration)'=='Debug-BepInEx'">
-    <Reference PrivateAssets="All" Private="False" Include="BepInEx" HintPath="..\..\References\BepInEx.dll" />    
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(Configuration)'=='Debug-BepInEx'">
-    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="HarmonyX" Version="2.9.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(Configuration)'=='Debug-Melon'">
-    <Reference PrivateAssets="All" Private="False" Include="MelonLoader" HintPath="..\..\References\MelonLoader.dll" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(Configuration)'=='Debug-Melon'">
-    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="HarmonyX" Version="2.9.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <Reference PrivateAssets="All" Private="False" Include="Assembly-CSharp" HintPath="..\..\References\Assembly-CSharp.dll" />
@@ -49,15 +15,12 @@
     <Reference PrivateAssets="All" Private="False" Include="UnityEngine" HintPath="..\..\References\UnityEngine.dll" />
     <Reference PrivateAssets="All" Private="False" Include="UnityEngine.CoreModule" HintPath="..\..\References\UnityEngine.CoreModule.dll" />
     <Reference PrivateAssets="All" Private="False" Include="UnityEngine.UnityWebRequestModule" HintPath="..\..\References\UnityEngine.UnityWebRequestModule.dll" />
-    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.UnityWebRequestTextureModule" HintPath="..\..\References\UnityEngine.UnityWebRequestTextureModule.dll" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="HarmonyX" Version="2.9.0" />
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Core\Haru\Haru.csproj" />
   </ItemGroup>
 
 </Project>

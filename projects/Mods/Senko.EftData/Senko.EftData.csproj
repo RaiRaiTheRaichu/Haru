@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyName>NLog.Senko.EftData</AssemblyName>
     <RootNamespace>Senko.EftData</RootNamespace>
     <LangVersion>7.3</LangVersion>
     <Configurations>Debug</Configurations>
@@ -30,6 +29,7 @@
     <EmbeddedResource Include="Resources\client.globals.json" />
     <EmbeddedResource Include="Resources\client.hideout.areas.json" />
     <EmbeddedResource Include="Resources\client.hideout.production.recipes.json" />
+    <EmbeddedResource Include="Resources\client.hideout.qte.list.json" />
     <EmbeddedResource Include="Resources\client.items.json" />
     <EmbeddedResource Include="Resources\client.quest.list.json" />
     <EmbeddedResource Include="Resources\client.repeatalbequests.activityperiods.json" />
@@ -37,7 +37,6 @@
 
   <ItemGroup>
     <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
-    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="NLog" Version="4.7.15" />
   </ItemGroup>
 
   <ItemGroup>

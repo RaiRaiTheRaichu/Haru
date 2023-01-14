@@ -2,48 +2,32 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "0.13.0" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "0.13.0" ]
 
 jobs:
   build:
     strategy:
       matrix:
-        buildpath: [ "" ]
-        buildconf: [ "" ]
-        artifactpath: [ "" ]
         artifactname: [ "" ]
+        artifactpath: [ "" ]
         include:
-          - buildpath: ./projects/Core/Haru.ModApi/Haru.ModApi.csproj
-            buildconf: Debug
+          - artifactname: haru
+            artifactpath: ./projects/Core/Haru/bin/Debug/net472
+          - artifactname: haru-modapi
             artifactpath: ./projects/Core/Haru.ModApi/bin/Debug/net472
-            artifactname: haru-modapi
-          - buildpath: ./projects/Core/Haru.Client/Haru.Client.csproj
-            buildconf: Debug-BepInEx
-            artifactpath: ./projects/Core/Haru.Client/bin/Debug-BepInEx/net472
-            artifactname: haru-bepinex
-          - buildpath: ./projects/Core/Haru.Client/Haru.Client.csproj
-            buildconf: Debug-Melon
-            artifactpath: ./projects/Core/Haru.Client/bin/Debug-Melon/net472
-            artifactname: haru-melon
-          - buildpath: ./projects/Core/Haru.Client/Haru.Client.csproj
-            buildconf: Debug-NLog
-            artifactpath: ./projects/Core/Haru.Client/bin/Debug-NLog/net472
-            artifactname: haru-nlog
-          - buildpath: ./projects/Mods/Senko.EftData/Senko.EftData.csproj
-            buildconf: Debug
+          - artifactname: haru-server
+            artifactpath: ./projects/Core/Haru.Server/bin/Debug/net472
+          - artifactname: haru-client
+            artifactpath: ./projects/Core/Haru.Client/bin/Debug/net472
+          - artifactname: senko-eftdata
             artifactpath: ./projects/Mods/Senko.EftData/bin/Debug/net472
-            artifactname: senko-eftdata
-          - buildpath: ./projects/Mods/Senko.Langpack/Senko.Langpack.csproj
-            buildconf: Debug
+          - artifactname: senko-langpack
             artifactpath: ./projects/Mods/Senko.Langpack/bin/Debug/net472
-            artifactname: senko-langpack
         exclude:
-          - buildpath: ""
-            buildconf: ""
+          - artifactname: ""
             artifactpath: ""
-            artifactname: ""
 
     runs-on: ubuntu-latest
 
@@ -56,8 +40,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
+    - name: Restore projects
+      run: dotnet restore --configfile ./projects/Nuget.config ./projects/Haru.sln
+
     - name: Build projects
-      run: dotnet build --nologo --configuration ${{ matrix.buildconf }} ${{ matrix.buildpath }}
+      run: dotnet build --nologo --no-restore ./projects/Haru.sln
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3

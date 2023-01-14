@@ -1,18 +1,47 @@
-﻿#if LOADER_BEPINEX
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using BepInEx;
-using Haru.Framework.DI;
-using Haru.Client.Program;
+using Haru.Client.Helpers;
+using Haru.Client.Patches;
 
 namespace Haru.Client
 {
-    [BepInPlugin("com.Haru.Client", HaruInfo.Name, HaruInfo.Version)]
+    [BepInPlugin("com.haru.client", "Haru", "1.0.0")]
     public class Plugin : BaseUnityPlugin
     {
-        private void Awake()
+        public Plugin()
         {
-            var haru = new HaruInstance();
-            haru.Run();
+            RunPatcher();
+            RunServer();
+        }
+
+        public void RunServer()
+        {
+            var filename = Path.Combine(Environment.CurrentDirectory, "EscapeFromTarkov_Data/Managed/Haru.Server.exe");
+
+            var processInfo = new ProcessStartInfo()
+            {
+                FileName = filename,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
+
+            var process = new Process
+            {
+                StartInfo = processInfo
+            };
+
+            process.Start();
+        }
+
+        public void RunPatcher()
+        {
+            var patchHelper = new PatchHelper();
+
+            new BattlEyePatch(patchHelper).Enable();
+            new ConsistencyGeneralPatch(patchHelper).Enable();
+            new ConsistencyBundlesPatch(patchHelper).Enable();
+            new SslCertificatePatch(patchHelper).Enable();
         }
     }
 }
-#endif

@@ -1,10 +1,9 @@
-using System.Threading.Tasks;
 using Haru.Exceptions;
-using Haru.Framework.Models;
+using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Request;
 using Haru.Models.EFT.Location;
-using Haru.Framework.Http;
+using Haru.Http;
 using Haru.Services;
 
 namespace Haru.Controllers
@@ -23,9 +22,9 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/location/getLocalloot";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
-            var request = await _requestHelper.GetBody(context.Request);
+            var request = _requestHelper.GetBody(context.Request);
             var info = _json.Deserialize<LocalLootModel>(request);
             var location = info.LocationId;
 
@@ -38,7 +37,7 @@ namespace Haru.Controllers
             var body = new ResponseModel<LocationModel>(data);
             var json = _json.Serialize(body);
 
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

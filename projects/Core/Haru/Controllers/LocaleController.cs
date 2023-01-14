@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
-using Haru.Framework.Models;
+using System.Collections.Generic;
+using Haru.Models;
 using Haru.Helpers;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Locale;
-using Haru.Framework.Http;
+using Haru.Http;
 using Haru.Services;
 
 namespace Haru.Controllers
@@ -25,13 +25,13 @@ namespace Haru.Controllers
             return _localeHelper.FindLocale(context, _format) != null;
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var locale = _localeHelper.FindLocale(context, _format);
             var data = _localeService.GetGlobal(locale);
-            var body = new ResponseModel<GlobalModel>(data);
+            var body = new ResponseModel<Dictionary<string, string>>(data);
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

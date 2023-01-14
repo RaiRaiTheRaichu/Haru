@@ -1,8 +1,7 @@
-using System.Threading.Tasks;
-using Haru.Framework.Models;
+using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Settings;
-using Haru.Framework.Http;
+using Haru.Http;
 using Haru.Services;
 
 namespace Haru.Controllers
@@ -21,12 +20,12 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/settings";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var data = _settingsService.GetClientSettings();
             var body = new ResponseModel<ClientModel>(data);
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

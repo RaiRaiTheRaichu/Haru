@@ -24,7 +24,7 @@ namespace Haru.Models.EFT.Location
         public string Infiltration;
 
 		[JsonProperty("DelayToCanSpawnSec")]
-        public int DelayToCanSpawnSec;
+        public float DelayToCanSpawnSec;
 
 		[JsonProperty("ColliderParams")]
         public ColliderParametersModel ColliderParams;

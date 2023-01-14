@@ -1,7 +1,6 @@
-using System.Threading.Tasks;
-using Haru.Framework.Models;
+using Haru.Models;
 using Haru.Models.EFT.Request;
-using Haru.Framework.Http;
+using Haru.Http;
 using Haru.Helpers;
 
 namespace Haru.Controllers
@@ -20,21 +19,11 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/game/version/validate";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
-            var request = await _requestHelper.GetBody(context.Request);
-            var info = _json.Deserialize<VersionValidateModel>(request);
             var body = _controllerHelper.GetEmptyResponse();
-            
-            if (info.Version.Major != "0.12.12.32.20243")
-            {
-                // error message taken from "/client/menu/locale/en"
-                body.ErrorCode = 1;
-                body.ErrorMessage = "BATTLEYE_ANTICHEAT_BadServiceVersion";
-            }
-
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

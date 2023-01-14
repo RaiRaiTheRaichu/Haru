@@ -1,8 +1,7 @@
-using System.Threading.Tasks;
-using Haru.Framework.Models;
-using Haru.Framework.Http;
+using Haru.Models;
+using Haru.Http;
 using Haru.Services;
-using Haru.Framework.Utils;
+using Haru.Utils;
 
 namespace Haru.Controllers
 {
@@ -23,12 +22,12 @@ namespace Haru.Controllers
             return _resourceService.HasFile(url);
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var url = _requestHelper.GetPath(context.Request);            
             var file = _resourceService.GetFile(url);
-            var data = await _resource.GetData(file);
-            await Send(context, data);
+            var data = _resource.GetData(file);
+            Send(context, data);
         }
     }
 }

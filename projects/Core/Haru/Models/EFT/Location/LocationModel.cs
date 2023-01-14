@@ -25,13 +25,12 @@ namespace Haru.Models.EFT.Location
 
         [JsonProperty("Description")]
         public string Description;
-
-        // todo, contains props "path" (string) and "rcid" (string)
+        
         [JsonProperty("Scene")]
         public ResourceModel Scene;
 
         [JsonProperty("Area")]
-        public int Area;
+        public float Area;
 
         [JsonProperty("RequiredPlayerLevel")]
         public int RequiredPlayerLevel;
@@ -59,8 +58,7 @@ namespace Haru.Models.EFT.Location
 
         [JsonProperty("exit_time")]
         public int exit_time;
-
-        // todo, contains props "path" (string) and "rcid" (string)
+        
         [JsonProperty("Preview")]
         public ResourceModel Preview;
 

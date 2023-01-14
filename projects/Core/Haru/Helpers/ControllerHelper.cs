@@ -1,5 +1,4 @@
-using System.Net;
-using System.Threading.Tasks;
+using WebSocketSharp.Net;
 using Haru.Models.EFT;
 
 namespace Haru.Helpers

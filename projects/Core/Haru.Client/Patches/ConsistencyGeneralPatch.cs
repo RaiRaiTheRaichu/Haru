@@ -3,6 +3,7 @@
 
 using System.Reflection;
 using System.Threading.Tasks;
+using EFT;
 using Haru.Client.Models;
 using Haru.Client.Helpers;
 
@@ -12,7 +13,7 @@ namespace Haru.Client.Patches
     {
         private PatchHelper _patchHelper;
 
-        public ConsistencyGeneralPatch(PatchHelper patchHelper)
+        public ConsistencyGeneralPatch(PatchHelper patchHelper) : base()
         {
             Id = "com.haru.client.consistencygeneral";
             Type = EPatchType.Prefix;
@@ -21,7 +22,9 @@ namespace Haru.Client.Patches
 
         protected override MethodBase GetOriginalMethod()
         {
-            return _patchHelper.FindMethod("RunFilesChecking", true);
+            var flags = PatchHelper.PrivateFlags;
+            return typeof(TarkovApplication).BaseType
+                .GetMethod("RunFilesChecking", flags);
         }
 
         protected static bool Patch(ref Task __result)

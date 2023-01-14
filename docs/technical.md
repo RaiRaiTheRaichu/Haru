@@ -1,47 +1,118 @@
 # Technical
 
-## EFT implementation details
+## Haru implementation details
 
-### Security mechanisms
+There is a rich development history behind writing EFT server emulators, as
+well as many differences in the implementation of Aki and Haru. These are
+highlighted in this section as well. It's not meant as an as-vs-them, but to
+show the various challenges and different solutions to the same problem.
+
+### NLog exploit
+
+EFT 0.12.12.32.20243 and older allowed for abusing NLog targets by making your
+own dll a NLog target without implementing any logging targets, then drop
+`NLog.dll.nlog` inside `<gamedir>/EscapeFromTarkov_Data/Managed/` which
+contained a reference to your dll.
+
+Now this is no longer an viable because `NLog.dll.nlog` is ignored and
+`NLog.config` doesn't see the target. Writing a "proper" target means missing
+timing. For code injection, you're required to use an external framework like
+BepInEx.
+
+### HTTP communication
+
+Most of EFT's comminucation is over HTTPS protocol, synchronization events are
+usually over WSS protocol. Aki wants to comminucate using HTTP without SSL, so
+it has to patch this method:
+
+```cs
+// Token: 0x06002012 RID: 8210 RVA: 0x001BF6DC File Offset: 0x001BD8DC
+public static \uE2c2 CreateFromLegacyParams(\uE2C3 legacyParams)
+{
+    string[] array = legacyParams.Url.Replace(\uED30.\uE000(11698), "").Split(new char[]
+    {
+        '/'
+    }, 2);
+    string backendName = array[0];
+    string backendMethod = \uED30.\uE000(31052) + array[1];
+    return new \uE2c2
+    {
+        // code stripped
+    };
+}
+```
+
+The problem here is that names like `\uE2C3` are parsed as `` in instructions.
+This means that harmony(x) cannot parse it properly, resulting in invalid
+instructions:
+
+```
+[Error  : Unity Log] InvalidProgramException:
+Invalid IL code in DMD<CreateFromLegacyParams>?1322007296:_::CreateFromLegacyParams ():
+IL_0040: call      0x0a000004
+```
+
+In order to resolve this, Aki uses deobfuscation on `Assebly-CSharp.dll`. Since
+Haru uses HTTPS instead, there is no need for this patch.
+
+### FilesChecker
+
+EFT implements a custom integrity validator (`FilesChecker.dll`). It's not
+capable of detecting newly added files, only existing ones included with EFT.
+
+Using deobfuscation or modifying an existing bundle means that
+`ConsistencyInfo`'s hash would be invalid. In order to bypass this, you either
+change `ConsistencyInfo`'s hash for `Assembly-CSharp.dll` or patch the methods
+running `FileChecker.dll` code.
+
+Aki does this by patching `FilesChecker.dll` calls directly, which has the
+benefit of working on both 0.12.x and 0.13.x versions. Haru patches
+`TarkovApplication`'s base type, which has the benefit of not depending on
+`FilesChecker.dll` and completes patching faster but it only works on 0.13.x.
+
+### Anti-cheat
 
 EFT implements BattlEye as it's anti-cheat solution. It is capable of detecting
 newly-injected assemblies into the game as long as the namespace doesn't match
-with one already in EFT (BettlEye's namespace scanning is case-insensitive,
-which can be taken advantage of). 
+with one already in EFT.
 
-In addtion, EFT implements a custom integrity validator (`FilesChecker.dll`).
-It's not capable of detecting newly added files.
+Both Aki and Haru patches the battleye validation method used across most
+places to always return successfully.
 
-### Request handling
+### Zlib compression
 
 A HTTP packet from EFT does not include proper headers (compression headers are
 missing). Payload for HTTP and WS is compressed with ZLib (RFC1950). Using
 `deflate` in the HTTP header will cause unity to attempt at automatic
 decompression which will fail and softlock the game.
 
-Optional measures implemented in EFT is support for HTTPS/WSS and AES-256
-encryption for HTTP payloads. These are not required for the server and are
-left unimplemented.
+Haru doesn't rely on EFT's `SimpleZlib` for (de/in)flation like Aki does, it
+instead opts for using `ZOutputStream` directly because EFT's implementation is
+flawed. The ArrayPool's buffer is sometimes rented before returning when ran in
+async, causing overlap, which results in corrupted data.
 
-## Haru implementation details
+### Embedding the server into EFT
 
-### Defeating security mechanisms
+I tried this, but it ended up being too much of a hassle so ended up ditching
+the idea.
 
-BattlEye has a glaring security risk: it's reliance on `NLog.dll`. The problem
-with Nlog is code injection as it contains an automated module loading
-mechanism (`NLog targets`). After NLog and all other dependencies have been
-resolved, BattlEye initializes.
+Unity's `System.Security.Cryptography.X509Certificates` doesn't implement
+`CertificateRequest` (code stripping? dotnet 462?). It also doesn't support COM
+so `CertEnroll` from managed space is not an option. I haven't tried p/invoke
+yet with a custom-written C assembly for enrolling certificates. Bundling
+openssl is too much of a hassle.
 
-This gives Haru two things:
+In addition, even with a proper generated certificate the HTTP server didn't
+want to bind to it. This resulted in failure of establishing SSL connection.
 
-1. A way of automated code injection (Register custom target in
-   `NLog.dll.nlog`)
-2. Timing to defeat BattlEye (patch BattlEye's validator class in EFT)
+Another obvious problem is the inability to test the server outside of the
+game. Testing suffered a lot more from it than I hoped.
 
-Unlike Aki, Haru doesn't use deobfuscation to work, thus it doesn't have to
-deal with the integrity validator.
+The problems of running external is that EFT's `Newtonsoft.Json` broke
+strongname singing, so the check for it has to be disabled. In addition, mods
+can no longer use bepinex to mod the server.
 
-### Server implementation
+### Server architecture
 
 - Server: gets incoming requests
 - Router: assigns a Controller to handle a request
@@ -49,13 +120,6 @@ deal with the integrity validator.
 - Service: generates data for a response
 - Repository: database access
 - Database: stores data
-
-### FAQ
-
-> Why doesn't Haru use SimpleZlib for (de)compression?
-
-EFT's implementation is flawed for async operations. The ArrayPool's buffer is
-rented before returning, causing overlap, which results in corrupted data.
 
 ## Mod Info
 
@@ -112,13 +176,6 @@ Contains optional languages from EFT (live).
 `/client/menu/locale/tu`                      | `locale/menu-tu.json`
 
 ## Resources
-
-### Game version
-
-**Name**           | **Version**
------------------- | ----------------
-Escape From Tarkov | 0.12.12.32.20243
-Unity Engine       | 2019.4.39f1
 
 ### EFT map data locations
 

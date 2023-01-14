@@ -1,4 +1,4 @@
-﻿using Haru.Framework.Utils;
+﻿using Haru.Utils;
 
 namespace Haru.ModApi
 {
@@ -11,9 +11,9 @@ namespace Haru.ModApi
             _log = new Log();
         }
 
-        public static async void Write(string text)
+        public static void Write(string text)
         {
-            await _log.Write(text);
+            _log.Write(text);
         }
     }
 }

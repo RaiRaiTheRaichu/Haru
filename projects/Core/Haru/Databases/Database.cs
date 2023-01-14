@@ -10,7 +10,7 @@ namespace Haru.Databases
     public class Database
     {
         public readonly Dictionary<string, string> Names;
-        public readonly Dictionary<string, GlobalModel> Globals;
+        public readonly Dictionary<string, Dictionary<string, string>> Globals;
         public readonly Dictionary<string, MenuModel> Menus;
         public SettingsModel HideoutSettings;
         public readonly List<ScavcaseModel> Scavcases;
@@ -37,7 +37,7 @@ namespace Haru.Databases
         public Database()
         {
             Names = new Dictionary<string, string>();
-            Globals = new Dictionary<string, GlobalModel>();
+            Globals = new Dictionary<string, Dictionary<string, string>>();
             Menus = new Dictionary<string, MenuModel>();
             Scavcases = new List<ScavcaseModel>();
             Traders = new List<Models.EFT.Trader.TraderModel>();

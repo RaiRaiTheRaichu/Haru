@@ -1,7 +1,6 @@
-using System.Threading.Tasks;
-using Haru.Framework.Models;
+using Haru.Models;
 using Haru.Models.EFT;
-using Haru.Framework.Http;
+using Haru.Http;
 using Haru.Services;
 
 namespace Haru.Controllers
@@ -21,12 +20,12 @@ namespace Haru.Controllers
                 == "/client/trading/customization/storage";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var data = _profileService.GetCustomizationStorageModel();
             var body = new ResponseModel<CustomizationStorageModel>(data);
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

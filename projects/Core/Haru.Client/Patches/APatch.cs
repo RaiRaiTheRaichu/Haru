@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using HarmonyLib;
+using UnityEngine;
 using Haru.Client.Models;
 
 namespace Haru.Client.Patches
@@ -21,7 +22,9 @@ namespace Haru.Client.Patches
 
         public void Enable()
         {
-            var harmony = new HarmonyLib.Harmony(Id);
+            Debug.Log($"Running patch {Id}");
+
+            var harmony = new Harmony(Id);
 
             switch (Type)
             {
@@ -31,6 +34,10 @@ namespace Haru.Client.Patches
 
                 case EPatchType.Postfix:
                     harmony.Patch(GetOriginalMethod(), postfix: GetPatchMethod());
+                    return;
+
+                case EPatchType.Transpile:
+                    harmony.Patch(GetOriginalMethod(), transpiler: GetPatchMethod());
                     return;
 
                 default:

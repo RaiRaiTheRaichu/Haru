@@ -10,10 +10,10 @@ namespace Haru.Client.Patches
 {
     public class BattlEyePatch : APatch
     {
-        private PatchHelper _patchHelper;
+        private readonly PatchHelper _patchHelper;
         private static PropertyInfo _succeed;
 
-        public BattlEyePatch(PatchHelper patchHelper)
+        public BattlEyePatch(PatchHelper patchHelper) : base()
         {
             Id = "com.haru.client.battleye";
             Type = EPatchType.Prefix;

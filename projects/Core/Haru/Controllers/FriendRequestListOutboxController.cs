@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using Haru.Framework.Models;
-using Haru.Framework.Http;
+﻿using Haru.Models;
+using Haru.Http;
 using Haru.Helpers;
 
 namespace Haru.Controllers
@@ -19,11 +18,11 @@ namespace Haru.Controllers
             return _requestHelper.GetPath(context.Request) == "/client/friend/request/list/outbox";
         }
 
-        public override async Task Run(RouterContext context)
+        public override void Run(RouterContext context)
         {
             var body = _controllerHelper.GetEmptyArrayResponse();
             var json = _json.Serialize(body);
-            await SendJson(context, json);
+            SendJson(context, json);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Haru.Models.EFT.Locale;
 using Haru.Repositories;
 
@@ -35,7 +36,7 @@ namespace Haru.Services
             return data;
         }
 
-        public GlobalModel GetGlobal(string id)
+        public Dictionary<string, string> GetGlobal(string id)
         {
             return _localeRepository.GetGlobal(id);
         }
