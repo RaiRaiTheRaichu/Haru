@@ -11,7 +11,7 @@ namespace Haru.Client.Patches
 {
     public class ConsistencyBundlesPatch : APatch
     {
-        private PatchHelper _patchHelper;
+        private readonly PatchHelper _patchHelper;
 
         public ConsistencyBundlesPatch(PatchHelper patchHelper) : base()
         {

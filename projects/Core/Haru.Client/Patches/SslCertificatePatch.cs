@@ -10,7 +10,7 @@ namespace Haru.Client.Patches
 {
     public class SslCertificatePatch : APatch
     {
-        private PatchHelper _patchHelper;
+        private readonly PatchHelper _patchHelper;
 
         public SslCertificatePatch(PatchHelper patchHelper) : base()
         {

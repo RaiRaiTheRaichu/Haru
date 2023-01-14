@@ -6,7 +6,7 @@ namespace Haru.Server
 {
     class Program
     {
-        private static Log _log;
+        private static readonly Log _log;
 
         static Program()
         {

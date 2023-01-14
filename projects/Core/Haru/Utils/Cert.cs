@@ -7,8 +7,8 @@ namespace Haru.Utils
 {
     public class Cert
     {
-        private Log _log;
-        private VFS _vfs;
+        private readonly Log _log;
+        private readonly VFS _vfs;
         private const string _path = "./Haru/certs/cert.pfx";
 
         public Cert()
