@@ -93,7 +93,8 @@ async, causing overlap, which results in corrupted data.
 
 ### Embedding the server into EFT
 
-I tried this, but it ended up being too much of a hassle.
+I tried this, but it ended up being too much of a hassle so ended up ditching
+the idea.
 
 Unity's `System.Security.Cryptography.X509Certificates` doesn't implement
 `CertificateRequest` (code stripping? dotnet 462?). It also doesn't support COM
@@ -106,6 +107,10 @@ want to bind to it. This resulted in failure of establishing SSL connection.
 
 Another obvious problem is the inability to test the server outside of the
 game. Testing suffered a lot more from it than I hoped.
+
+The problems of running external is that EFT's `Newtonsoft.Json` broke
+strongname singing, so the check for it has to be disabled. In addition, mods
+can no longer use bepinex to mod the server.
 
 ### Server architecture
 
