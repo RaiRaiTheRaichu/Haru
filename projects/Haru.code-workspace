@@ -26,5 +26,23 @@
 				"group": "build"
 			}
 		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Debug",
+				"type":"clr",
+				"request": "launch",
+				"preLaunchTask": "Build: Debug",
+				"program": "${workspaceFolder}/Core/Haru.Server/bin/Debug/net472/Haru.Server.exe",
+				"console": "internalConsole",
+				"stopAtEntry": false,
+				"internalConsoleOptions": "openOnSessionStart",
+				"logging": {
+					"moduleLoad": false
+				}
+			}
+		]
 	}
 }
