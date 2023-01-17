@@ -63,6 +63,7 @@ namespace Haru.Utils
             }
 
             _log.Write($"Certificate thumbprint: {cert.Thumbprint}");
+            cert.Dispose();
         }
 
         // NET::ERR_CERT_AUTHORITY_INVALID
