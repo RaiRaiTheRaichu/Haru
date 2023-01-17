@@ -18,20 +18,21 @@ namespace Haru.Client
 
         public void RunServer()
         {
-            var filename = Path.Combine(Environment.CurrentDirectory, "EscapeFromTarkov_Data/Managed/Haru.Server.exe");
-
+            // start server
+            var process = new Process();
             var processInfo = new ProcessStartInfo()
             {
-                FileName = filename,
+                FileName = Path.Combine(Environment.CurrentDirectory, "EscapeFromTarkov_Data/Managed/Haru.Server.exe"),
                 WorkingDirectory = Environment.CurrentDirectory
             };
-
-            var process = new Process
-            {
-                StartInfo = processInfo
-            };
-
+            
+            process.StartInfo = processInfo;
             process.Start();
+
+            // close server on game close
+            AppDomain.CurrentDomain.ProcessExit += (object sender, EventArgs e) => {
+                process.Close();
+            };
         }
 
         public void RunPatcher()
