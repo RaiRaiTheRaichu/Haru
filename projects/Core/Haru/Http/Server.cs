@@ -27,7 +27,7 @@ namespace Haru.Http
             var uri = new Uri(address);
             _httpsv = new HttpServer(uri.Port, true);
             Address = address;
-            
+
             // controllers
             _requestHelper = new RequestHelper();
             Controllers = new Dictionary<string, Controller>();
