@@ -13,18 +13,10 @@ jobs:
         artifactname: [ "" ]
         artifactpath: [ "" ]
         include:
-          - artifactname: haru
-            artifactpath: ./projects/Core/Haru/bin/Debug/net472
-          - artifactname: haru-modapi
-            artifactpath: ./projects/Core/Haru.ModApi/bin/Debug/net472
-          - artifactname: haru-server
+          - artifactname: Haru.Server
             artifactpath: ./projects/Core/Haru.Server/bin/Debug/net472
-          - artifactname: haru-client
+          - artifactname: Haru.Client
             artifactpath: ./projects/Core/Haru.Client/bin/Debug/net472
-          - artifactname: senko-eftdata
-            artifactpath: ./projects/Mods/Senko.EftData/bin/Debug/net472
-          - artifactname: senko-langpack
-            artifactpath: ./projects/Mods/Senko.Langpack/bin/Debug/net472
         exclude:
           - artifactname: ""
             artifactpath: ""
@@ -58,4 +50,7 @@ jobs:
           !projects/**/bsg.microsoft.extensions.objectpool.dll
           !projects/**/Newtonsoft.Json.dll
           !projects/**/System.Buffers.dll
+          !projects/**/UnityEngine.dll
+          !projects/**/UnityEngine.CoreModule.dll
+          !projects/**/UnityEngine.UnityWebRequestModule.dll
           !projects/**/websocket-sharp.dll
