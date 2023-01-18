@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Haru.Models.EFT.Locale;
 using Haru.Databases;
+using Haru.Models.EFT.Locale;
 
 namespace Haru.Repositories
 {

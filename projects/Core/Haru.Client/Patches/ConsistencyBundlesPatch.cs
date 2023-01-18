@@ -4,8 +4,8 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using EFT;
-using Haru.Client.Models;
 using Haru.Client.Helpers;
+using Haru.Client.Models;
 
 namespace Haru.Client.Patches
 {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using WebSocketSharp.Net;
-using Haru.Models;
 using Haru.Helpers;
+using Haru.Models;
 using Haru.Utils;
 
 namespace Haru.Http

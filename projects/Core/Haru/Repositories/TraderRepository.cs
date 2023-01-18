@@ -1,5 +1,5 @@
-﻿using Haru.Models.EFT.Trader;
-using Haru.Databases;
+﻿using Haru.Databases;
+using Haru.Models.EFT.Trader;
 
 namespace Haru.Repositories
 {

@@ -1,5 +1,5 @@
-﻿using Haru.Models.EFT.Handbook;
-using Haru.Databases;
+﻿using Haru.Databases;
+using Haru.Models.EFT.Handbook;
 
 namespace Haru.Repositories
 {

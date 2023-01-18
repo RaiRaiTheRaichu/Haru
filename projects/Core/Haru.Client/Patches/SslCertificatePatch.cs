@@ -3,8 +3,8 @@
 using System.Linq;
 using System.Reflection;
 using UnityEngine.Networking;
-using Haru.Client.Models;
 using Haru.Client.Helpers;
+using Haru.Client.Models;
 
 namespace Haru.Client.Patches
 {

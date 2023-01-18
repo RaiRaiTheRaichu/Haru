@@ -1,6 +1,6 @@
 using System.Linq;
-using Haru.Models.EFT.Location;
 using Haru.Databases;
+using Haru.Models.EFT.Location;
 
 namespace Haru.Repositories
 {

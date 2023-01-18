@@ -1,7 +1,7 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
-using Haru.Utils;
 using WebSocketSharp.Server;
+using Haru.Utils;
 
 namespace Haru.Http
 {
