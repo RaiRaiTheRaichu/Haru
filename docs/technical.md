@@ -115,11 +115,15 @@ can no longer use bepinex to mod the server.
 ### Server architecture
 
 - Server: gets incoming requests
-- Router: assigns a Controller to handle a request
 - Controller: sends response
 - Service: generates data for a response
 - Repository: database access
 - Database: stores data
+
+## Notes
+
+EFT only requires 4 locales: `en`, `fr`, `ge` and `ru`. These are used in the
+profile creation menus.
 
 ## Mod Info
 
