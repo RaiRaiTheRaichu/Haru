@@ -30,7 +30,7 @@ namespace Haru.Servers
             var menuLocaleController = new MenuLocaleController();
             var resourceController = new ResourceController();
 
-            Server.Router.Controllers = new Dictionary<string, Controller>()
+            Server.Controllers = new Dictionary<string, Controller>()
             {
                 { "/client/checkVersion",                           new CheckVersionController() },
                 { "/client/customization",                          resourceController },

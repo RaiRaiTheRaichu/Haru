@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using WebSocketSharp.Server;
+using Haru.Helpers;
+using Haru.Models;
 using Haru.Utils;
 
 namespace Haru.Http
@@ -10,24 +13,48 @@ namespace Haru.Http
         private readonly Log _log;
         private readonly VFS _vfs;
         private readonly HttpServer _httpsv;
-        public readonly Router Router;
+        private readonly RequestHelper _requestHelper;
+        public Dictionary<string, Controller> Controllers;
         public readonly string Address;
 
         public Server(string address)
         {
+            // utilities
             _log = new Log();
             _vfs = new VFS();
 
+            // server
             var uri = new Uri(address);
             _httpsv = new HttpServer(uri.Port, true);
-            
-            Router = new Router();
             Address = address;
+            
+            // controllers
+            _requestHelper = new RequestHelper();
+            Controllers = new Dictionary<string, Controller>();
         }
 
         public void OnRequest(object sender, HttpRequestEventArgs e)
         {
-            Router.Run(e.Request, e.Response);
+            // log path
+            var path = _requestHelper.GetPath(e.Request);
+
+            // run controller
+            if (Controllers.TryGetValue(path, out var controller))
+            {
+                var context = new RouterContext()
+                {
+                    Request = e.Request,
+                    Response = e.Response
+                };
+
+                _log.Write(path);
+                controller.Run(context);
+            }
+            else
+            {
+                _log.Write($"No controller found for {path}");
+                e.Response.Close();
+            }
         }
 
         public void Start()
