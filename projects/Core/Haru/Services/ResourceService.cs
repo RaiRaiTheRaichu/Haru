@@ -11,14 +11,9 @@ namespace Haru.Services
             _resourceRepository = new ResourceRepository();
         }
 
-        public bool HasFile(string url)
+        public bool TryGetFile(string path, out string file)
         {
-            return _resourceRepository.HasFile(url);
-        }
-
-        public string GetFile(string url)
-        {
-            return _resourceRepository.GetFile(url);
+            return _resourceRepository.TryGetFile(path, out file);
         }
     }
 }

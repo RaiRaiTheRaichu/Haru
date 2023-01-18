@@ -11,14 +11,9 @@ namespace Haru.Repositories
             _database = Database.Instance;
         }
 
-        public bool HasFile(string url)
+        public bool TryGetFile(string path, out string file)
         {
-            return _database.Files.ContainsKey(url);
-        }
-
-        public string GetFile(string url)
-        {
-            return _database.Files[url];
+            return _database.Files.TryGetValue(path, out file);
         }
     }
 }
