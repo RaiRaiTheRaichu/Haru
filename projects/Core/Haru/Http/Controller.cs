@@ -24,8 +24,10 @@ namespace Haru.Http
         {
             var response = context.Response;
             var bytes = _zlib.Compress(data, ZlibCompression.Maximum);
+
             response.ContentType = mime ?? Mime.DEFAULT;
             response.ContentLength64 = bytes.LongLength;
+
             response.OutputStream.Write(bytes, 0, bytes.Length);
             response.Close();
         }
