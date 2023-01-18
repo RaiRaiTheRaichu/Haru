@@ -2,10 +2,10 @@
 
 ## Requirements
 
-- [vscode x64](https://code.visualstudio.com/docs/?dv=win64)
-- [dotnet 6.0 sdk x64](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-- [bepinex x64](https://github.com/BepInEx/BepInEx/releases/latest)
-- escape from tarkov 0.13.0.21531
+- [Visual Studio Code x64](https://code.visualstudio.com/docs/?dv=win64)
+- [.NET 6.0 sdk x64](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- [BepInEx x64](https://github.com/BepInEx/BepInEx/releases/latest)
+- Escape From Tarkov 0.13.0.1.21531
 
 ## Setup
 
