@@ -1,6 +1,6 @@
-﻿using Haru.Models;
+﻿using Haru.Helpers;
 using Haru.Http;
-using Haru.Helpers;
+using Haru.Models;
 
 namespace Haru.Controllers
 {

@@ -1,9 +1,9 @@
 using Haru.Exceptions;
+using Haru.Http;
 using Haru.Models;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Request;
 using Haru.Models.EFT.Location;
-using Haru.Http;
 using Haru.Services;
 
 namespace Haru.Controllers
