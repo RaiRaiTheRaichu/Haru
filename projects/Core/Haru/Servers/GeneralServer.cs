@@ -6,7 +6,7 @@ namespace Haru.Servers
 {
     public class GeneralServer
     {
-        public Server Server;
+        public readonly Server Server;
 
         private static GeneralServer _instance;
         public static GeneralServer Instance
