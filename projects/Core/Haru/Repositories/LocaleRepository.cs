@@ -13,24 +13,19 @@ namespace Haru.Repositories
             _database = Database.Instance;
         }
 
-        public bool HasLocale(string id)
-        {
-            return _database.Globals.ContainsKey(id);
-        }
-
         public Dictionary<string, string> GetNames()
         {
             return _database.Names;
         }
 
-        public Dictionary<string, string> GetGlobal(string id)
+        public bool TryGetGlobal(string id, out Dictionary<string, string> locale)
         {
-            return _database.Globals[id];
+            return _database.Globals.TryGetValue(id, out locale);
         }
 
-        public MenuModel GetMenu(string id)
+        public bool TryGetMenu(string id, out MenuModel locale)
         {
-            return _database.Menus[id];
+            return _database.Menus.TryGetValue(id, out locale);
         }
     }
 }

@@ -13,11 +13,6 @@ namespace Haru.Services
             _localeRepository = new LocaleRepository();
         }
 
-        public bool HasLocale(string id)
-        {
-            return _localeRepository.HasLocale(id);
-        }
-
         public NameModel[] GetLanguages()
         {
             var names = _localeRepository.GetNames();
@@ -36,14 +31,14 @@ namespace Haru.Services
             return data;
         }
 
-        public Dictionary<string, string> GetGlobal(string id)
+        public bool TryGetGlobal(string id, out Dictionary<string, string> locale)
         {
-            return _localeRepository.GetGlobal(id);
+            return _localeRepository.TryGetGlobal(id, out locale);
         }
 
-        public MenuModel GetMenu(string id)
+        public bool TryGetMenu(string id, out MenuModel locale)
         {
-            return _localeRepository.GetMenu(id);
+            return _localeRepository.TryGetMenu(id, out locale);
         }
     }
 }
