@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using BepInEx;
+﻿using BepInEx;
 using Haru.Client.Helpers;
 using Haru.Client.Patches;
 
@@ -18,21 +15,7 @@ namespace Haru.Client
 
         public void RunServer()
         {
-            // start server
-            var process = new Process();
-            var processInfo = new ProcessStartInfo()
-            {
-                FileName = Path.Combine(Environment.CurrentDirectory, "EscapeFromTarkov_Data/Managed/Haru.Server.exe"),
-                WorkingDirectory = Environment.CurrentDirectory
-            };
-            
-            process.StartInfo = processInfo;
-            process.Start();
-
-            // close server on game close
-            AppDomain.CurrentDomain.ProcessExit += (object sender, EventArgs e) => {
-                process.Close();
-            };
+            HookHelper.Object.GetOrAddComponent<ProcessHelper>();
         }
 
         public void RunPatcher()
