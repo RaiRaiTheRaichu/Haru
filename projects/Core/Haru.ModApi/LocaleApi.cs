@@ -16,24 +16,19 @@ namespace Haru.ModApi
             _localeRepository = new LocaleRepository();
         }
 
-        public static bool HasLocale(string id)
-        {
-            return _localeRepository.HasLocale(id);
-        }
-
         public static Dictionary<string, string> GetNames()
         {
             return _localeRepository.GetNames();
         }
 
-        public static Dictionary<string, string> GetGlobal(string id)
+        public static bool TryGetGlobal(string id, out Dictionary<string, string> locale)
         {
-            return _localeRepository.GetGlobal(id);
+            return _localeRepository.TryGetGlobal(id, out locale);
         }
 
-        public static MenuModel GetMenu(string id)
+        public static bool TryGetMenu(string id, out MenuModel locale)
         {
-            return _localeRepository.GetMenu(id);
+            return _localeRepository.TryGetMenu(id, out locale);
         }
 
         public static void AddName(string id, string value)
