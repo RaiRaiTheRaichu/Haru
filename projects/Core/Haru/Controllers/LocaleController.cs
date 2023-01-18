@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Haru.Models;
 using Haru.Helpers;
 using Haru.Models.EFT;
-using Haru.Models.EFT.Locale;
 using Haru.Http;
 using Haru.Services;
 
@@ -18,11 +17,6 @@ namespace Haru.Controllers
         {
             _localeHelper = new LocaleHelper();
             _localeService = new LocaleService();
-        }
-
-        public override bool IsMatch(RouterContext context)
-        {
-            return _localeHelper.FindLocale(context, _format) != null;
         }
 
         public override void Run(RouterContext context)

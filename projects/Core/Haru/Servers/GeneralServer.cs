@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Haru.Controllers;
 using Haru.Http;
 
@@ -25,38 +26,57 @@ namespace Haru.Servers
         {
             Server = new Server("https://127.0.0.1:8000/");
 
-            var controllers = Server.Router.Controllers;
+            var localeController = new LocaleController();
+            var menuLocaleController = new MenuLocaleController();
+            var resourceController = new ResourceController();
 
-            controllers.Add(new CheckVersionController());
-            controllers.Add(new CustomizationStorageController());
-            controllers.Add(new FriendListController());
-            controllers.Add(new FriendRequestListInboxController());
-            controllers.Add(new FriendRequestListOutboxController());
-            controllers.Add(new GameConfigController());
-            controllers.Add(new GameLogoutController());
-            controllers.Add(new GameProfileSelectController());
-            controllers.Add(new GameStartController());
-            controllers.Add(new GameVersionValidateController());
-            controllers.Add(new GetLocalLootController());
-            controllers.Add(new HandbookBuildsMyListController());
-            controllers.Add(new HandbookTemplatesController());
-            controllers.Add(new HideoutProductionScavcaseRecipesController());
-            controllers.Add(new HideoutSettingsController());
-            controllers.Add(new LanguagesController());
-            controllers.Add(new LocaleController());
-            controllers.Add(new LocationController());
-            controllers.Add(new MailDialogListController());
-            controllers.Add(new MatchOfflineStartController());
-            controllers.Add(new MatchOfflineEndController());
-            controllers.Add(new MenuLocaleController());
-            controllers.Add(new NotifierChannelCreateController());
-            controllers.Add(new ProfileStatusController());
-            controllers.Add(new RaidConfigurationController());
-            controllers.Add(new ResourceController());
-            controllers.Add(new ServerListController());
-            controllers.Add(new SettingsController());
-            controllers.Add(new TraderSettingsController());
-            controllers.Add(new WeatherController());
+            Server.Router.Controllers = new Dictionary<string, Controller>()
+            {
+                { "/client/checkVersion",                           new CheckVersionController() },
+                { "/client/customization",                          resourceController },
+                { "/client/friend/list",                            new FriendListController() },
+                { "/client/friend/request/list/inbox",              new FriendRequestListInboxController() },
+                { "/client/friend/request/list/outbox",             new FriendRequestListOutboxController() },
+                { "/client/game/config",                            new GameConfigController() },
+                { "/client/game/logout",                            new GameLogoutController() },
+                { "/client/game/profile/list",                      resourceController },
+                { "/client/game/profile/select",                    new GameProfileSelectController() },
+                { "/client/game/start",                             new GameStartController() },
+                { "/client/game/version/validate",                  new GameVersionValidateController() },
+                { "/client/globals",                                resourceController },
+                { "/client/handbook/builds/my/list",                new HandbookBuildsMyListController() },
+                { "/client/handbook/templates",                     new HandbookTemplatesController() },
+                { "/client/hideout/areas",                          resourceController },
+                { "/client/hideout/production/recipes",             resourceController },
+                { "/client/hideout/production/scavcase/recipes",    new HideoutProductionScavcaseRecipesController() },
+                { "/client/hideout/qte/list",                       resourceController },
+                { "/client/hideout/settings",                       new HideoutSettingsController() },
+                { "/client/items",                                  resourceController },
+                { "/client/languages",                              new LanguagesController() },
+                { "/client/locale/en",                              localeController },
+                { "/client/locale/fr",                              localeController },
+                { "/client/locale/ge",                              localeController },
+                { "/client/locale/ru",                              localeController },
+                { "/client/locations",                              new LocationController() },
+                { "/client/location/getLocalloot",                  new GetLocalLootController() },
+                { "/client/mail/dialog/list",                       new MailDialogListController() },
+                { "/client/match/offline/end",                      new MatchOfflineStartController() },
+                { "/client/match/offline/start",                    new MatchOfflineEndController() },
+                { "/client/menu/locale/en",                         menuLocaleController },
+                { "/client/menu/locale/fr",                         menuLocaleController },
+                { "/client/menu/locale/ge",                         menuLocaleController },
+                { "/client/menu/locale/ru",                         menuLocaleController },
+                { "/client/notifier/channel/create",                new NotifierChannelCreateController() },
+                { "/client/profile/status",                         new ProfileStatusController() },
+                { "/client/quest/list",                             resourceController },
+                { "/client/repeatalbeQuests/activityPeriods",       resourceController },
+                { "/client/raid/configuration",                     new RaidConfigurationController() },
+                { "/client/server/list",                            new ServerListController() },
+                { "/client/settings",                               new SettingsController() },
+                { "/client/trading/customization/storage",          new CustomizationStorageController() },
+                { "/client/trading/api/traderSettings",             new TraderSettingsController() },
+                { "/client/weather",                                new WeatherController() }
+            };
         }
 
         public void Start()

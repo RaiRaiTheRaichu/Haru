@@ -15,11 +15,6 @@ namespace Haru.Controllers
             _traderService = new TraderService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/trading/api/traderSettings";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _traderService.GetTraders();

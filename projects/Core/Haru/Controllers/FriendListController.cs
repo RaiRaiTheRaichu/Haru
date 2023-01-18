@@ -15,11 +15,6 @@ namespace Haru.Controllers
             _friendService = new FriendService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/friend/list";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _friendService.GetFriends();

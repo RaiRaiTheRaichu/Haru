@@ -15,11 +15,6 @@ namespace Haru.Controllers
             _localeService = new LocaleService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/languages";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _localeService.GetLanguages();

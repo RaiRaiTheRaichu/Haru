@@ -14,12 +14,6 @@ namespace Haru.Controllers
             _profileService = new ProfileService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request)
-                == "/client/trading/customization/storage";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _profileService.GetCustomizationStorageModel();

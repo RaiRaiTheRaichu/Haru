@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using WebSocketSharp.Net;
 using Haru.Models;
 using Haru.Helpers;
@@ -11,13 +10,13 @@ namespace Haru.Http
     {
         private readonly RequestHelper _requestHelper;
         private readonly Log _log;
-        public readonly List<Controller> Controllers;
+        public Dictionary<string, Controller> Controllers;
 
         public Router()
         {
             _requestHelper = new RequestHelper();
             _log = new Log();
-            Controllers = new List<Controller>();
+            Controllers = new Dictionary<string, Controller>();
         }
 
         public void Run(HttpListenerRequest request, HttpListenerResponse response)
@@ -27,15 +26,21 @@ namespace Haru.Http
             _log.Write(path);
 
             // run controller
-            var context = new RouterContext()
+            if (Controllers.TryGetValue(path, out var controller))
             {
-                Request = request,
-                Response = response
-            };
+                var context = new RouterContext()
+                {
+                    Request = request,
+                    Response = response
+                };
 
-            Controllers
-                .First(x => x.IsMatch(context))
-                .Run(context);
+                controller.Run(context);
+            }
+            else
+            {
+                _log.Write($"No controller found for {path}");
+                response.Close();
+            }
         }
     }
 }

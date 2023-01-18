@@ -15,11 +15,6 @@ namespace Haru.Controllers
             _handbookService = new HandbookService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/handbook/templates";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _handbookService.GetTemplates();

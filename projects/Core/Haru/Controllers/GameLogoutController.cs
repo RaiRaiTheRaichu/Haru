@@ -13,11 +13,6 @@ namespace Haru.Controllers
             _controllerHelper = new ControllerHelper();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/game/logout";
-        }
-
         public override void Run(RouterContext context)
         {
             // todo: fix this

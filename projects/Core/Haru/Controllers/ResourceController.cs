@@ -16,12 +16,6 @@ namespace Haru.Controllers
             _resourceService = new ResourceService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            var url = _requestHelper.GetPath(context.Request);
-            return _resourceService.HasFile(url);
-        }
-
         public override void Run(RouterContext context)
         {
             var url = _requestHelper.GetPath(context.Request);            

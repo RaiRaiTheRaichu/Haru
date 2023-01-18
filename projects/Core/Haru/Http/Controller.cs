@@ -18,8 +18,6 @@ namespace Haru.Http
             _zlib = new Zlib();
         }
 
-        public abstract bool IsMatch(RouterContext context);
-
         public abstract void Run(RouterContext context);
 
         public void Send(RouterContext context, byte[] data, string mime = null)

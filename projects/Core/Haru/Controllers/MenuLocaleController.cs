@@ -19,11 +19,6 @@ namespace Haru.Controllers
             _localeService = new LocaleService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _localeHelper.FindLocale(context, _format) != null;
-        }
-
         public override void Run(RouterContext context)
         {
             var locale = _localeHelper.FindLocale(context, _format);

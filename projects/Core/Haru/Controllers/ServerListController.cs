@@ -14,11 +14,6 @@ namespace Haru.Controllers
             _serverService = new ServerService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/server/list";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _serverService.GetServers();

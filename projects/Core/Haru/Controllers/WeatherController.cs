@@ -15,11 +15,6 @@ namespace Haru.Controllers
             _weatherService = new WeatherService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/weather";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _weatherService.GetWeather();

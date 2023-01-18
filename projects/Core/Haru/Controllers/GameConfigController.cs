@@ -15,11 +15,6 @@ namespace Haru.Controllers
             _gameService = new GameService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/game/config";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _gameService.GetConfigModel();

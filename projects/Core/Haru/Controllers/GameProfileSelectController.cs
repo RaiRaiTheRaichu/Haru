@@ -18,11 +18,6 @@ namespace Haru.Controllers
             _notificationService = new NotificationService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/game/profile/select";
-        }
-
         public override void Run(RouterContext context)
         {
             var sessionId = _controllerHelper.GetSessionId(context.Request);

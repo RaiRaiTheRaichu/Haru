@@ -15,11 +15,6 @@ namespace Haru.Controllers
             _settingsService = new SettingsService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/settings";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _settingsService.GetClientSettings();

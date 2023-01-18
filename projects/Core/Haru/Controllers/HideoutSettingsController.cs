@@ -15,11 +15,6 @@ namespace Haru.Controllers
             _hideoutService = new HideoutService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/hideout/settings";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _hideoutService.GetSettings();

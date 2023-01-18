@@ -17,11 +17,6 @@ namespace Haru.Controllers
             _locationService = new LocationService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/location/getLocalloot";
-        }
-
         public override void Run(RouterContext context)
         {
             var request = _requestHelper.GetBody(context.Request);

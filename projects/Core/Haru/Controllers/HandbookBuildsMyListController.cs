@@ -13,11 +13,6 @@ namespace Haru.Controllers
             _controllerHelper = new ControllerHelper();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/handbook/builds/my/list";
-        }
-
         public override void Run(RouterContext context)
         {
             var body = _controllerHelper.GetEmptyArrayResponse();

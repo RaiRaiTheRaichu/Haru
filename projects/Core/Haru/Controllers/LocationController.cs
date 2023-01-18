@@ -15,11 +15,6 @@ namespace Haru.Controllers
             _locationService = new LocationService();
         }
 
-        public override bool IsMatch(RouterContext context)
-        {
-            return _requestHelper.GetPath(context.Request) == "/client/locations";
-        }
-
         public override void Run(RouterContext context)
         {
             var data = _locationService.GetWorldMap();
