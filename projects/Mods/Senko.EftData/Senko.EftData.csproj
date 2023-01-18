@@ -8,15 +8,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Database\Locales\all-ch.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-cz.json" />
     <EmbeddedResource Include="Resources\Database\Locales\all-en.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-es.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-es-mx.json" />
     <EmbeddedResource Include="Resources\Database\Locales\all-fr.json" />
     <EmbeddedResource Include="Resources\Database\Locales\all-ge.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-hu.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-it.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-jp.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-kr.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-pl.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-po.json" />
     <EmbeddedResource Include="Resources\Database\Locales\all-ru.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-sk.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\all-tu.json" />
     <EmbeddedResource Include="Resources\Database\Locales\languages.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-ch.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-cz.json" />
     <EmbeddedResource Include="Resources\Database\Locales\menu-en.json" />
-    <EmbeddedResource Include="Resources\Database\Locales\menu-ge.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-es.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-es-mx.json" />
     <EmbeddedResource Include="Resources\Database\Locales\menu-fr.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-ge.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-hu.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-it.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-jp.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-kr.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-pl.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-po.json" />
     <EmbeddedResource Include="Resources\Database\Locales\menu-ru.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-sk.json" />
+    <EmbeddedResource Include="Resources\Database\Locales\menu-tu.json" />
     <EmbeddedResource Include="Resources\Database\Settings\client.json" />
     <EmbeddedResource Include="Resources\Database\Settings\hideout.json" />
     <EmbeddedResource Include="Resources\Database\Templates\handbook.json" />
