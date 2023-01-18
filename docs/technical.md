@@ -109,8 +109,8 @@ Another obvious problem is the inability to test the server outside of the
 game. Testing suffered a lot more from it than I hoped.
 
 The problems of running external is that EFT's `Newtonsoft.Json` broke
-strongname singing, so the check for it has to be disabled. In addition, mods
-can no longer use bepinex to mod the server.
+strongname signing, meaning we have to ship the original assembly In addition,
+mods can no longer use bepinex to mod the server.
 
 ### Server architecture
 
