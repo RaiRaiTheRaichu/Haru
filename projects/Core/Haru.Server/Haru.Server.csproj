@@ -14,17 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- fixes strongname verification failed error -->
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <!-- included for testing only -->
-    <Reference Include="ComponentAce.Compression.Libs.zlib" HintPath="..\..\References\bsg.componentace.compression.libs.zlib.dll" />
-    <Reference Include="Microsoft.Extensions.ObjectPool" HintPath="..\..\References\bsg.microsoft.extensions.objectpool.dll" />
-    <Reference Include="Newtonsoft.Json" HintPath="..\..\References\Newtonsoft.Json.dll" />
-    <Reference Include="System.Buffers" HintPath="..\..\References\System.Buffers.dll" />
-    <Reference Include="websocket-sharp" HintPath="..\..\References\websocket-sharp.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Haru\Haru.csproj" />
     <ProjectReference Include="..\..\Mods\Senko.EftData\Senko.EftData.csproj" />
   </ItemGroup>
