@@ -30,9 +30,6 @@ namespace Haru.Utils
                 // get assembly name
                 var name = kvp.Key.GetName().Name;
 
-                // hack: Remove "NLog." to match assembly root namespace
-                name = name.Replace("NLog.", "");
-
                 // find assembly resource
                 var resx = $"{name}.Resources.{filepath}";
 
