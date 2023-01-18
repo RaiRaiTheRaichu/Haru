@@ -48,7 +48,6 @@ jobs:
           !projects/**/Assembly-CSharp.dll
           !projects/**/bsg.componentace.compression.libs.zlib.dll
           !projects/**/bsg.microsoft.extensions.objectpool.dll
-          !projects/**/Newtonsoft.Json.dll
           !projects/**/System.Buffers.dll
           !projects/**/UnityEngine.dll
           !projects/**/UnityEngine.CoreModule.dll

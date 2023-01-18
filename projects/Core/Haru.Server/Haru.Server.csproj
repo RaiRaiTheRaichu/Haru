@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- included for testing only, fixes strongname verification failed error during debugging -->
+    <!-- fixes strongname verification failed error -->
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <!-- included for testing only -->
     <Reference Include="ComponentAce.Compression.Libs.zlib" HintPath="..\..\References\bsg.componentace.compression.libs.zlib.dll" />
