@@ -9,65 +9,52 @@ namespace Haru.Utils
     {
         private readonly Log _log;
         private readonly VFS _vfs;
-        private const string _path = "./Haru/certs/cert.pfx";
+        private readonly DateTime _date;
+        private readonly string _path;
 
-        public Cert()
+        public Cert(string path)
         {
             _log = new Log();
             _vfs = new VFS();
+            _date = DateTime.UtcNow;
+            _path = path;
         }
 
-        public void Load(string subject, string password)
+        public bool IsValid(string password)
         {
-            var isValid = true;
-            X509Certificate2 cert = null;
-
-            if (_vfs.Exists(_path))
+            if (!_vfs.Exists(_path))
             {
-                var bytes = _vfs.ReadBytes(_path);
-
-                try
-                {
-                    cert = new X509Certificate2(bytes, password);
-                }
-                catch (CryptographicException ex)
-                {
-                    _log.Write(ex.ToString());
-                }
-
-                if (cert.NotAfter < DateTime.Now.AddDays(1))
-                {
-                    // certificate expired
-                    _log.Write("Certificate expired, marked to regenerate");
-                    isValid = false;
-                }
-            }
-            else
-            {
-                // certificate doesn't exist
-                isValid = false;
+                return false;
             }
 
-            if (!isValid)
+            using (var cert = new X509Certificate2(_path, password))
             {
-                _log.Write("Generating new certificate...");
-                var start = DateTime.UtcNow.AddDays(-1);
-                var end = DateTime.UtcNow.AddMonths(1);
+                if (cert.NotAfter < _date.AddDays(1))
+                {
+                    return false;
+                }
+            }
 
-                // generate certificate
-                cert = GenerateSelfSigned(subject, start, end);
+            return true;
+        }
 
-                // export to file
+        public void CreateCertificate(string subject)
+        {
+            _log.Write("Generating new certificate...");
+
+            var start = _date.AddDays(-1);
+            var end = _date.AddMonths(1);
+
+            using (var cert = GenerateSelfSigned(subject, start, end))
+            {
                 var bytes = cert.Export(X509ContentType.Pfx);
                 _vfs.WriteBytes(_path, bytes);
+                _log.Write($"Certificate thumbprint: {cert.Thumbprint}");
             }
-
-            _log.Write($"Certificate thumbprint: {cert.Thumbprint}");
-            cert.Dispose();
         }
 
         // NET::ERR_CERT_AUTHORITY_INVALID
-        private X509Certificate2 GenerateSelfSigned(string name, DateTime start, DateTime end)
+        private X509Certificate2 GenerateSelfSigned(string subject, DateTime start, DateTime end)
         {
             using (RSA rsa = RSA.Create(2048))
             {
@@ -77,7 +64,7 @@ namespace Haru.Utils
                 builder.AddDnsName("localhost");
 
                 // create request for SSL server
-                var distinguishedName = new X500DistinguishedName($"CN={name}");
+                var distinguishedName = new X500DistinguishedName($"CN={subject}");
                 var req = new CertificateRequest(distinguishedName, rsa, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1)
                 {
                     CertificateExtensions = {
@@ -90,7 +77,7 @@ namespace Haru.Utils
 
                 // create certificate with both public and private key
                 var cert = req.CreateSelfSigned(start, end);
-                cert.FriendlyName = name;
+                cert.FriendlyName = subject;
 
                 // export certificate
                 var password = string.Empty;

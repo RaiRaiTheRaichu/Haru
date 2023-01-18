@@ -21,8 +21,12 @@ namespace Haru.Server
             Senko.EftData.Mod.Run();
 
             // load certificate
-            var cert = new Cert();
-            cert.Load("Haru", string.Empty);
+            var cert = new Cert("./Haru/certs/cert.pfx");
+
+            if (!cert.IsValid(string.Empty))
+            {
+                cert.CreateCertificate("Haru");
+            }
 
             // load servers
             GeneralServer.Instance.Start();
