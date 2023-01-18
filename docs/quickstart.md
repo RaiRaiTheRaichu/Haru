@@ -34,4 +34,4 @@ EscapeFromTarkov.exe -token=aid -config={"BackendUrl":"url","Version":"live"}
 ```
 
 - Replace `aid` with your account id (exp.: `senkosan`)
-- Replace `url` with the host url (usually `http://127.0.0.1:8000`)
+- Replace `url` with the host url (usually `https://127.0.0.1:8000`)
