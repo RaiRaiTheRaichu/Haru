@@ -36,6 +36,7 @@
 				"request": "launch",
 				"preLaunchTask": "Build: Debug",
 				"program": "${workspaceFolder}/Core/Haru.Server/bin/Debug/net472/Haru.Server.exe",
+				"cwd": "${workspaceFolder}/Core/Haru.Server/bin/Debug/net472/",
 				"console": "internalConsole",
 				"stopAtEntry": false,
 				"internalConsoleOptions": "openOnSessionStart",
