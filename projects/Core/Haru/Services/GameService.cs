@@ -7,6 +7,7 @@ namespace Haru.Services
 {
     public class GameService
     {
+        private const string _latestVersion = "0.13.0.1.21523";
         private readonly LocaleRepository _localeRepository;
 
         public GameService()
@@ -57,7 +58,7 @@ namespace Haru.Services
             return new CheckVersionModel()
             {
                 IsValid = true,
-                LatestVersion = "0.12.12.32.20243"
+                LatestVersion = _latestVersion
             };
         }
     }
