@@ -70,7 +70,7 @@ namespace Haru.Servers
                 { "/client/locale/sk",                              localeController },
                 { "/client/locale/tu",                              localeController },
                 { "/client/locations",                              new LocationController() },
-                { "/client/location/getLocalloot",                  new GetLocalLootController() },
+                { "/client/location/getLocalloot",                  new LocationGetLootController() },
                 { "/client/mail/dialog/list",                       new MailDialogListController() },
                 { "/client/match/offline/end",                      new MatchOfflineStartController() },
                 { "/client/match/offline/start",                    new MatchOfflineEndController() },

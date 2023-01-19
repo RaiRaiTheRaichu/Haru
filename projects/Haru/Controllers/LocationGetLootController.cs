@@ -8,11 +8,11 @@ using Haru.Services;
 
 namespace Haru.Controllers
 {
-    public class GetLocalLootController : Controller
+    public class LocationGetLootController : Controller
     {
         private readonly LocationService _locationService;
 
-        public GetLocalLootController()
+        public LocationGetLootController()
         {
             _locationService = new LocationService();
         }
