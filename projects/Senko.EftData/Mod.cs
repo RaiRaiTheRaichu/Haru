@@ -1,29 +1,35 @@
 ﻿using System.Collections.Generic;
 using Haru.Databases;
-using Haru.ModApi;
 using Haru.Models.EFT;
 using Haru.Models.EFT.Handbook;
 using Haru.Models.EFT.Hideout;
 using Haru.Models.EFT.Locale;
 using Haru.Models.EFT.Location;
 using Haru.Models.EFT.Settings;
+using Haru.Utils;
 
 namespace Senko.EftData
 {
     public class Mod
     {
-        private static readonly Database _database;
+        private readonly Json _json;
+        private readonly Log _log;
+        private readonly Resource _resource;
+        private readonly Database _database;
 
-        static Mod()
+        public Mod()
         {
+            _json = new Json();
+            _log = new Log();
+            _resource = new Resource();
             _database = Database.Instance;
         }
 
-        public static void Run()
+        public void Run()
         {
-            LogApi.Write("Loading Senko.EftData");
+            _log.Write("Loading Senko.EftData");
 
-            ResourceApi.EnableResourceLoading(typeof(Mod).Assembly);
+            _resource.RegisterAssembly(typeof(Mod).Assembly);
 
             LoadLanguages();
             LoadHideoutSettings();
@@ -35,10 +41,10 @@ namespace Senko.EftData
             LoadFiles();
         }
 
-        private static void LoadLanguages()
+        private void LoadLanguages()
         {
-            var json = ResourceApi.GetText("Database.Locales.languages.json");
-            var names = JsonApi.Deserialize<Dictionary<string, string>>(json);
+            var json = _resource.GetText("Database.Locales.languages.json");
+            var names = _json.Deserialize<Dictionary<string, string>>(json);
 
             foreach (var kvp in names)
             {
@@ -51,66 +57,66 @@ namespace Senko.EftData
             }
         }
 
-        private static void LoadGlobalLocale(string lang)
+        private void LoadGlobalLocale(string lang)
         {
-            var json = ResourceApi.GetText($"Database.Locales.all-{lang}.json");
-            var body = JsonApi.Deserialize<ResponseModel<Dictionary<string, string>>>(json);
+            var json = _resource.GetText($"Database.Locales.all-{lang}.json");
+            var body = _json.Deserialize<ResponseModel<Dictionary<string, string>>>(json);
             _database.Globals.Add(lang, body.Data);
         }
 
-        private static void LoadMenuLocale(string lang)
+        private void LoadMenuLocale(string lang)
         {
-            var json = ResourceApi.GetText($"Database.Locales.menu-{lang}.json");
-            var body = JsonApi.Deserialize<ResponseModel<MenuModel>>(json);
+            var json = _resource.GetText($"Database.Locales.menu-{lang}.json");
+            var body = _json.Deserialize<ResponseModel<MenuModel>>(json);
             _database.Menus.Add(lang, body.Data);
         }
 
-        private static void LoadHideoutSettings()
+        private void LoadHideoutSettings()
         {
-            var json = ResourceApi.GetText("Database.Settings.hideout.json");
-            var body = JsonApi.Deserialize<ResponseModel<SettingsModel>>(json);
+            var json = _resource.GetText("Database.Settings.hideout.json");
+            var body = _json.Deserialize<ResponseModel<SettingsModel>>(json);
             _database.HideoutSettings = body.Data;
         }
 
-        private static void LoadScavcases()
+        private void LoadScavcases()
         {
-            var json = ResourceApi.GetText("Database.Templates.scavcases.json");
-            var body = JsonApi.Deserialize<ResponseModel<ScavcaseModel[]>>(json);
+            var json = _resource.GetText("Database.Templates.scavcases.json");
+            var body = _json.Deserialize<ResponseModel<ScavcaseModel[]>>(json);
             _database.Scavcases.AddRange(body.Data);
         }
 
-        private static void LoadClientSettings()
+        private void LoadClientSettings()
         {
-            var json = ResourceApi.GetText("Database.Settings.client.json");
-            var body = JsonApi.Deserialize<ResponseModel<ClientModel>>(json);
+            var json = _resource.GetText("Database.Settings.client.json");
+            var body = _json.Deserialize<ResponseModel<ClientModel>>(json);
             _database.ClientSettings = body.Data;
         }
 
-        private static void LoadTraders()
+        private void LoadTraders()
         {
-            var json = ResourceApi.GetText("Database.Templates.traders.json");
-            var body = JsonApi.Deserialize<ResponseModel<Haru.Models.EFT.Trader.TraderModel[]>>(json);
+            var json = _resource.GetText("Database.Templates.traders.json");
+            var body = _json.Deserialize<ResponseModel<Haru.Models.EFT.Trader.TraderModel[]>>(json);
             _database.Traders.AddRange(body.Data);
         }
 
-        private static void LoadHandbookTemplates()
+        private void LoadHandbookTemplates()
         {
-            var json = ResourceApi.GetText("Database.Templates.handbook.json");
-            var body = JsonApi.Deserialize<ResponseModel<TemplatesModel>>(json);
+            var json = _resource.GetText("Database.Templates.handbook.json");
+            var body = _json.Deserialize<ResponseModel<TemplatesModel>>(json);
             _database.HandbookTemplates = body.Data;
         }
 
-        private static void LoadWorldMap()
+        private void LoadWorldMap()
         {
-            var json = ResourceApi.GetText("Database.Templates.locations.json");
-            var body = JsonApi.Deserialize<ResponseModel<WorldMapModel>>(json);
+            var json = _resource.GetText("Database.Templates.locations.json");
+            var body = _json.Deserialize<ResponseModel<WorldMapModel>>(json);
             _database.WorldMap = body.Data;
         }
 
-        private static void LoadFiles()
+        private void LoadFiles()
         {
-            var json = ResourceApi.GetText("Database.resxdb.json");
-            var files = JsonApi.Deserialize<Dictionary<string, string>>(json);
+            var json = _resource.GetText("Database.resxdb.json");
+            var files = _json.Deserialize<Dictionary<string, string>>(json);
 
             foreach (var kvp in files)
             {

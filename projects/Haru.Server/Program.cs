@@ -1,6 +1,7 @@
 using System;
 using Haru.Servers;
 using Haru.Utils;
+using Senko.EftData;
 
 namespace Haru.Server
 {
@@ -18,7 +19,7 @@ namespace Haru.Server
         static void Main(string[] args)
         {
             // load mods
-            Senko.EftData.Mod.Run();
+            new Mod().Run();
 
             // load certificate
             var cert = new Cert("./Haru/certs/cert.pfx");

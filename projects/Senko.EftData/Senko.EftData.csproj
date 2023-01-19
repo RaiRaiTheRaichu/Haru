@@ -65,7 +65,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Haru\Haru.csproj" />
-    <ProjectReference Include="..\Haru.ModApi\Haru.ModApi.csproj" />
   </ItemGroup>
 
 </Project>
