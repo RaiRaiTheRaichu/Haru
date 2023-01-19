@@ -48,7 +48,14 @@ namespace Haru.Client
         private void OnApplicationQuit()
         {
             _process.CloseMainWindow();
+
+            // cleanup memory
             _process.Dispose();
+
+            foreach (var patch in _patches)
+            {
+                patch.Disable();
+            }
         }
     }
 }

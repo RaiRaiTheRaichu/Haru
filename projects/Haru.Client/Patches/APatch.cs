@@ -10,9 +10,10 @@ namespace Haru.Client.Patches
     public abstract class APatch
     {
         protected PatchHelper _patchHelper;
+        public Harmony Harmony { get; private set; }
         public EPatchType Type { get; protected set; }
         public string Id { get; protected set; }
-        
+
         public APatch()
         {
             _patchHelper = new PatchHelper();
@@ -31,24 +32,32 @@ namespace Haru.Client.Patches
         {
             Debug.Log($"Running patch {Id}");
 
-            var harmony = new Harmony(Id);
+            Harmony = new Harmony(Id);
 
             switch (Type)
             {
                 case EPatchType.Prefix:
-                    harmony.Patch(GetOriginalMethod(), prefix: GetPatchMethod());
+                    Harmony.Patch(GetOriginalMethod(), prefix: GetPatchMethod());
                     return;
 
                 case EPatchType.Postfix:
-                    harmony.Patch(GetOriginalMethod(), postfix: GetPatchMethod());
+                    Harmony.Patch(GetOriginalMethod(), postfix: GetPatchMethod());
                     return;
 
                 case EPatchType.Transpile:
-                    harmony.Patch(GetOriginalMethod(), transpiler: GetPatchMethod());
+                    Harmony.Patch(GetOriginalMethod(), transpiler: GetPatchMethod());
                     return;
 
                 default:
                     throw new NotImplementedException("Patch type");
+            }
+        }
+
+        public void Disable()
+        {
+            if (Harmony != null)
+            {
+                Harmony.Dispose();
             }
         }
     }
