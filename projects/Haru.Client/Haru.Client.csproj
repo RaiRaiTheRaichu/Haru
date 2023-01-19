@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>Haru.Client</RootNamespace>
+    <LangVersion>7.3</LangVersion>
+    <Configurations>Debug</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference PrivateAssets="All" Private="False" Include="Assembly-CSharp" HintPath="..\References\Assembly-CSharp.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="ComponentAce.Compression.Libs.zlib" HintPath="..\References\bsg.componentace.compression.libs.zlib.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="Microsoft.Extensions.ObjectPool" HintPath="..\References\bsg.microsoft.extensions.objectpool.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="System.Buffers" HintPath="..\References\System.Buffers.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="UnityEngine" HintPath="..\References\UnityEngine.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.CoreModule" HintPath="..\References\UnityEngine.CoreModule.dll" />
+    <Reference PrivateAssets="All" Private="False" Include="UnityEngine.UnityWebRequestModule" HintPath="..\References\UnityEngine.UnityWebRequestModule.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="HarmonyX" Version="2.9.0" />
+    <PackageReference ExcludeAssets="runtime" PrivateAssets="All" Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
+  </ItemGroup>
+
+</Project>

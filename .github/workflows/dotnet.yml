@@ -14,9 +14,9 @@ jobs:
         artifactpath: [ "" ]
         include:
           - artifactname: Haru.Server
-            artifactpath: ./projects/Core/Haru.Server/bin/Debug/net472
+            artifactpath: ./projects/Haru.Server/bin/Debug/net472
           - artifactname: Haru.Client
-            artifactpath: ./projects/Core/Haru.Client/bin/Debug/net472
+            artifactpath: ./projects/Haru.Client/bin/Debug/net472
         exclude:
           - artifactname: ""
             artifactpath: ""
