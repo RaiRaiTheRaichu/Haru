@@ -17,7 +17,7 @@ namespace Haru.Controllers
 
         public override void Run(RouterContext context)
         {
-            var data = _gameService.GetConfigModel();
+            var data = _gameService.GetConfig();
             var body = new ResponseModel<ConfigModel>(data);
             var json = _json.Serialize(body);
             SendJson(context, json);

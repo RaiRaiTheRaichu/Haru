@@ -15,7 +15,7 @@ namespace Haru.Services
             _localeRepository = new LocaleRepository();
         }
 
-        public ConfigModel GetConfigModel()
+        public ConfigModel GetConfig()
         {
             var url = GeneralServer.Instance.Server.Address;
 
