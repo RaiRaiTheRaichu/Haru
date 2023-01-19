@@ -5,7 +5,5 @@
     "/client/hideout/areas": "client.hideout.areas.json",
     "/client/hideout/production/recipes": "client.hideout.production.recipes.json",
     "/client/hideout/qte/list": "client.hideout.qte.list.json",
-    "/client/items": "client.items.json",
-    "/client/quest/list": "client.quest.list.json",
-    "/client/repeatalbeQuests/activityPeriods": "client.repeatalbequests.activityperiods.json"
+    "/client/items": "client.items.json"
 }
