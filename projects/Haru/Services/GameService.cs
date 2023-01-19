@@ -61,5 +61,15 @@ namespace Haru.Services
                 LatestVersion = _latestVersion
             };
         }
+
+        public KeepaliveModel GetKeepalive()
+        {
+            // note: dumped EFT server data
+            return new KeepaliveModel()
+            {
+                Message = "OK",
+                Timestamp = 1674115253
+            };
+        }
     }
 }

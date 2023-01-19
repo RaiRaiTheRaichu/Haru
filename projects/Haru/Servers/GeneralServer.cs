@@ -39,6 +39,7 @@ namespace Haru.Servers
                 { "/client/friend/request/list/outbox",             new FriendRequestListOutboxController() },
                 { "/client/game/bot/generate",                      new GameBotGenerateController() },
                 { "/client/game/config",                            new GameConfigController() },
+                { "/client/game/keepalive",                         new GameKeepaliveController() },
                 { "/client/game/logout",                            new GameLogoutController() },
                 { "/client/game/profile/list",                      resourceController },
                 { "/client/game/profile/select",                    new GameProfileSelectController() },
