@@ -3,20 +3,16 @@
 using System.Linq;
 using System.Reflection;
 using UnityEngine.Networking;
-using Haru.Client.Helpers;
 using Haru.Client.Models;
 
 namespace Haru.Client.Patches
 {
     public class SslCertificatePatch : APatch
     {
-        private readonly PatchHelper _patchHelper;
-
-        public SslCertificatePatch(PatchHelper patchHelper) : base()
+        public SslCertificatePatch() : base()
         {
             Id = "com.haru.client.sslcertificate";
             Type = EPatchType.Prefix;
-            _patchHelper = patchHelper;
         }
 
         protected override MethodBase GetOriginalMethod()

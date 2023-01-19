@@ -20,12 +20,10 @@ namespace Haru.Client
 
         public void RunPatcher()
         {
-            var patchHelper = new PatchHelper();
-
-            new BattlEyePatch(patchHelper).Enable();
-            new ConsistencyGeneralPatch(patchHelper).Enable();
-            new ConsistencyBundlesPatch(patchHelper).Enable();
-            new SslCertificatePatch(patchHelper).Enable();
+            new BattlEyePatch().Enable();
+            new ConsistencyGeneralPatch().Enable();
+            new ConsistencyBundlesPatch().Enable();
+            new SslCertificatePatch().Enable();
         }
     }
 }

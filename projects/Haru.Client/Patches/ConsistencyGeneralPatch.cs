@@ -11,13 +11,10 @@ namespace Haru.Client.Patches
 {
     public class ConsistencyGeneralPatch : APatch
     {
-        private readonly PatchHelper _patchHelper;
-
-        public ConsistencyGeneralPatch(PatchHelper patchHelper) : base()
+        public ConsistencyGeneralPatch() : base()
         {
             Id = "com.haru.client.consistencygeneral";
             Type = EPatchType.Prefix;
-            _patchHelper = new PatchHelper();
         }
 
         protected override MethodBase GetOriginalMethod()

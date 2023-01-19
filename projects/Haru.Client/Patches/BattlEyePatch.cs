@@ -3,21 +3,18 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Haru.Client.Helpers;
 using Haru.Client.Models;
 
 namespace Haru.Client.Patches
 {
     public class BattlEyePatch : APatch
     {
-        private readonly PatchHelper _patchHelper;
         private static PropertyInfo _succeed;
 
-        public BattlEyePatch(PatchHelper patchHelper) : base()
+        public BattlEyePatch() : base()
         {
             Id = "com.haru.client.battleye";
             Type = EPatchType.Prefix;
-            _patchHelper = patchHelper;
         }
 
         protected override MethodBase GetOriginalMethod()

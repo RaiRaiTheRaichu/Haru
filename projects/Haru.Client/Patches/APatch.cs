@@ -2,14 +2,21 @@
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
+using Haru.Client.Helpers;
 using Haru.Client.Models;
 
 namespace Haru.Client.Patches
 {
     public abstract class APatch
     {
+        protected PatchHelper _patchHelper;
         public EPatchType Type { get; protected set; }
         public string Id { get; protected set; }
+        
+        public APatch()
+        {
+            _patchHelper = new PatchHelper();
+        }
 
         protected abstract MethodBase GetOriginalMethod();
 
